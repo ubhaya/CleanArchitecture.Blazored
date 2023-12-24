@@ -1,0 +1,1 @@
+Clean Architecture Template for Blazor.Net
