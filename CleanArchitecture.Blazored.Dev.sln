@@ -5,12 +5,14 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0937006E-66B5-44AD-BB7F-5849CB5FBFA6}"
 	ProjectSection(SolutionItems) = preProject
-	    CleanArchitecture.Blazored.sln = CleanArchitecture.Blazored.sln 
-	    template.json = .template.config/template.json
+	    CleanArchitecture.Blazored.sln = content\CleanArchitecture.Blazored\CleanArchitecture.Blazored.sln
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.IntegrationTests", "tests\Application.IntegrationTests\Application.IntegrationTests.csproj", "{BEAFBA8E-E02B-4325-9805-D65E221A5BC4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectTemplate", "ProjectTemplate", "{42DE6BE8-675D-4765-B136-909306C4D293}"
+    ProjectSection(SolutionItems) = preProject
+        template.json = content\CleanArchitecture.Blazored\.template.config\template.json
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{21642CE3-AFFB-4B7D-8417-59AD52BD5D9E}"
 EndProject
@@ -18,23 +20,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EAAFA0BC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebUi", "WebUi", "{BA840084-69F1-46BC-911E-A037FB5EF547}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUi", "src\WebUi\WebUi\WebUi.csproj", "{FA245EA6-F12D-4AF6-AB3D-C45ECCA2612D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUi", "content\CleanArchitecture.Blazored\src\WebUi\WebUi\WebUi.csproj", "{FA245EA6-F12D-4AF6-AB3D-C45ECCA2612D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUi.Client", "src\WebUi\WebUi.Client\WebUi.Client.csproj", "{E5B75DD3-8905-4AEC-BD8F-E0C44AB9CF2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUi.Client", "content\CleanArchitecture.Blazored\src\WebUi\WebUi.Client\WebUi.Client.csproj", "{E5B75DD3-8905-4AEC-BD8F-E0C44AB9CF2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{BE628E67-8661-4541-AA1E-7DED68916817}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "content\CleanArchitecture.Blazored\src\Application\Application.csproj", "{BE628E67-8661-4541-AA1E-7DED68916817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{799EFF70-92BB-47E9-BB45-4314D7FC3D27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "content\CleanArchitecture.Blazored\src\Domain\Domain.csproj", "{799EFF70-92BB-47E9-BB45-4314D7FC3D27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{0980D85C-4292-44F6-B3B0-B292AEBCEFDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "content\CleanArchitecture.Blazored\src\Infrastructure\Infrastructure.csproj", "{0980D85C-4292-44F6-B3B0-B292AEBCEFDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "tests\Application.UnitTests\Application.UnitTests.csproj", "{26F13833-299F-4DCB-A712-DBC3E9D6A40D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.IntegrationTests", "content\CleanArchitecture.Blazored\tests\Application.IntegrationTests\Application.IntegrationTests.csproj", "{BEAFBA8E-E02B-4325-9805-D65E221A5BC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitTests", "tests\Domain.UnitTests\Domain.UnitTests.csproj", "{C6803B0D-9D4F-43DB-AC84-0CE580B8DC1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "content\CleanArchitecture.Blazored\tests\Application.UnitTests\Application.UnitTests.csproj", "{26F13833-299F-4DCB-A712-DBC3E9D6A40D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUi.AcceptanceTests", "tests\WebUi.AcceptanceTests\WebUi.AcceptanceTests.csproj", "{41B7E555-9C51-4BE2-8CF5-CB63E5B08605}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitTests", "content\CleanArchitecture.Blazored\tests\Domain.UnitTests\Domain.UnitTests.csproj", "{C6803B0D-9D4F-43DB-AC84-0CE580B8DC1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\WebUi\Shared\Shared.csproj", "{60932890-CC01-4512-BFC9-F3C6675091A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUi.AcceptanceTests", "content\CleanArchitecture.Blazored\tests\WebUi.AcceptanceTests\WebUi.AcceptanceTests.csproj", "{41B7E555-9C51-4BE2-8CF5-CB63E5B08605}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "content\CleanArchitecture.Blazored\src\WebUi\Shared\Shared.csproj", "{60932890-CC01-4512-BFC9-F3C6675091A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,6 +102,7 @@ Global
 		{41B7E555-9C51-4BE2-8CF5-CB63E5B08605} = {EAAFA0BC-C784-4424-A935-B294852D7527}
 		{60932890-CC01-4512-BFC9-F3C6675091A1} = {BA840084-69F1-46BC-911E-A037FB5EF547}
 		{BEAFBA8E-E02B-4325-9805-D65E221A5BC4} = {EAAFA0BC-C784-4424-A935-B294852D7527}
+		{42DE6BE8-675D-4765-B136-909306C4D293} = {0937006E-66B5-44AD-BB7F-5849CB5FBFA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E41B9081-EAF9-43BE-99B8-D8059C884823}
