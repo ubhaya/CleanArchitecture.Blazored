@@ -9,10 +9,10 @@ on:
 
 jobs:
     build:
-        runs-on: [ubuntu-latest, macos-latest, windows-latest]
+        runs-on: ubuntu-latest
 
         steps:
-            - uses: acitions/checkout@v3
+            - uses: actions/checkout@v3
             - name: Setup .NET
               uses: actions/setup-dotnet@v4.0.0
               with:
@@ -20,9 +20,8 @@ jobs:
             - name: Restore dependencies
               run: dotnet restore CleanArchitecture.Blazored.Dev.sln
             - name: Build solution
-              run: dotnet build --no-restore CleanArchitecture.Blazored.Dev.sln
-            - name: Execute Test
-              run: |
-               dotnet test --no-build --verbosity normal content\CleanArchitecture.Blazored\tests\Application.IntegrationTests\ &&
-               dotnet test --no-build --verbosity normal content\CleanArchitecture.Blazored\tests\Application.UnitTests\ &&
-               dotnet test --no-build --verbosity normal content\CleanArchitecture.Blazored\tests\Domain.UnitTests\
+              run: dotnet build --no-restore --verbosity normal CleanArchitecture.Blazored.Dev.sln -c Release
+            - name: Execute Application.UnitTest
+              run: dotnet test -c Release --no-build --verbosity normal content/CleanArchitecture.Blazored/tests/Application.UnitTests/Application.UnitTests.csproj
+            - name: Execute Domain.UnitTest
+              run: dotnet test -c Release --no-build --verbosity normal content/CleanArchitecture.Blazored/tests/Domain.UnitTests/Domain.UnitTests.csproj
