@@ -4,7 +4,7 @@ run-name: Deploying package to nuget
 on:
   workflow_dispatch: 
   push: 
-    branches: [ "main" ]
+    branches: [ "main", "ProjectStart" ]
   workflow_run: 
     workflows: ["CleanArchitecture.Blazored.Dev", "CleanArchitecture.Blazored"]
     types:

@@ -23,8 +23,8 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore CleanArchitecture.Blazored.Dev.sln
       - name: Build solution
-        run: dotnet build --no-restore --verbosity normal CleanArchitecture.Blazored.Dev.sln -c Release
+        run: dotnet build --no-restore CleanArchitecture.Blazored.Dev.sln -c Release
       - name: Execute Application.UnitTest
-        run: dotnet test -c Release --no-build --verbosity normal content/CleanArchitecture.Blazored/tests/Application.UnitTests/Application.UnitTests.csproj
+        run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Application.UnitTests/Application.UnitTests.csproj
       - name: Execute Domain.UnitTest
-        run: dotnet test -c Release --no-build --verbosity normal content/CleanArchitecture.Blazored/tests/Domain.UnitTests/Domain.UnitTests.csproj
+        run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Domain.UnitTests/Domain.UnitTests.csproj
