@@ -1,5 +1,5 @@
-name: Build and Run Test for Package
-
+name: CleanArchitecture.Blazored.Dev
+run-name: Build and Run Test for Package
 
 on:
   push:

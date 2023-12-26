@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		CleanArchitecture.Blazored.csproj = CleanArchitecture.Blazored.csproj
 		CleanArchitecture.Blazored.Dev.yml = .github\workflows\CleanArchitecture.Blazored.Dev.yml
 		CleanArchitecture.Blazored.yml = .github\workflows\CleanArchitecture.Blazored.yml
+		CleanArchitecture.Blazored.Deploy.yml = .github\workflows\CleanArchitecture.Blazored.Deploy.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectTemplate", "ProjectTemplate", "{42DE6BE8-675D-4765-B136-909306C4D293}"

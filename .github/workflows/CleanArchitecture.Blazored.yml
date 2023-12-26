@@ -1,5 +1,5 @@
-name: Build and Run Test for Project Template
-
+name: CleanArchitecture.Blazored
+run-name: Build and Run Test for Project Template
 
 on:
   push:
