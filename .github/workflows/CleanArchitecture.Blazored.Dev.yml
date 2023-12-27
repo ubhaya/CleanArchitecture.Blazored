@@ -11,12 +11,21 @@ on:
     types:
       - completed
 
+env:
+  SqlServerPassword: Sashrika@123
+
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
+    runs-on: ubuntu-latest
+    
+    services: 
+      sql-server:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          ACCEPT_EULA: 'Y'
+          MSSQL_SA_PASSWORD: Sashrika@123
+        ports:
+          - 1433:1433
     
     steps:
       - uses: actions/checkout@v3
@@ -28,6 +37,11 @@ jobs:
         run: dotnet restore CleanArchitecture.Blazored.Dev.sln
       - name: Build solution
         run: dotnet build --no-restore CleanArchitecture.Blazored.Dev.sln -c Release
+      - name: Execute Application.IntegrationTests
+        run: |
+         dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Application.IntegrationTests/Application.IntegrationTests.csproj
+        env:
+          ConnectionStrings__DefaultConnection: "Server=localhost,1433;Database=CleanArchitecture;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;"
       - name: Execute Application.UnitTest
         run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Application.UnitTests/Application.UnitTests.csproj
       - name: Execute Domain.UnitTest
