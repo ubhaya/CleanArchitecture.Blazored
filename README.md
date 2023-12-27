@@ -2,3 +2,4 @@
 
 [![Package](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.Dev.yml/badge.svg)](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.Dev.yml) 
 [![Template](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.yml/badge.svg)](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.yml)
+[![Nuget](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.Deploy.yml/badge.svg)](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.Deploy.yml)
