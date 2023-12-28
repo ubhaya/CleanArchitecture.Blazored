@@ -1,3 +1,4 @@
+using Ardalis.GuardClauses;
 using Microsoft.Extensions.Configuration;
 
 namespace CleanArchitecture.Blazored.WebUi.AcceptanceTests;
@@ -15,7 +16,19 @@ public static class ConfigurationHelper
     }
 
     private static string? _baseUrl;
+    private static string? _dockerComposeFileName;
 
+    public static string GetDockerComposeFileName()
+    {
+        if (string.IsNullOrWhiteSpace(_dockerComposeFileName))
+        {
+            _dockerComposeFileName = _configuration["DockerComposeFileName"];
+            Guard.Against.NullOrWhiteSpace(_dockerComposeFileName);
+        }
+
+        return _dockerComposeFileName;
+    }
+    
     public static string GetBaseUrl()
     {
         if (string.IsNullOrWhiteSpace(_baseUrl))

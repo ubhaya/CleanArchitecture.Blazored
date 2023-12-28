@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Components;
-using CleanArchitecture.Blazored.WebUi.Client.Handlers;
 using CleanArchitecture.Blazored.WebUi.Client.Handlers.Interfaces;
 using CleanArchitecture.Blazored.WebUi.Shared.AccessControl;
 

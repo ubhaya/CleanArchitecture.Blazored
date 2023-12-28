@@ -1,5 +1,3 @@
-using System.Security.Claims;
-
 namespace CleanArchitecture.Blazored.WebUi.Client;
 
 // Add properties to this class and update the server and client AuthenticationStateProviders

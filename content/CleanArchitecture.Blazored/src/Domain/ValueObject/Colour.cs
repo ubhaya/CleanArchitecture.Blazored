@@ -1,4 +1,3 @@
-using CleanArchitecture.Blazored.Domain.Common;
 using CleanArchitecture.Blazored.Domain.Exceptions;
 
 namespace CleanArchitecture.Blazored.Domain.ValueObject;
