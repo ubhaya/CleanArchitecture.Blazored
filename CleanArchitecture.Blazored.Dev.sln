@@ -19,7 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectTemplate", "ProjectT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template Items", "Template Items", "{160D49DA-504F-4496-8303-AE4258DAE42C}"
 	ProjectSection(SolutionItems) = preProject
-		content\CleanArchitecture.Blazored\CleanArchitecture.Blazored.sln = content\CleanArchitecture.Blazored\CleanArchitecture.Blazored.sln
+	    Dockerfile = content\CleanArchitecture.Blazored\Dockerfile
+		CleanArchitecture.Blazored.sln = content\CleanArchitecture.Blazored\CleanArchitecture.Blazored.sln
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{21642CE3-AFFB-4B7D-8417-59AD52BD5D9E}"

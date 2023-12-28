@@ -8,6 +8,7 @@
     <AssemblyName>CleanArchitecture.Blazored.WebUi</AssemblyName>
     <RootNamespace>CleanArchitecture.Blazored.WebUi</RootNamespace>
       <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+      <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
