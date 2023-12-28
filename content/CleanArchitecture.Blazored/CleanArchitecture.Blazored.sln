@@ -31,6 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUi.AcceptanceTests", "te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItem", "SolutionItem", "{BECC182E-8F1D-4E3A-9683-82F0343CC8E3}"
     ProjectSection(SolutionItems) = preProject
+        docker-compose = docker-compose.yml
         Dockerfile = dockerfile
     EndProjectSection
 EndProject
