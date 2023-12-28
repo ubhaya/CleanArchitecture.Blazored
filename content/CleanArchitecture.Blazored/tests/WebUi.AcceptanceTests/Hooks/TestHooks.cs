@@ -2,6 +2,7 @@ using System.Net;
 using Ductus.FluentDocker.Builders;
 using Ductus.FluentDocker.Common;
 using Ductus.FluentDocker.Services;
+using Ductus.FluentDocker.Services.Extensions;
 using TechTalk.SpecFlow;
 
 namespace CleanArchitecture.Blazored.WebUi.AcceptanceTests.Hooks;
@@ -21,12 +22,20 @@ public class TestHooks
 
         _compositeService = new Builder()
             .UseContainer()
+            .UseHealthCheck("curl --fail http://localhost:5000/health || exit 1")
             .UseCompose()
             .FromFile(dockerComposePath)
             .RemoveOrphans()
-            .WaitForHttp("webui", $"{confirmationUrl}/api/TodoItems",
+            .Wait("webui",Continuation)
+            .WaitForHttp("webui", $"{confirmationUrl}/health",
                 continuation: Continuation)
             .Build().Start();
+    }
+
+    private static int Continuation(IContainerService service, int arg2)
+    {
+        service.WaitForHealthy();
+        return 0;
     }
 
     private static long Continuation(RequestResponse response,int _)

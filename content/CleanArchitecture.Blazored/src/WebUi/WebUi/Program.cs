@@ -12,6 +12,8 @@ using CleanArchitecture.Blazored.WebUi.Components;
 using CleanArchitecture.Blazored.WebUi.Components.Account;
 using CleanArchitecture.Blazored.WebUi.Services;
 using CleanArchitecture.Blazored.WebUi.Shared.Authorization;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,6 +67,9 @@ builder.Services.AddOpenApiDocument(configure =>
         new AspNetCoreOperationSecurityScopeProcessor("basic"));
 });
 
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<ApplicationDbContext>();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -108,6 +113,16 @@ app.UseReDoc(configure =>
 {
     configure.Path = "/redoc";
     configure.DocumentPath = "/api/v1/openapi.json";
+});
+
+app.MapHealthChecks("/health", new HealthCheckOptions
+{
+    // ResultStatusCodes =
+    // {
+    //     [HealthStatus.Healthy] = StatusCodes.Status200OK,
+    //     [HealthStatus.Degraded] = StatusCodes.Status500InternalServerError,
+    //     [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
+    // }
 });
 
 app.MapControllers();
