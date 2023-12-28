@@ -23,7 +23,7 @@ jobs:
         image: mcr.microsoft.com/mssql/server:2019-latest
         env:
           ACCEPT_EULA: 'Y'
-          MSSQL_SA_PASSWORD: Sashrika@123
+          MSSQL_SA_PASSWORD: ${{ env.SqlServerPassword }}
         ports:
           - 1433:1433
     
@@ -41,8 +41,9 @@ jobs:
         run: |
          dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Application.IntegrationTests/Application.IntegrationTests.csproj
         env:
-          ConnectionStrings__DefaultConnection: "Server=localhost,1433;Database=CleanArchitecture;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;"
+          ConnectionStrings__DefaultConnection: Server=localhost,1433;Database=CleanArchitecture_Application_IntegrationTests;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;
       - name: Execute Application.UnitTest
         run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Application.UnitTests/Application.UnitTests.csproj
       - name: Execute Domain.UnitTest
         run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Domain.UnitTests/Domain.UnitTests.csproj
+          
