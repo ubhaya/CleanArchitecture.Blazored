@@ -54,6 +54,7 @@ jobs:
       - name: Pack Nuget package
         run: dotnet pack CleanArchitecture.Blazored.csproj /p:PackageVersionNumber=${{ steps.prep_version.outputs.version }} --configuration Release --output ${{ env.NuGetDirectory }}
       - uses: actions/upload-artifact@v3
+        if: github.event_name =='release'
         with: 
           name: nuget
           if-no-files-found: error
