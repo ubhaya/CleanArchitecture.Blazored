@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0937006E-66B5-44AD-BB7F-5849CB5FBFA6}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		LICENSE = LICENSE
 		CleanArchitecture.Blazored.csproj = CleanArchitecture.Blazored.csproj
 		CleanArchitecture.Blazored.Dev.yml = .github\workflows\CleanArchitecture.Blazored.Dev.yml
 		CleanArchitecture.Blazored.yml = .github\workflows\CleanArchitecture.Blazored.yml
