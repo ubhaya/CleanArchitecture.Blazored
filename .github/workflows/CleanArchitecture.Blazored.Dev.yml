@@ -50,4 +50,3 @@ jobs:
         run: pwsh content/CleanArchitecture.Blazored/tests/WebUi.AcceptanceTests/bin/Release/net8.0/playwright.ps1 install
       - name: Execute WebUi.AcceptanceTests
         run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj
-          

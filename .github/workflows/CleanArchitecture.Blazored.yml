@@ -11,12 +11,21 @@ on:
     types:
       - completed
 
+env:
+  SqlServerPassword: Sashrika@123
+  
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
+    runs-on: ubuntu-latest
+    
+    services:
+      sql-server:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          ACCEPT_EULA: 'Y'
+          MSSQL_SA_PASSWORD: ${{ env.SqlServerPassword }}
+        ports:
+          - 1433:1433
     
     steps:
       - uses: actions/checkout@v3
@@ -28,7 +37,16 @@ jobs:
         run: dotnet restore CleanArchitecture.Blazored.Dev.sln
       - name: Build solution
         run: dotnet build --no-restore content/CleanArchitecture.Blazored/CleanArchitecture.Blazored.sln -c Release
+      - name: Execute Application.IntegrationTests
+        run: |
+          dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Application.IntegrationTests/Application.IntegrationTests.csproj
+        env:
+          ConnectionStrings__DefaultConnection: Server=localhost,1433;Database=CleanArchitecture_Application_IntegrationTests;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;
       - name: Execute Application.UnitTest
         run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Application.UnitTests/Application.UnitTests.csproj
       - name: Execute Domain.UnitTest
         run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Domain.UnitTests/Domain.UnitTests.csproj
+      - name: Install Playwright
+        run: pwsh content/CleanArchitecture.Blazored/tests/WebUi.AcceptanceTests/bin/Release/net8.0/playwright.ps1 install
+      - name: Execute WebUi.AcceptanceTests
+        run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj
