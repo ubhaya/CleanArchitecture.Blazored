@@ -26,16 +26,9 @@ public class TestHooks
             .UseCompose()
             .FromFile(dockerComposePath)
             .RemoveOrphans()
-            .Wait("webui",Continuation)
             .WaitForHttp("webui", $"{confirmationUrl}/health",
                 continuation: Continuation)
             .Build().Start();
-    }
-
-    private static int Continuation(IContainerService service, int arg2)
-    {
-        service.WaitForHealthy();
-        return 0;
     }
 
     private static long Continuation(RequestResponse response,int _)
