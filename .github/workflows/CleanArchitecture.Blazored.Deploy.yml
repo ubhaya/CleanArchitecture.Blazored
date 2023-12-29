@@ -25,8 +25,34 @@ jobs:
         run: dotnet restore CleanArchitecture.Blazored.csproj
       - name: Build solution
         run: dotnet build --no-restore CleanArchitecture.Blazored.csproj -c Release
+      - name: Get latest release tag
+        id: get_tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "REPOSITORY_NAME=${{ github.repository }}" 
+          tag=$(curl -s \
+            "https://api.github.com/repos/${{ github.repository }}/releases/latest" \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer ${{ env.GH_TOKEN }}" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              | jq -r '.tag_name')
+          echo "Tag=$tag"
+          echo "::set-output name=tag::$tag"
+      - name: Ensure Release Tag
+        if: steps.get_tag.outputs.tag == null || steps.get_tag.outputs.tag == ''
+        run: exit 1
+      - name: Prepare Version tag
+        id: prep_version
+        run: |
+          export test_version=$(echo ${{ steps.get_tag.outputs.tag }} | sed -E 's/^[^0-9\.]*([0-9\.].*)$/\1/')
+          echo "Prep Tag=$test_version"
+          echo ::set-output name=version::$test_version
+      - name: Ensure Version
+        if: steps.prep_version.outputs.version == null || steps.prep_version.outputs.version == ''
+        run: exit 1
       - name: Pack Nuget package
-        run: dotnet pack CleanArchitecture.Blazored.csproj --configuration Release --output ${{ env.NuGetDirectory }}
+        run: dotnet pack CleanArchitecture.Blazored.csproj /p:PackageVersionNumber=${{ steps.prep_version.outputs.version }} --configuration Release --output ${{ env.NuGetDirectory }}
       - uses: actions/upload-artifact@v3
         with: 
           name: nuget
@@ -53,6 +79,5 @@ jobs:
           cd ${{ env.NuGetDirectory }}
           
           for file in *.nupkg; do
-            echo "Pushing $file to NuGet"
             dotnet nuget push "$file" --api-key "${{ secrets.NUGET_APIKEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
           done
