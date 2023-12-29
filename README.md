@@ -4,7 +4,9 @@
 [![Template](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.yml/badge.svg)](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.yml)
 [![Nuget](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.Deploy.yml/badge.svg)](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.Deploy.yml)
 
-This is a solution template for creating a Blazor WebAssembly application hosted on ASP.NET Core 8 and following the principles of Clean Architecture.
+> **Note:-** This project is a port from [RapidBlazor](https://github.com/jasontaylordev/RapidBlazor) Template
+
+This is a solution template for creating a Blazor Web App with client side rendering and following the principles of Clean Architecture.
 
 Please consider this a preview, I am still actively working on this template. If you spot a problem or would like to suggest an improvement, please let me know by creating an issue.
 
@@ -33,7 +35,7 @@ dotnet run
 
 ## Database
 ### Configuration
-The template is currently configured to use [SQL Server Express LocalDB](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver16) for development and [Azure SQL](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview?view=azuresql) once deployed. I understand this will be difficult for some developers, and will look other options in the near future.
+The template is currently configured to use [SQL Server Express LocalDB](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver16) for development.
 
 ### Migrations
 The template uses Entity Framework Core and migrations can be run using the EF Core CLI Tools. Install the tools using the following command:
