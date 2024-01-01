@@ -1,0 +1,30 @@
+<Project>
+    <Target Name="CopyFiles" BeforeTargets="Build">
+        <Message Text="Start to copy item from CleanArchitecture.Blazored to $(ProjectName)" Importance="high"/>
+        <Message Text="File Path: $(ProjectDir)/$(DestinationFilePath)" Importance="high"/>
+        <Copy SourceFiles="@(AllFilesInSource)" DestinationFolder="$(ProjectDir)/$(DestinationFilePath)/%(RecursiveDir)" SkipUnchangedFiles="true"/>
+        <Message Text="Finish to copy item from CleanArchitecture.Blazored to $(ProjectName)" Importance="high"/>
+    </Target>
+    <Target Name="ReplaceNamespacesAndAssemblyName" AfterTargets="CopyFiles">
+        <ItemGroup>
+            <AllFilesInDestination Include="$(DestinationFilePath)\**\*" Exclude="@(ExcludedFilesInDestination)"/>
+        </ItemGroup>
+        <Message Text="Changing Namespaces and AssemblyName" Importance="high"/>
+        <ReplaceFileText
+                Filename="$(ProjectDir)/%(AllFilesInDestination.Identity)"
+                MatchExpression="\bCleanArchitecture\.Blazored\b"
+                ReplacementText="$(ProjectName)"/>
+    </Target>
+    <Target Name="ReplaceRequiredFileName" AfterTargets="ReplaceNamespacesAndAssemblyName">
+        <ItemGroup>
+            <AllFilesInDestination Include="$(DestinationFilePath)\**\*" Exclude="@(ExcludedFilesInDestination)"/>
+        </ItemGroup>
+        <ReplaceFilename 
+                Filename="$(ProjectDir)/%(AllFilesInDestination.Identity)" 
+                MatchExpression="CleanArchitecture.Blazored"
+                ReplacementText="$(ProjectName)">
+<!--            <Output TaskParameter="RenamedFiles" PropertyName="ReplacedFilesList"/>-->
+        </ReplaceFilename>
+<!--        <Message Text="Processing file: $(ReplacedFilesList)" Importance="high"/>-->
+    </Target>
+</Project>

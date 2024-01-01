@@ -1,0 +1,54 @@
+<Project>
+    <UsingTask
+            TaskName="ReplaceFileText"
+            TaskFactory="RoslynCodeTaskFactory"
+            AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+        <ParameterGroup>
+            <Filename ParameterType="System.String" Required="true" />
+            <MatchExpression ParameterType="System.String" Required="true" />
+            <ReplacementText ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System"/>
+            <Using Namespace="System.IO"/>
+            <Using Namespace="System.Text.RegularExpressions" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[  
+          File.WriteAllText(
+            Filename,
+            Regex.Replace(File.ReadAllText(Filename), MatchExpression, ReplacementText)
+            );
+        ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+    
+    <UsingTask TaskName="ReplaceFilename"
+               TaskFactory="RoslynCodeTaskFactory"
+               AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+        <ParameterGroup>
+            <Filename ParameterType="System.String" Required="true" />
+            <MatchExpression ParameterType="System.String" Required="true" />
+            <ReplacementText ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System"/>
+            <Using Namespace="System.IO"/>
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(Filename);
+                if (fileNameWithoutExtension.Contains(MatchExpression))
+                {
+                    var path = Path.GetDirectoryName(Filename);
+                    fileNameWithoutExtension = fileNameWithoutExtension.Replace(MatchExpression, ReplacementText);
+                    var extension = Path.GetExtension(Filename);
+                    var newFileName = Path.Combine(path,$"{fileNameWithoutExtension}{extension}");
+                    File.Move(Filename, newFileName);
+                }
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+
+    <Import Project="BuildSettings\CleanArchitecture.MudBlazored.targets"/>
+</Project>

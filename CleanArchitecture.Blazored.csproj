@@ -30,6 +30,8 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     </PropertyGroup>
+    
+    <Import Project="BuildSettings.props"/>
 
     <PropertyGroup>
         <PackageVersionNumber Condition="'$(PackageVersionNumber)'==''">v0.0.1-alpha</PackageVersionNumber>
@@ -52,7 +54,6 @@
         <None Include="README.md" Pack="true" PackagePath=""/>
         <None Include="content\CleanArchitecture.Blazored\.template.config\icon.png" Packe="true" PackagePath=""/>
     </ItemGroup>
-
-    <Import Project="BuildSettings.props"/>
-
+    
+    <Import Project="BuildSettings.targets"/>
 </Project>
