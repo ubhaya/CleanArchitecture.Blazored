@@ -1,0 +1,37 @@
+<Project>
+    <PropertyGroup>
+        <SourceFilePath>content/CleanArchitecture.Blazored</SourceFilePath>
+        <DestinationFilePath>content/CleanArchitecture.MudBlazored</DestinationFilePath>
+    </PropertyGroup>
+    <ItemGroup>
+        <ExcludedFilesInSource Include="$(SourceFilePath)\src\WebUi\WebUi\**\*"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)\src\WebUi\WebUi.Client\**\*"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)\.template.config\**\*"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)\**\bin\*"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)\**\obj\*"/>
+
+        <ExcludedFilesInDestination Include="$(DestinationFilePath)\src\WebUi\WebUi\**\*"/>
+        <ExcludedFilesInDestination Include="$(DestinationFilePath)\src\WebUi\WebUi.Client\**\*"/>
+        <ExcludedFilesInDestination Include="$(DestinationFilePath)\.template.config\**\*"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AllFilesInSource Include="$(SourceFilePath)\**\*" Exclude="@(ExcludedFilesInSource)"/>
+    </ItemGroup>
+    <Target Name="CopyFiles" BeforeTargets="Build">
+        <Message Text="Start to copy item from CleanArchitecture.Blazored to CleanArchitecture.MudBlazored" Importance="high"/>
+        <Message Text="File Path: $(ProjectDir)/$(DestinationFilePath)" Importance="high"/>
+        <Copy SourceFiles="@(AllFilesInSource)" DestinationFolder="$(ProjectDir)/$(DestinationFilePath)/%(RecursiveDir)" SkipUnchangedFiles="true"/>
+        <Message Text="Finish to copy item from CleanArchitecture.Blazored to CleanArchitecture.MudBlazored" Importance="high"/>
+    </Target>
+    <Target Name="ReplaceNamespacesAndAssemblyName" AfterTargets="CopyFiles">
+        <ItemGroup>
+            <AllFilesInDestination Include="$(DestinationFilePath)\**\*" Exclude="@(ExcludedFilesInDestination)"/>
+        </ItemGroup>
+        <Message Text="Changing Namespaces and AssemblyName" Importance="high"/>
+        <Message Text="Processing file: %(AllFilesInDestination.Identity)" Importance="high"/>
+        <ReplaceFileText
+                Filename="$(ProjectDir)/%(AllFilesInDestination.Identity)"
+                MatchExpression="\bCleanArchitecture\.Blazored\b"
+                ReplacementText="CleanArchitecture.MudBlazored"/>
+    </Target>
+</Project>

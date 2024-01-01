@@ -1,2 +1,27 @@
 <Project>
+    <UsingTask
+            TaskName="ReplaceFileText"
+            TaskFactory="RoslynCodeTaskFactory"
+            AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+        <ParameterGroup>
+            <Filename ParameterType="System.String" Required="true" />
+            <MatchExpression ParameterType="System.String" Required="true" />
+            <ReplacementText ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System"/>
+            <Using Namespace="System.IO"/>
+            <Using Namespace="System.Text.RegularExpressions" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[  
+          File.WriteAllText(
+            Filename,
+            Regex.Replace(File.ReadAllText(Filename), MatchExpression, ReplacementText)
+            );
+        ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+    
+    <Import Project="BuildSettings\CleanArchitecture.MudBlazored.props"/>
 </Project>
