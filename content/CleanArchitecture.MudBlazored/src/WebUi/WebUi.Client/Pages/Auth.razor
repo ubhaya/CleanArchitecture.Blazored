@@ -1,0 +1,17 @@
+﻿@page "/auth"
+
+@using Microsoft.AspNetCore.Authorization
+
+@attribute [Authorize]
+@rendermode InteractiveWebAssembly
+@using WebUi.Client.Components
+
+<MyMudProviders />
+
+<PageTitle>Auth</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">You are authenticated</MudText>
+
+<AuthorizeView>
+<MudText Class="mb-4">Hello @context.User.Identity?.Name!</MudText>
+</AuthorizeView>
