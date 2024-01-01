@@ -11,12 +11,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		CleanArchitecture.Blazored.Dev.yml = .github\workflows\CleanArchitecture.Blazored.Dev.yml
 		CleanArchitecture.Blazored.yml = .github\workflows\CleanArchitecture.Blazored.yml
 		CleanArchitecture.Blazored.Deploy.yml = .github\workflows\CleanArchitecture.Blazored.Deploy.yml
+		BuildSettings.props = BuildSettings.props
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectTemplate", "ProjectTemplate", "{42DE6BE8-675D-4765-B136-909306C4D293}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Settings", "Build Settings", "{72623208-6A61-4C07-A3FC-C2AC5C01D387}"
     ProjectSection(SolutionItems) = preProject
-        template.json = content\CleanArchitecture.Blazored\.template.config\template.json
     EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CleanArchitecture.Bootstrap", "CleanArchitecture.Bootstrap", "{75B9FE40-E505-4A08-A926-C6944630CDFC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template Items", "Template Items", "{160D49DA-504F-4496-8303-AE4258DAE42C}"
 	ProjectSection(SolutionItems) = preProject
@@ -24,6 +26,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template Items", "Template 
 	    Dockerfile = content\CleanArchitecture.Blazored\Dockerfile
 		CleanArchitecture.Blazored.sln = content\CleanArchitecture.Blazored\CleanArchitecture.Blazored.sln
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectTemplate", "ProjectTemplate", "{42DE6BE8-675D-4765-B136-909306C4D293}"
+    ProjectSection(SolutionItems) = preProject
+        template.json = content\CleanArchitecture.Blazored\.template.config\template.json
+    EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{21642CE3-AFFB-4B7D-8417-59AD52BD5D9E}"
 EndProject
