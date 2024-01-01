@@ -23,8 +23,6 @@
                 Filename="$(ProjectDir)/%(AllFilesInDestination.Identity)" 
                 MatchExpression="CleanArchitecture.Blazored"
                 ReplacementText="$(ProjectName)">
-<!--            <Output TaskParameter="RenamedFiles" PropertyName="ReplacedFilesList"/>-->
         </ReplaceFilename>
-<!--        <Message Text="Processing file: $(ReplacedFilesList)" Importance="high"/>-->
     </Target>
 </Project>
