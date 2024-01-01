@@ -26,4 +26,22 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Pages\Admin\Users\Edit.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Pages\Auth.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Pages\Claims\Index.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Pages\Counter.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Pages\Todo\TodoItems.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Pages\Todo\TodoLists.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Pages\Todo\TodoState.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Pages\Admin\Users\Edit.razor" />
+    <AdditionalFiles Include="Pages\Claims\Index.razor" />
+    <AdditionalFiles Include="Pages\Todo\TodoItems.razor" />
+    <AdditionalFiles Include="Pages\Todo\TodoLists.razor" />
+    <AdditionalFiles Include="Pages\Todo\TodoState.razor" />
+  </ItemGroup>
+
 </Project>
