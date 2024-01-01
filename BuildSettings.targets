@@ -43,7 +43,14 @@
                     fileNameWithoutExtension = fileNameWithoutExtension.Replace(MatchExpression, ReplacementText);
                     var extension = Path.GetExtension(Filename);
                     var newFileName = Path.Combine(path,$"{fileNameWithoutExtension}{extension}");
-                    File.Move(Filename, newFileName);
+                    try
+                    {
+                        File.Move(Filename, newFileName);
+                    }
+                    catch
+                    {
+                        File.Delete(Filename);
+                    }
                 }
                 ]]>
             </Code>

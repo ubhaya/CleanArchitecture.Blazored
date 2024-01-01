@@ -1,0 +1,14 @@
+# Ignore everything by default
+/*
+!.gitignore
+!.template.config/
+!.template.config/**
+# Include specific folders and their contents
+!src/
+src/*
+!src/WebUi/
+src/WebUi/*
+!src/WebUi/WebUi/
+!src/WebUi/WebUi/**
+!src/WebUi/WebUI.Client/
+!src/WebUi/WebUI.Client/**

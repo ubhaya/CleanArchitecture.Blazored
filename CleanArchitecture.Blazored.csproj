@@ -46,7 +46,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\.idea\**;"/>
+        <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\.idea\**;content\**\.gitignore;"/>
         <Compile Remove="**\*"/>
     </ItemGroup>
 
