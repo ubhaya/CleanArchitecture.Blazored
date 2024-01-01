@@ -26,10 +26,13 @@ internal class PersistentAuthenticationStateProvider : AuthenticationStateProvid
             return;
         }
 
-        Claim[] claims = [
+        List<Claim> claims = [
             new Claim(ClaimTypes.NameIdentifier, userInfo.UserId),
             new Claim(ClaimTypes.Name, userInfo.Email),
-            new Claim(ClaimTypes.Email, userInfo.Email) ];
+            new Claim(ClaimTypes.Email, userInfo.Email),
+            new Claim(CustomClaimTypes.Permissions, userInfo.Permissions)
+        ];
+        claims.AddRange(userInfo.Roles.Select(role=>new Claim(ClaimTypes.Role, role)));
 
         authenticationStateTask = Task.FromResult(
             new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(claims,

@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using CleanArchitecture.MudBlazored.WebUi.Client;
+using CleanArchitecture.MudBlazored.WebUi.Shared.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
@@ -50,13 +51,19 @@ internal sealed class PersistingServerAuthenticationStateProvider : ServerAuthen
         {
             var userId = principal.FindFirst(options.ClaimsIdentity.UserIdClaimType)?.Value;
             var email = principal.FindFirst(options.ClaimsIdentity.EmailClaimType)?.Value;
+            var permissions = principal.FindFirst(CustomClaimTypes.Permissions)?.Value;
+            var roles = principal.FindAll(options.ClaimsIdentity.RoleClaimType)?
+                .Select(r => r.Value)
+                .ToList();
 
-            if (userId != null && email != null)
+            if (userId != null && email != null && permissions != null && roles != null)
             {
                 state.PersistAsJson(nameof(UserInfo), new UserInfo
                 {
                     UserId = userId,
                     Email = email,
+                    Permissions = permissions,
+                    Roles = roles
                 });
             }
         }
