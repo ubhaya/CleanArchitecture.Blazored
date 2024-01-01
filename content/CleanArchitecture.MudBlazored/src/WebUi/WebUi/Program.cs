@@ -1,10 +1,11 @@
+using CleanArchitecture.MudBlazored.Infrastructure.Data;
+using CleanArchitecture.MudBlazored.Infrastructure.Identity;
+using CleanArchitecture.MudBlazored.WebUi.Client.Pages;
+using CleanArchitecture.MudBlazored.WebUi.Components;
+using CleanArchitecture.MudBlazored.WebUi.Components.Account;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using WebUi.Client.Pages;
-using WebUi.Components;
-using WebUi.Components.Account;
-using WebUi.Data;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);

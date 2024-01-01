@@ -1,8 +1,8 @@
+using CleanArchitecture.MudBlazored.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using WebUi.Data;
 
-namespace WebUi.Components.Account;
+namespace CleanArchitecture.MudBlazored.WebUi.Components.Account;
 
 // Remove the "else if (EmailSender is IdentityNoOpEmailSender)" block from RegisterConfirmation.razor after updating with a real implementation.
 internal sealed class IdentityNoOpEmailSender : IEmailSender<ApplicationUser>

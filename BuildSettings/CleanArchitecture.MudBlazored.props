@@ -10,6 +10,8 @@
         <ExcludedFilesInSource Include="$(SourceFilePath)\.template.config\**\*"/>
         <ExcludedFilesInSource Include="$(SourceFilePath)\**\bin\*"/>
         <ExcludedFilesInSource Include="$(SourceFilePath)\**\obj\*"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)\**\obj\*"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)\**\*.feature.cs"/>
 
         <ExcludedFilesInDestination Include="$(DestinationFilePath)\src\WebUi\WebUi\**\*"/>
         <ExcludedFilesInDestination Include="$(DestinationFilePath)\src\WebUi\WebUi.Client\**\*"/>

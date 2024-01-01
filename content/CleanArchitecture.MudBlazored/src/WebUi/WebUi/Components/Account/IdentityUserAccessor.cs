@@ -1,7 +1,7 @@
+using CleanArchitecture.MudBlazored.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
-using WebUi.Data;
 
-namespace WebUi.Components.Account;
+namespace CleanArchitecture.MudBlazored.WebUi.Components.Account;
 
 internal sealed class IdentityUserAccessor(UserManager<ApplicationUser> userManager, IdentityRedirectManager redirectManager)
 {

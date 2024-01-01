@@ -1,15 +1,16 @@
 using System.Security.Claims;
 using System.Text.Json;
+using CleanArchitecture.MudBlazored.Infrastructure.Identity;
+using CleanArchitecture.MudBlazored.WebUi.Components.Account.Pages;
+using CleanArchitecture.MudBlazored.WebUi.Components.Account.Pages.Manage;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
-using WebUi.Components.Account.Pages;
-using WebUi.Components.Account.Pages.Manage;
-using WebUi.Data;
 
+// ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Routing;
 
 internal static class IdentityComponentsEndpointRouteBuilderExtensions
