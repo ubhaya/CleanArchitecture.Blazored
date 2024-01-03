@@ -11,38 +11,38 @@
 
 <PageTitle>Two-factor authentication</PageTitle>
 
-<h1>Two-factor authentication</h1>
-<hr />
+<MudText Typo="Typo.h1">Two-factor authentication</MudText>
+<MudDivider DividerType="DividerType.Middle" />
 <StatusMessage Message="@message" />
-<p>Your login is protected with an authenticator app. Enter your authenticator code below.</p>
-<div class="row">
-    <div class="col-md-4">
+<MudText Typo="Typo.body2">Your login is protected with an authenticator app. Enter your authenticator code below.</MudText>
+<MudGrid>
+    <MudItem md="4">
         <EditForm Model="Input" FormName="login-with-2fa" OnValidSubmit="OnValidSubmitAsync" method="post">
-            <input type="hidden" name="ReturnUrl" value="@ReturnUrl" />
-            <input type="hidden" name="RememberMe" value="@RememberMe" />
+            <MudInput InputType="InputType.Hidden" name="ReturnUrl" Value="@ReturnUrl" />
+            <MudInput InputType="InputType.Hidden" name="RememberMe" Value="@RememberMe" />
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert" />
-            <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.TwoFactorCode" class="form-control" autocomplete="off" />
-                <label for="two-factor-code" class="form-label">Authenticator code</label>
-                <ValidationMessage For="() => Input.TwoFactorCode" class="text-danger" />
-            </div>
-            <div class="checkbox mb-3">
-                <label for="remember-machine" class="form-label">
-                    <InputCheckbox @bind-Value="Input.RememberMachine" />
-                    Remember this machine
-                </label>
-            </div>
+            <MudTextField T="string"
+                          autocomplete="off"
+                          bind-Value="Input.TwoFactorCode"
+                          Label="Authenticator code"
+                          For="() => Input.TwoFactorCode!"/>
+            <MudPaper 
+                Elevation="0">
+                <MudCheckBox T="bool" bind-Value="Input.RememberMachine">
+                    Remember me
+                </MudCheckBox>
+            </MudPaper>
             <div>
-                <button type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">Log in</MudButton>
             </div>
         </EditForm>
-    </div>
-</div>
-<p>
+    </MudItem>
+</MudGrid>
+<MudText Typo="Typo.body2">
     Don't have access to your authenticator device? You can
-    <a href="Account/LoginWithRecoveryCode?ReturnUrl=@ReturnUrl">log in with a recovery code</a>.
-</p>
+    <MudLink Href="@($"Account/LoginWithRecoveryCode?ReturnUrl={@ReturnUrl}")">log in with a recovery code</MudLink>.
+</MudText>
 
 @code {
     private string? message;

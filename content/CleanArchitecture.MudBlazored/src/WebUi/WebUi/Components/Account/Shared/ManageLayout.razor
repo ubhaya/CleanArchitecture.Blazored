@@ -1,17 +1,17 @@
 ﻿@inherits LayoutComponentBase
 @layout AccountLayout
 
-<h1>Manage your account</h1>
+<MudText Typo="Typo.h1">Manage your account</MudText>
 
-<div>
-    <h2>Change your account settings</h2>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <ManageNavMenu />
-        </div>
-        <div class="col-md-9">
+<MudLayout>
+    <MudText Typo="Typo.h2">Change your account settings</MudText>
+    <MudDivider DividerType="DividerType.Middle" Class="my-6"/>
+    <MudGrid>
+        <MudItem md="3">
+            <ManageNavMenu/>
+        </MudItem>
+        <MudItem md="9">
             @Body
-        </div>
-    </div>
-</div>
+        </MudItem>
+    </MudGrid>
+</MudLayout>

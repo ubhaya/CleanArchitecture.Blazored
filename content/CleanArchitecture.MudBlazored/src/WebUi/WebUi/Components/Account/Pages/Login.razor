@@ -12,57 +12,57 @@
 
 <PageTitle>Log in</PageTitle>
 
-<h1>Log in</h1>
-<div class="row">
-    <div class="col-md-4">
+<MudText Typo="Typo.h1">Log in</MudText>
+<MudGrid>
+    <MudItem md="4">
         <section>
             <StatusMessage Message="@errorMessage" />
             <EditForm Model="Input" method="post" OnValidSubmit="LoginUser" FormName="login">
                 <DataAnnotationsValidator />
-                <h2>Use a local account to log in.</h2>
-                <hr />
-                <ValidationSummary class="text-danger" role="alert" />
-                <div class="form-floating mb-3">
-                    <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                    <label for="email" class="form-label">Email</label>
-                    <ValidationMessage For="() => Input.Email" class="text-danger" />
-                </div>
-                <div class="form-floating mb-3">
-                    <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label for="password" class="form-label">Password</label>
-                    <ValidationMessage For="() => Input.Password" class="text-danger" />
-                </div>
-                <div class="checkbox mb-3">
-                    <label class="form-label">
-                        <InputCheckbox @bind-Value="Input.RememberMe" class="darker-border-checkbox form-check-input" />
+                <MudText Typo="Typo.h2">Use a local account to log in.</MudText>
+                <MudDivider DividerType="DividerType.Middle" />
+                <ValidationSummary class="red-text" role="alert"/>
+                <MudTextField T="string" autocomplete="username"
+                              bind-Value="Input.Email"
+                              Placeholder="name@example.com"
+                              Label="Email"
+                              For="() => Input.Email"/>
+                <MudTextField T="string" autocomplete="current-password"
+                              bind-Value="Input.Password" InputType="InputType.Password"
+                              Placeholder="Password"
+                              Label="Password"
+                              For="() => Input.Password"/>
+                <MudPaper 
+                    Elevation="0">
+                    <MudCheckBox T="bool" bind-Value="Input.RememberMe">
                         Remember me
-                    </label>
+                    </MudCheckBox>
+                </MudPaper>
+                <div>
+                    <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">Log in</MudButton>
                 </div>
                 <div>
-                    <button type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                </div>
-                <div>
-                    <p>
-                        <a href="Account/ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a href="@(NavigationManager.GetUriWithQueryParameters("Account/Register", new Dictionary<string, object?> { ["ReturnUrl"] = ReturnUrl }))">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a href="Account/ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
+                    <MudText Typo="Typo.body2">
+                        <MudLink Href="Account/ForgotPassword">Forgot your password?</MudLink>
+                    </MudText>
+                    <MudText Typo="Typo.body2">
+                        <MudLink Href="@(NavigationManager.GetUriWithQueryParameters("Account/Register", new Dictionary<string, object?> { ["ReturnUrl"] = ReturnUrl }))">Register as a new user</MudLink>
+                    </MudText>
+                    <MudText Typo="Typo.body2">
+                        <MudLink Href="Account/ResendEmailConfirmation">Resend email confirmation</MudLink>
+                    </MudText>
                 </div>
             </EditForm>
         </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
+    </MudItem>
+    <MudItem md="4">
         <section>
-            <h3>Use another service to log in.</h3>
-            <hr />
+            <MudText Typo="Typo.h3">Use another service to log in.</MudText>
+            <MudDivider DividerType="DividerType.Middle" />
             <ExternalLoginPicker />
         </section>
-    </div>
-</div>
+    </MudItem>
+</MudGrid>
 
 @code {
     private string? errorMessage;
