@@ -5,15 +5,17 @@
 
 <PageTitle>Claims</PageTitle>
 
-<h1>Claims</h1>
+<MudText Typo="Typo.h3">Claims</MudText>
 
-<p>This component displays available claims.</p>
+<MudText Typo="Typo.body1">This component displays available claims.</MudText>
 
 <AuthorizeView>
-    <ul>
+    <MudList>
         @foreach (var claim in context.User.Claims)
         {
-            <li><b>@claim.Type</b>: @claim.Value</li>
+            <MudListItem>
+                <b>@claim.Type</b>: @claim.Value
+            </MudListItem>
         }
-    </ul>
+    </MudList>
 </AuthorizeView>

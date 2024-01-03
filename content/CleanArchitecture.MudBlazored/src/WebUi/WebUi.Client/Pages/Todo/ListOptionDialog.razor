@@ -1,0 +1,20 @@
+@if (State is null) return;
+<MudDialog>
+    <DialogContent>
+        <EditForm Model="State.SelectedList" OnValidSubmit="@SaveList">
+            <FluentValidationValidator DisableAssemblyScanning="true"/>
+            <MudTextField @ref="_titleInput" T="string" bind-Value="@State.SelectedList!.Title" Label="Title" Placeholder="Title..."
+                          For="() => State.SelectedList!.Title"/>
+            
+        </EditForm>
+    </DialogContent>
+    <DialogActions>
+        <MudPaper Elevation="0" Class="d-flex justify-space-between">
+            <MudButton Color="Color.Error" ButtonType="ButtonType.Button" OnClick="DeleteList">Delete</MudButton>
+            <span>
+                <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">Update</MudButton>
+                <MudButton ButtonType="ButtonType.Button" Color="Color.Primary" OnClick="Cancel">Cancel</MudButton>
+            </span>
+        </MudPaper>
+    </DialogActions>
+</MudDialog>

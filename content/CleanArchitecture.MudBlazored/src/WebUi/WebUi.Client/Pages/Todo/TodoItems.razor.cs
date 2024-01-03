@@ -2,16 +2,18 @@ using CleanArchitecture.MudBlazored.WebUi.Shared.TodoItems;
 using CleanArchitecture.MudBlazored.WebUi.Shared.TodoLists;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using MudBlazor;
 
 namespace CleanArchitecture.MudBlazored.WebUi.Client.Pages.Todo;
 
 public partial class TodoItems
 {
+    [Inject] private IDialogService DialogService { get; set; } = default!;
     [CascadingParameter] public TodoState State { get; set; } = default!;
     
     private TodoItemDto? SelectedItem { get; set; }
     
-    private ElementReference _titleInput;
+    private MudTextField<string>? _titleInput;
 
     private ElementReference _listOptionsModal;
 
@@ -28,15 +30,12 @@ public partial class TodoItems
         await EditItem(newItem);
     }
 
-    private async Task ToggleDone(TodoItemDto item, ChangeEventArgs args)
+    private async Task ToggleDone(TodoItemDto item, bool value)
     {
-        if (args.Value is bool value)
-        {
-            item.Done = value;
+        item.Done = value;
 
-            await State.TodoItemsHandler.PutTodoItemAsync(item.Id,
-                new UpdateTodoItemRequest { Id = item.Id, ListId = item.ListId, Title = item.Title, Done = item.Done });
-        }
+        await State.TodoItemsHandler.PutTodoItemAsync(item.Id,
+            new UpdateTodoItemRequest { Id = item.Id, ListId = item.ListId, Title = item.Title, Done = item.Done });
     }
 
     private async Task EditItem(TodoItemDto item)
@@ -45,7 +44,7 @@ public partial class TodoItems
 
         await Task.Delay(50);
 
-        if (_titleInput.Context != null)
+        if (_titleInput != null)
         {
             await _titleInput.FocusAsync();
         }
@@ -91,25 +90,20 @@ public partial class TodoItems
         }
     }
 
-    private async Task SaveList()
+    private void ShowDialog()
     {
-        await State.TodoListHandler.PutTodoListAsync(State.SelectedList!.Id, new UpdateTodoListRequest
+        var options = new DialogOptions
         {
-            Id = State.SelectedList.Id,
-            Title = State.SelectedList.Title
-        });
-
-        await State.JsModule!.InvokeVoidAsync(JsInteropConstants.HideModal, _listOptionsModal);
-
-        State.SyncList();
-    }
-
-    private async Task DeleteList()
-    {
-        await State.TodoListHandler.DeleteTodoListAsync(State.SelectedList!.Id);
-
-        await State.JsModule!.InvokeVoidAsync(JsInteropConstants.HideModal, _listOptionsModal);
-
-        State.DeleteList();
+            CloseOnEscapeKey = true,
+            MaxWidth = MaxWidth.Large,
+            FullWidth = true,
+            CloseButton = true,
+        };
+        var parameter = new DialogParameters<ListOptionDialog>
+        {
+            { x => x.State, State }
+        };
+        
+        DialogService.Show<ListOptionDialog>("List Options", parameter, options);
     }
 }

@@ -4,43 +4,32 @@
 
 <PageTitle>Users - Edit</PageTitle>
 
-<h3>Edit</h3>
+<MudText Typo="Typo.h3">Edit</MudText>
 
 @if (Model == null) return;
 
-<div class="row">
-    <div class="col-md-4">
-
-        <EditForm Model="@Model.User" OnValidSubmit="UpdateUser">
-
-            <div class="form-group">
-                <label for="username">Username</label>
-                <InputText id="username" @bind-Value="Model.User.UserName" class="form-control-plaintext"/>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email</label>
-                <InputText id="email" @bind-Value="Model.User.Email" class="form-control-plaintext"/>
-            </div>
-
-            <div class="form-group">
-                <label for="roles">Roles</label>
-                @foreach (var role in Model.Roles)
-                {
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="@($"role{role.Id}")" checked="@Model.User.Roles.Contains(role.Name)" @onchange="(args) => ToggleSelectedRole(role.Name)"/>
-                        <label class="form-check-label" for="@($"role{role.Id}")">
-                            @role.Name
-                        </label>
-                    </div>
-                }
-            </div>
-
-            <button type="submit" class="btn btn-primary">Save</button>
+<MudGrid Spacing="20">
+    <MudItem md="4">
+        <EditForm Model="Model.User" OnValidSubmit="UpdateUser">
+            <MudTextField T="string" bind-Value="Model.User.UserName" Label="Username"/>
+            <MudTextField T="string" bind-Value="Model.User.Email" Label="Email"/>
+            <MudCard Elevation="0">
+                <MudCardHeader>Roles</MudCardHeader>
+                <MudCardContent>
+                    @foreach (var role in Model.Roles)
+                    {
+                        <MudCheckBox T="bool" Value="Model.User.Roles.Contains(role.Name)" 
+                                     ValueChanged="_=>ToggleSelectedRole(role.Name)"
+                                     Label="@role.Name"/>
+                    }
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit">Save</MudButton>
+                </MudCardActions>
+            </MudCard>
         </EditForm>
-    </div>
-</div>
-
-<div>
-    <a href="/admin/users">Back to List</a>
-</div>
+    </MudItem>
+    <MudItem md="12">
+        <MudLink Href="/admin/users">Back to List</MudLink>
+    </MudItem>
+</MudGrid>

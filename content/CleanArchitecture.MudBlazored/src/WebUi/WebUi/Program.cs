@@ -1,6 +1,4 @@
 using CleanArchitecture.MudBlazored.Infrastructure.Data;
-using CleanArchitecture.MudBlazored.WebUi.Client.Pages;
-using CleanArchitecture.MudBlazored.WebUi.Components;
 using CleanArchitecture.MudBlazored.WebUi.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,0 +1,20 @@
+@page "/todo"
+@attribute [Authorize]
+@rendermode InteractiveAuto
+
+<PageTitle>Todo</PageTitle>
+
+<h1>Todo</h1>
+
+<p>This component demonstrates state management, validation, fetching and updating data on server, and more.</p>
+
+<TodoState>
+    <MudGrid>
+        <MudItem sm="4">
+            <TodoLists/>
+        </MudItem>
+        <MudItem sm="8">
+            <TodoItems/>
+        </MudItem>
+    </MudGrid>
+</TodoState>

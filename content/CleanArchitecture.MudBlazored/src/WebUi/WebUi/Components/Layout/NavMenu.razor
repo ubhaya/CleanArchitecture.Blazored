@@ -5,6 +5,26 @@
 	<MudNavLink Href="auth" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Auth Required</MudNavLink>
 
 	<AuthorizeView>
+		<MudNavLink Href="claims" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Pages">Claims</MudNavLink>
+	</AuthorizeView>
+	
+	<FlexibleAuthorizeView Permissions="Permissions.Todo">
+		<MudNavLink Href="todo" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Todo</MudNavLink>
+	</FlexibleAuthorizeView>
+	
+	<FlexibleAuthorizeView Permissions="Permissions.ViewUsers | Permissions.ManageUsers">
+		<MudNavLink Href="admin/users" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.People">Users</MudNavLink>
+	</FlexibleAuthorizeView>
+	
+	<FlexibleAuthorizeView Permissions="Permissions.ViewRoles | Permissions.ManageRoles">
+		<MudNavLink Href="admin/roles" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Badge">Roles</MudNavLink>
+	</FlexibleAuthorizeView>
+	
+	<FlexibleAuthorizeView Permissions="Permissions.ViewAccessControl | Permissions.ConfigureAccessControl">
+		<MudNavLink Href="admin/access-control" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.ManageAccounts">Access Control</MudNavLink>
+	</FlexibleAuthorizeView>
+	
+	<AuthorizeView>
 		<Authorized>
 			<MudNavLink Href="Account/Manage" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">@context.User.Identity?.Name</MudNavLink>
 			<MudNavLink Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Logout" >

@@ -3,72 +3,15 @@ using CleanArchitecture.MudBlazored.WebUi.Shared.TodoLists;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.JSInterop;
+using MudBlazor;
 using Newtonsoft.Json;
 
 namespace CleanArchitecture.MudBlazored.WebUi.Client.Pages.Todo;
 
 public partial class TodoLists
 {
+    [Inject] private IDialogService DialogService { get; set; } = default!;
     [CascadingParameter] public TodoState State { get; set; } = default!;
-
-    private ElementReference _titleInput;
-
-    private ElementReference _newListModal;
-
-    private TodoListDto _newTodoList = new();
-
-    private CustomValidation? _customValidation;
-
-    private async Task NewList()
-    {
-        _newTodoList = new TodoListDto();
-
-        await Task.Delay(500);
-
-        if (_titleInput.Context != null)
-        {
-            await _titleInput.FocusAsync();
-        }
-    }
-
-    private async Task CreateNewList()
-    {
-        _customValidation!.ClearErrors();
-
-        try
-        {
-            var listId = await State.TodoListHandler.PostTodoListAsync(new CreateTodoListRequest
-            {
-                Title = _newTodoList.Title
-            });
-
-            _newTodoList.Id = listId;
-
-            State.Model!.Lists.Add(_newTodoList);
-
-            SelectList(_newTodoList);
-
-            await State.JsModule!.InvokeVoidAsync(JsInteropConstants.HideModal, _newListModal);
-        }
-        catch (ApiException ex)
-        {
-            var problemDetails = JsonConvert.DeserializeObject<ValidationProblemDetails>(ex.Response);
-
-            if (problemDetails is not null)
-            {
-                var errors = new Dictionary<string, string[]>();
-
-                foreach (var error in problemDetails.Errors)
-                {
-                    var key = error.Key[(error.Key.IndexOf('.') + 1)..];
-
-                    errors[key] = error.Value;
-                }
-
-                _customValidation.DisplayErrors(errors);
-            }
-        }
-    }
 
     private bool IsSelected(TodoListDto list)
     {
@@ -80,5 +23,22 @@ public partial class TodoLists
         if (IsSelected(list)) return;
 
         State.SelectedList = list;
+    }
+
+    private void ShowDialog()
+    {
+        var options = new DialogOptions
+        {
+            CloseOnEscapeKey = true,
+            MaxWidth = MaxWidth.Large,
+            FullWidth = true,
+            CloseButton = true
+        };
+        var parameter = new DialogParameters<ListCreateDialog>
+        {
+            { x => x.State, State }
+        };
+
+        DialogService.Show<ListCreateDialog>("Lists", parameter, options);
     }
 }

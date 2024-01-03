@@ -5,9 +5,9 @@ namespace CleanArchitecture.MudBlazored.WebUi.Client.Handlers.WasmImplementation
 
 internal class TodoApiHandler:ITodoListHandler
 {
-    private TodoListsClient _todoListsClient;
+    private ITodoListsClient _todoListsClient;
 
-    public TodoApiHandler(TodoListsClient todoListsClient)
+    public TodoApiHandler(ITodoListsClient todoListsClient)
     {
         _todoListsClient = todoListsClient;
     }
