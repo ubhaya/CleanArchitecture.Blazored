@@ -14,11 +14,13 @@
         <ExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
         <ExcludedFilesInSource Include="$(SourceFilePath)/**/*.feature.cs"/>
         <ExcludedFilesInSource Include="$(SourceFilePath)/**/*.md"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)/tests/WebUi.AcceptanceTests/Pages/Selectors.cs"/>
 
         <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/src/WebUi/WebUi/**/*"/>
         <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/src/WebUi/WebUi.Client/**/*"/>
         <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/.template.config/**/*"/>
         <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/*.md"/>
+        <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/.template.config/template.json"/>
     </ItemGroup>
     <ItemGroup>
         <AllFilesInSource Include="$(SourceFilePath)/**/*" Exclude="@(ExcludedFilesInSource)"/>

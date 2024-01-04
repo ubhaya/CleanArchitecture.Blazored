@@ -55,6 +55,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template Items", "Template 
 		content\CleanArchitecture.MudBlazored\docker-compose.yml = content\CleanArchitecture.MudBlazored\docker-compose.yml
 		content\CleanArchitecture.MudBlazored\Dockerfile = content\CleanArchitecture.MudBlazored\Dockerfile
 		content\CleanArchitecture.MudBlazored\README.md = content\CleanArchitecture.MudBlazored\README.md
+		content/CleanArchitecture.MudBlazored/tests/WebUi.AcceptanceTests/Pages/Selectors.cs = content/CleanArchitecture.MudBlazored/tests/WebUi.AcceptanceTests/Pages/Selectors.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Template", "Project Template", "{D96E5597-0D19-4610-9377-AB6B7270A980}"
