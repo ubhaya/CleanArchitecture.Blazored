@@ -12,62 +12,62 @@
 <PageTitle>Two-factor authentication (2FA)</PageTitle>
 
 <StatusMessage />
-<MudText Typo="Typo.h3">Two-factor authentication (2FA)</MudText>
+<h3>Two-factor authentication (2FA)</h3>
 @if (canTrack)
 {
     if (is2faEnabled)
     {
         if (recoveryCodesLeft == 0)
         {
-            <MudAlert Severity="Severity.Error">
+            <div class="alert alert-danger">
                 <strong>You have no recovery codes left.</strong>
-                <MudText Typo="Typo.body2">You must <MudLink Href="Account/Manage/GenerateRecoveryCodes">generate a new set of recovery codes</MudLink> before you can log in with a recovery code.</MudText>
-            </MudAlert>
+                <p>You must <a href="Account/Manage/GenerateRecoveryCodes">generate a new set of recovery codes</a> before you can log in with a recovery code.</p>
+            </div>
         }
         else if (recoveryCodesLeft == 1)
         {
-            <MudAlert Severity="Severity.Error">
+            <div class="alert alert-danger">
                 <strong>You have 1 recovery code left.</strong>
-                <MudText Typo="Typo.body2">You can <MudLink href="Account/Manage/GenerateRecoveryCodes">generate a new set of recovery codes</MudLink>.</MudText>
-            </MudAlert>
+                <p>You can <a href="Account/Manage/GenerateRecoveryCodes">generate a new set of recovery codes</a>.</p>
+            </div>
         }
         else if (recoveryCodesLeft <= 3)
         {
-            <MudAlert Severity="Severity.Error">
+            <div class="alert alert-warning">
                 <strong>You have @recoveryCodesLeft recovery codes left.</strong>
-                <MudText Typo="Typo.body2">You should <MudLink Href="Account/Manage/GenerateRecoveryCodes">generate a new set of recovery codes</MudLink>.</MudText>
-            </MudAlert>
+                <p>You should <a href="Account/Manage/GenerateRecoveryCodes">generate a new set of recovery codes</a>.</p>
+            </div>
         }
 
         if (isMachineRemembered)
         {
             <form style="display: inline-block" @formname="forget-browser" @onsubmit="OnSubmitForgetBrowserAsync" method="post">
                 <AntiforgeryToken />
-                <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">Forget this browser</MudButton>
+                <button type="submit" class="btn btn-primary">Forget this browser</button>
             </form>
         }
 
-        <MudButton ButtonType="ButtonType.Button" Color="Color.Primary" Href="Account/Manage/Disable2fa">Disable 2FA</MudButton>
-        <MudButton ButtonType="ButtonType.Button" Color="Color.Primary" Href="Account/Manage/GenerateRecoveryCodes">Reset recovery codes</MudButton>
+        <a href="Account/Manage/Disable2fa" class="btn btn-primary">Disable 2FA</a>
+        <a href="Account/Manage/GenerateRecoveryCodes" class="btn btn-primary">Reset recovery codes</a>
     }
 
-    <MudText Typo="Typo.h4">Authenticator app</MudText>
+    <h4>Authenticator app</h4>
     @if (!hasAuthenticator)
     {
-        <MudButton ButtonType="ButtonType.Button" Color="Color.Primary" Href="Account/Manage/EnableAuthenticator">Add authenticator app</MudButton>
+        <a href="Account/Manage/EnableAuthenticator" class="btn btn-primary">Add authenticator app</a>
     }
     else
     {
-        <MudLink ButtonType="ButtonType.Button" Color="Color.Primary" Href="Account/Manage/EnableAuthenticator">Set up authenticator app</MudLink>
-        <MudLink ButtonType="ButtonType.Button" Color="Color.Primary" Href="Account/Manage/ResetAuthenticator">Reset authenticator app</MudLink>
+        <a href="Account/Manage/EnableAuthenticator" class="btn btn-primary">Set up authenticator app</a>
+        <a href="Account/Manage/ResetAuthenticator" class="btn btn-primary">Reset authenticator app</a>
     }
 }
 else
 {
-    <MudAlert Severity="Severity.Error">
+    <div class="alert alert-danger">
         <strong>Privacy and cookie policy have not been accepted.</strong>
-        <MudText Typo="Typo.body2">You must accept the policy before you can enable two factor authentication.</MudText>
-    </MudAlert>
+        <p>You must accept the policy before you can enable two factor authentication.</p>
+    </div>
 }
 
 @code {

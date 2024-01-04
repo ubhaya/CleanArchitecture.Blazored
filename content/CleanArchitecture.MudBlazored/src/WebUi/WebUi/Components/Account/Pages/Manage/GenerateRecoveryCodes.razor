@@ -16,23 +16,24 @@
 }
 else
 {
-    <MudText Typo="Typo.h3">Generate two-factor authentication (2FA) recovery codes</MudText>
-    <MudAlert Severity="Severity.Warning" role="alert" Icon="@Icons.Material.Filled.Warning">
-        <MudText Typo="Typo.body2">
+    <h3>Generate two-factor authentication (2FA) recovery codes</h3>
+    <div class="alert alert-warning" role="alert">
+        <p>
+            <span class="glyphicon glyphicon-warning-sign"></span>
             <strong>Put these codes in a safe place.</strong>
-        </MudText>
-        <MudText Typo="Typo.body2">
+        </p>
+        <p>
             If you lose your device and don't have the recovery codes you will lose access to your account.
-        </MudText>
-        <MudText>
+        </p>
+        <p>
             Generating new recovery codes does not change the keys used in authenticator apps. If you wish to change the key
-                        used in an authenticator app you should <MudLink Href="Account/Manage/ResetAuthenticator">reset your authenticator keys.</MudLink>
-        </MudText>
-    </MudAlert>
+            used in an authenticator app you should <a href="Account/Manage/ResetAuthenticator">reset your authenticator keys.</a>
+        </p>
+    </div>
     <div>
         <form @formname="generate-recovery-codes" @onsubmit="OnSubmitAsync" method="post">
             <AntiforgeryToken />
-            <MudButton Color="Color.Error" ButtonType="ButtonType.Submit">Generate Recovery Codes</MudButton>
+            <button class="btn btn-danger" type="submit">Generate Recovery Codes</button>
         </form>
     </div>
 }

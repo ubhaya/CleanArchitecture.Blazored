@@ -1,23 +1,23 @@
 ﻿<StatusMessage Message="@StatusMessage" />
-<MudText Typo="Typo.h3">Recovery codes</MudText>
-<MudAlert Severity="Severity.Warning">
-    <MudText Typo="Typo.body2">
+<h3>Recovery codes</h3>
+<div class="alert alert-warning" role="alert">
+    <p>
         <strong>Put these codes in a safe place.</strong>
-    </MudText>
-    <MudText Typo="Typo.body2">
+    </p>
+    <p>
         If you lose your device and don't have the recovery codes you will lose access to your account.
-    </MudText>
-</MudAlert>
-<MudGrid>
-    <MudItem md="12">
+    </p>
+</div>
+<div class="row">
+    <div class="col-md-12">
         @foreach (var recoveryCode in RecoveryCodes)
         {
-            <MudPaper>
-                <MudText>@recoveryCode</MudText>
-            </MudPaper>
+            <div>
+                <code class="recovery-code">@recoveryCode</code>
+            </div>
         }
-    </MudItem>
-</MudGrid>
+    </div>
+</div>
 
 @code {
     [Parameter]

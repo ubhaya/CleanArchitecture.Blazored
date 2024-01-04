@@ -12,21 +12,21 @@
 <PageTitle>Reset authenticator key</PageTitle>
 
 <StatusMessage />
-<MudText Typo="Typo.h3">Reset authenticator key</MudText>
-<MudAlert Severity="Severity.Warning" role="alert" 
-          Icon="@Icons.Material.Filled.Warning">
-    <MudText Typo="Typo.body2">
+<h3>Reset authenticator key</h3>
+<div class="alert alert-warning" role="alert">
+    <p>
+        <span class="glyphicon glyphicon-warning-sign"></span>
         <strong>If you reset your authenticator key your authenticator app will not work until you reconfigure it.</strong>
-    </MudText>
-    <MudText Typo="Typo.body2">
+    </p>
+    <p>
         This process disables 2FA until you verify your authenticator app.
         If you do not complete your authenticator app configuration you may lose access to your account.
-    </MudText>
-</MudAlert>
+    </p>
+</div>
 <div>
     <form @formname="reset-authenticator" @onsubmit="OnSubmitAsync" method="post">
         <AntiforgeryToken />
-        <MudButton Color="Color.Error" ButtonType="ButtonType.Submit">Reset authenticator key</MudButton>
+        <button class="btn btn-danger" type="submit">Reset authenticator key</button>
     </form>
 </div>
 
