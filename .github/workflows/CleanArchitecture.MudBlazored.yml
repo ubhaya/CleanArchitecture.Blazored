@@ -1,5 +1,5 @@
-name: CleanArchitecture.Blazored
-run-name: Build and Run Test for Blazor Project Template
+name: CleanArchitecture.MudBlazored
+run-name: Build and Run Test for MudBlazor Project Template
 
 on:
   push:
@@ -13,8 +13,8 @@ on:
 
 env:
   SqlServerPassword: CleanArchitecture@123
-  ProjectName: CleanArchitecture.Blazored
-  TemplateName: clean-architecture-blazored
+  ProjectName: CleanArchitecture.MudBlazored
+  TemplateName: clean-architecture-mudblazored
   
 jobs:
   build:
