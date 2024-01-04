@@ -1,6 +1,7 @@
 # Ignore everything by default
 /*
 !.gitignore
+!README.md
 !.template.config/
 !.template.config/**
 # Include specific folders and their contents

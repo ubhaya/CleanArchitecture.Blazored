@@ -13,6 +13,7 @@
         <ExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
         <ExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
         <ExcludedFilesInSource Include="$(SourceFilePath)/**/*.feature.cs"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)/**/*.md"/>
 
         <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/src/WebUi/WebUi/**/*"/>
         <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/src/WebUi/WebUi.Client/**/*"/>

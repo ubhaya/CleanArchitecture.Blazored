@@ -38,6 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template Items", "Template 
 		content\CleanArchitecture.Blazored\CleanArchitecture.Blazored.sln = content\CleanArchitecture.Blazored\CleanArchitecture.Blazored.sln
 		content\CleanArchitecture.Blazored\docker-compose.yml = content\CleanArchitecture.Blazored\docker-compose.yml
 		content\CleanArchitecture.Blazored\Dockerfile = content\CleanArchitecture.Blazored\Dockerfile
+		content\CleanArchitecture.Blazored\README.md = content\CleanArchitecture.Blazored\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Template", "Project Template", "{B08E33FC-3E63-4143-B9DB-1D8535DE2D7E}"
@@ -53,6 +54,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template Items", "Template 
 		content\CleanArchitecture.MudBlazored\CleanArchitecture.MudBlazored.sln = content\CleanArchitecture.MudBlazored\CleanArchitecture.MudBlazored.sln
 		content\CleanArchitecture.MudBlazored\docker-compose.yml = content\CleanArchitecture.MudBlazored\docker-compose.yml
 		content\CleanArchitecture.MudBlazored\Dockerfile = content\CleanArchitecture.MudBlazored\Dockerfile
+		content\CleanArchitecture.MudBlazored\README.md = content\CleanArchitecture.MudBlazored\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Template", "Project Template", "{D96E5597-0D19-4610-9377-AB6B7270A980}"
