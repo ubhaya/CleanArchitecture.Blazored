@@ -12,7 +12,9 @@ on:
       - completed
 
 env:
-  SqlServerPassword: Sashrika@123
+  SqlServerPassword: CleanArchitecture@123
+  ProjectName: CleanArchitecture.Blazored
+  TemplateName: clean-architecture-blazored
   
 jobs:
   build:
@@ -34,21 +36,27 @@ jobs:
         with:
           dotnet-version: 8.x
       - name: Create Generated Project
-        run: dotnet restore CleanArchitecture.Blazored.csproj
+        run: dotnet pack CleanArchitecture.Blazored.csproj
+      - name: Install Project Template
+        run: dotnet new install ./bin/Release/CleanArchitecture.Blazored.1.0.0.nupkg
+      - name: Create ${{ env.ProjectName }} Sample
+        run: dotnet new ${{ env.TemplateName }} -n ${{ env.ProjectName }} -o ${{ env.ProjectName }}
+      - name: Changing to ${{ env.ProjectName }} Directory
+        run: cd ${{ env.ProjectName }}
       - name: Restore dependencies
-        run: dotnet restore CleanArchitecture.Blazored.Dev.sln
+        run: dotnet restore ${{ env.ProjectName }}.sln
       - name: Build solution
-        run: dotnet build --no-restore content/CleanArchitecture.Blazored/CleanArchitecture.Blazored.sln -c Release
+        run: dotnet build --no-restore ${{ env.ProjectName }}.sln -c Release
       - name: Execute Application.IntegrationTests
         run: |
-          dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Application.IntegrationTests/Application.IntegrationTests.csproj
+          dotnet test -c Release --no-build tests/Application.IntegrationTests/Application.IntegrationTests.csproj
         env:
           ConnectionStrings__DefaultConnection: Server=localhost,1433;Database=CleanArchitecture_Application_IntegrationTests;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;
       - name: Execute Application.UnitTest
-        run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Application.UnitTests/Application.UnitTests.csproj
+        run: dotnet test -c Release --no-build tests/Application.UnitTests/Application.UnitTests.csproj
       - name: Execute Domain.UnitTest
-        run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Domain.UnitTests/Domain.UnitTests.csproj
+        run: dotnet test -c Release --no-build tests/Domain.UnitTests/Domain.UnitTests.csproj
       - name: Install Playwright
-        run: pwsh content/CleanArchitecture.Blazored/tests/WebUi.AcceptanceTests/bin/Release/net8.0/playwright.ps1 install
+        run: pwsh tests/WebUi.AcceptanceTests/bin/Release/net8.0/playwright.ps1 install
       - name: Execute WebUi.AcceptanceTests
-        run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj
+        run: dotnet test -c Release --no-build tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj
