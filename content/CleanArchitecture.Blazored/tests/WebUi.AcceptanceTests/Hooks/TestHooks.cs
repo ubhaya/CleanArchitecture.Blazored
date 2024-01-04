@@ -7,11 +7,12 @@ using TechTalk.SpecFlow;
 
 namespace CleanArchitecture.Blazored.WebUi.AcceptanceTests.Hooks;
 
+#if RELEASE    
 [Binding]
 public class TestHooks
 {
     private static ICompositeService _compositeService = default!;
-
+    
     [BeforeTestRun]
     public static void DockerComposeUp()
     {
@@ -42,7 +43,6 @@ public class TestHooks
         _compositeService.Stop();
         _compositeService.Dispose();
     }
-
     private static string GetDockerComposeLocation(string dockerComposeFileName)
     {
         var directory = Directory.GetCurrentDirectory();
@@ -54,3 +54,4 @@ public class TestHooks
         return Path.Combine(directory, dockerComposeFileName);
     }
 }
+#endif

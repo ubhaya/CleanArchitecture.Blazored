@@ -10,7 +10,11 @@ public static class ConfigurationHelper
     static ConfigurationHelper()
     {
         _configuration = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
+#if DEBUG
+            .AddJsonFile($"appsettings.Development.json", optional: false, reloadOnChange: true)
+#else
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+#endif
             .AddEnvironmentVariables()
             .Build();
     }
@@ -28,7 +32,7 @@ public static class ConfigurationHelper
 
         return _dockerComposeFileName;
     }
-    
+
     public static string GetBaseUrl()
     {
         if (string.IsNullOrWhiteSpace(_baseUrl))
