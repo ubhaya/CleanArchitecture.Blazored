@@ -1,28 +1,30 @@
 <Project>
-    <Target Name="CopyFiles" BeforeTargets="Build">
-        <Message Text="Start to copy item from CleanArchitecture.Blazored to $(ProjectName)" Importance="high"/>
-        <Message Text="File Path: $(ProjectDir)/$(DestinationFilePath)" Importance="high"/>
-        <Copy SourceFiles="@(AllFilesInSource)" DestinationFolder="$(ProjectDir)/$(DestinationFilePath)/%(RecursiveDir)" SkipUnchangedFiles="true"/>
-        <Message Text="Finish to copy item from CleanArchitecture.Blazored to $(ProjectName)" Importance="high"/>
+    <Target Name="CopyFiles" BeforeTargets="Restore">
+        <Message Text="Start to copy item from $(ProjectName) to $(MudBlazorProjectName)" Importance="high"/>
+        <Message Text="File Path: $(ProjectDir)/$(MudBlazorDestinationFolderPath)" Importance="high"/>
+        <Message Text="Files to restore: %(AllFilesInSource.Identity)" Importance="high"/>
+        <Copy SourceFiles="@(AllFilesInSource)" DestinationFolder="$(ProjectDir)/$(MudBlazorDestinationFolderPath)/%(RecursiveDir)" SkipUnchangedFiles="true"/>
+        <Message Text="Finish to copy item from $(ProjectName) to $(MudBlazorProjectName)" Importance="high"/>
     </Target>
     <Target Name="ReplaceNamespacesAndAssemblyName" AfterTargets="CopyFiles">
         <ItemGroup>
-            <AllFilesInDestination Include="$(DestinationFilePath)\**\*" Exclude="@(ExcludedFilesInDestination)"/>
+            <AllFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/*" Exclude="@(ExcludedFilesInDestination)"/>
         </ItemGroup>
         <Message Text="Changing Namespaces and AssemblyName" Importance="high"/>
         <ReplaceFileText
                 Filename="$(ProjectDir)/%(AllFilesInDestination.Identity)"
                 MatchExpression="\bCleanArchitecture\.Blazored\b"
-                ReplacementText="$(ProjectName)"/>
+                ReplacementText="$(MudBlazorProjectName)"/>
     </Target>
     <Target Name="ReplaceRequiredFileName" AfterTargets="ReplaceNamespacesAndAssemblyName">
         <ItemGroup>
-            <AllFilesInDestination Include="$(DestinationFilePath)\**\*" Exclude="@(ExcludedFilesInDestination)"/>
+            <AllFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/*" Exclude="@(ExcludedFilesInDestination)"/>
         </ItemGroup>
         <ReplaceFilename 
                 Filename="$(ProjectDir)/%(AllFilesInDestination.Identity)" 
-                MatchExpression="CleanArchitecture.Blazored"
-                ReplacementText="$(ProjectName)">
+                MatchExpression="$(ProjectName)"
+                ReplacementText="$(MudBlazorProjectName)">
         </ReplaceFilename>
     </Target>
+    <Import Project="CleanArchitecture.Blazored.Hepler.targets"/>
 </Project>

@@ -34,7 +34,7 @@ jobs:
         with:
           dotnet-version: 8.x
       - name: Create Generated Project
-        run: dotnet build CleanArchitecture.Blazored.csproj
+        run: dotnet restore CleanArchitecture.Blazored.csproj
       - name: Restore dependencies
         run: dotnet restore CleanArchitecture.Blazored.Dev.sln
       - name: Build solution

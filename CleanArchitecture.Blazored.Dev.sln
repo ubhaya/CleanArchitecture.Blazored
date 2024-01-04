@@ -3,26 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{231CD5A5-44E8-4C62-AB76-D2F9BC05C08C}"
-	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-		BuildSettings.props = BuildSettings.props
-		BuildSettings.targets = BuildSettings.targets
-		CleanArchitecture.Blazored.csproj = CleanArchitecture.Blazored.csproj
-		.github\workflows\CleanArchitecture.Blazored.Deploy.yml = .github\workflows\CleanArchitecture.Blazored.Deploy.yml
-		.github\workflows\CleanArchitecture.Blazored.Dev.yml = .github\workflows\CleanArchitecture.Blazored.Dev.yml
-		.github\workflows\CleanArchitecture.Blazored.yml = .github\workflows\CleanArchitecture.Blazored.yml
-		LICENSE = LICENSE
-		README.md = README.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Settings", "Build Settings", "{95FCDB36-45E1-4BB2-9517-2AD8EA0A2E72}"
-	ProjectSection(SolutionItems) = preProject
-		BuildSettings\CleanArchitecture.Blazored.props = BuildSettings\CleanArchitecture.Blazored.props
-		BuildSettings\CleanArchitecture.Blazored.targets = BuildSettings\CleanArchitecture.Blazored.targets
-		BuildSettings\CleanArchitecture.MudBlazored.props = BuildSettings\CleanArchitecture.MudBlazored.props
-		BuildSettings\CleanArchitecture.MudBlazored.targets = BuildSettings\CleanArchitecture.MudBlazored.targets
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Blazored", "CleanArchitecture.Blazored.csproj", "{51C964B1-C4F6-48B5-9507-63DB06050296}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CleanArchitecture.Bootstrap", "CleanArchitecture.Bootstrap", "{FF0A9EF0-5016-49D5-A185-A927E4599B9D}"
 EndProject
@@ -191,12 +172,15 @@ Global
 		{07719ED4-FA88-4675-87B7-A1124B30A16E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07719ED4-FA88-4675-87B7-A1124B30A16E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07719ED4-FA88-4675-87B7-A1124B30A16E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51C964B1-C4F6-48B5-9507-63DB06050296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51C964B1-C4F6-48B5-9507-63DB06050296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51C964B1-C4F6-48B5-9507-63DB06050296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51C964B1-C4F6-48B5-9507-63DB06050296}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{95FCDB36-45E1-4BB2-9517-2AD8EA0A2E72} = {231CD5A5-44E8-4C62-AB76-D2F9BC05C08C}
 		{482A2EA1-C8C7-4829-A44C-A743A1D399B1} = {FF0A9EF0-5016-49D5-A185-A927E4599B9D}
 		{5A273704-DE58-4871-9BF7-A6D957B6FD08} = {482A2EA1-C8C7-4829-A44C-A743A1D399B1}
 		{59328F03-F729-422C-BE08-AC57EF0486C6} = {482A2EA1-C8C7-4829-A44C-A743A1D399B1}

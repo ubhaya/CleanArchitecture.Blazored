@@ -46,13 +46,20 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\.idea\**;content\**\.gitignore;"/>
+        <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\.idea\**;content\**\.gitignore;">
+            <Visible>false</Visible>
+        </Content>
         <Compile Remove="**\*"/>
     </ItemGroup>
 
     <ItemGroup>
         <None Include="README.md" Pack="true" PackagePath=""/>
         <None Include="content\CleanArchitecture.Blazored\.template.config\icon.png" Packe="true" PackagePath=""/>
+        <None Remove="content\**" Condition=" '$(Configuration)' == 'Debug' " />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="content\**" />
     </ItemGroup>
     
     <Import Project="BuildSettings.targets"/>

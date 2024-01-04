@@ -1,24 +1,25 @@
 <Project>
     <PropertyGroup>
-        <ProjectName>CleanArchitecture.MudBlazored</ProjectName>
-        <SourceFilePath>content/CleanArchitecture.Blazored</SourceFilePath>
-        <DestinationFilePath>content/$(ProjectName)</DestinationFilePath>
+        <ProjectName>CleanArchitecture.Blazored</ProjectName>
+        <SourceFilePath>../../../../$(ProjectName)</SourceFilePath>
+        <MudBlazorProjectName>CleanArchitecture.MudBlazored</MudBlazorProjectName>
+        <MudBlazorDestinationFolderPath>../../../</MudBlazorDestinationFolderPath>
     </PropertyGroup>
     <ItemGroup>
-        <ExcludedFilesInSource Include="$(SourceFilePath)\src\WebUi\WebUi\**\*"/>
-        <ExcludedFilesInSource Include="$(SourceFilePath)\src\WebUi\WebUi.Client\**\*"/>
-        <ExcludedFilesInSource Include="$(SourceFilePath)\.template.config\**\*"/>
-        <ExcludedFilesInSource Include="$(SourceFilePath)\**\bin\*"/>
-        <ExcludedFilesInSource Include="$(SourceFilePath)\**\obj\*"/>
-        <ExcludedFilesInSource Include="$(SourceFilePath)\**\obj\*"/>
-        <ExcludedFilesInSource Include="$(SourceFilePath)\**\*.feature.cs"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)/src/WebUi/WebUi/**/*"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)/src/WebUi/WebUi.Client/**/*"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)/.template.config/**/*"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)/**/bin/*"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
+        <ExcludedFilesInSource Include="$(SourceFilePath)/**/*.feature.cs"/>
 
-        <ExcludedFilesInDestination Include="$(DestinationFilePath)\src\WebUi\WebUi\**\*"/>
-        <ExcludedFilesInDestination Include="$(DestinationFilePath)\src\WebUi\WebUi.Client\**\*"/>
-        <ExcludedFilesInDestination Include="$(DestinationFilePath)\.template.config\**\*"/>
+        <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/src/WebUi/WebUi/**/*"/>
+        <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/src/WebUi/WebUi.Client/**/*"/>
+        <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/.template.config/**/*"/>
     </ItemGroup>
     <ItemGroup>
-        <AllFilesInSource Include="$(SourceFilePath)\**\*" Exclude="@(ExcludedFilesInSource)"/>
+        <AllFilesInSource Include="$(SourceFilePath)/**/*" Exclude="@(ExcludedFilesInSource)"/>
     </ItemGroup>
     
 </Project>
