@@ -18,6 +18,7 @@
         <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/src/WebUi/WebUi/**/*"/>
         <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/src/WebUi/WebUi.Client/**/*"/>
         <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/.template.config/**/*"/>
+        <ExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/*.md"/>
     </ItemGroup>
     <ItemGroup>
         <AllFilesInSource Include="$(SourceFilePath)/**/*" Exclude="@(ExcludedFilesInSource)"/>
