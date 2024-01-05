@@ -24,6 +24,6 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 HEALTHCHECK --interval=30s --timeout=3s \
-    CMD curl --fail http://localhost:8000/health || exit 1
+    CMD curl --fail -s http://localhost:8080/health || exit 1
 
 ENTRYPOINT ["dotnet", "CleanArchitecture.Blazored.WebUi.dll"]
