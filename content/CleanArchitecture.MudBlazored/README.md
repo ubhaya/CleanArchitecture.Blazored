@@ -1,5 +1,7 @@
 # CleanArchitecture MudBlazor Blazored Web App
 
+[![CleanArchitecture.MudBlazored](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.MudBlazored.yml/badge.svg)](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.MudBlazored.yml)
+
 This is a solution template for creating a [MudBlazor](https://mudblazor.com/) Web App with client side rendering and following the principles of Clean Architecture.
 
 Please consider this a preview, I am still actively working on this template. If you spot a problem or would like to suggest an improvement, please let me know by creating an issue.

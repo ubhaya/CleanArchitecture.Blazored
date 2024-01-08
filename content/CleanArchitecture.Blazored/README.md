@@ -1,5 +1,7 @@
 # CleanArchitecture Bootstrap Blazored Web App
 
+[![CleanArchitecture.BootstrapBlazored](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.yml/badge.svg)](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.yml)
+
 > **Note:-** This project is a port from [RapidBlazor](https://github.com/jasontaylordev/RapidBlazor) Template
 
 This is a solution template for creating a Blazor Web App with client side rendering and following the principles of Clean Architecture.

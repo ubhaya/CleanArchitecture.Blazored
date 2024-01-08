@@ -1,8 +1,9 @@
 # Clean Architecture Template for .Net
 
-[![Package](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.Dev.yml/badge.svg)](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.Dev.yml) 
-[![Template](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.yml/badge.svg)](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.yml)
+[![Package](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.Dev.yml/badge.svg)](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.Dev.yml)
 [![Nuget](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.Deploy.yml/badge.svg)](https://github.com/ubhaya/CleanArchitecture.Blazored/actions/workflows/CleanArchitecture.Blazored.Deploy.yml)
+![Nuget Version](https://img.shields.io/nuget/v/CleanArchitecture.Blazored?style=flat&logo=nuget&label=Nuget%20Version)
+![Nuget Download Count](https://img.shields.io/nuget/dt/CleanArchitecture.Blazored?style=flat&logo=nuget&label=Nuget%20Download)
 
 This is a solution template for creating a Web, Mobile, Desktop project templates following the principles of Clean Architecture.
 
