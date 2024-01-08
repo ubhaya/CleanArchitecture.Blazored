@@ -15,8 +15,6 @@ public partial class TodoItems
     
     private MudTextField<string>? _titleInput;
 
-    private ElementReference _listOptionsModal;
-
     private bool IsSelectedItem(TodoItemDto item)
     {
         return SelectedItem == item;
