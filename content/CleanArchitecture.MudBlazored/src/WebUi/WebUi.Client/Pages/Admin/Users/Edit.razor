@@ -1,0 +1,37 @@
+@page "/admin/users/{userId}"
+@attribute [Authorize(Permissions.ManageUsers)]
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Users - Edit</PageTitle>
+
+<MyMudProviders />
+
+<MudText Typo="Typo.h3">Edit</MudText>
+
+@if (Model == null) return;
+
+<MudGrid Spacing="20">
+    <MudItem md="4">
+        <EditForm Model="Model.User" OnValidSubmit="UpdateUser">
+            <MudTextField T="string" bind-Value="Model.User.UserName" Label="Username"/>
+            <MudTextField T="string" bind-Value="Model.User.Email" Label="Email"/>
+            <MudCard Elevation="0">
+                <MudCardHeader>Roles</MudCardHeader>
+                <MudCardContent>
+                    @foreach (var role in Model.Roles)
+                    {
+                        <MudCheckBox T="bool" Value="Model.User.Roles.Contains(role.Name)" 
+                                     ValueChanged="_=>ToggleSelectedRole(role.Name)"
+                                     Label="@role.Name"/>
+                    }
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit">Save</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </EditForm>
+    </MudItem>
+    <MudItem md="12">
+        <MudLink Href="/admin/users">Back to List</MudLink>
+    </MudItem>
+</MudGrid>

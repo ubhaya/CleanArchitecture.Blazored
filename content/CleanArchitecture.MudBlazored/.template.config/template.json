@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Ubhaya Hettiarachchi",
+  "classifications": [
+    "Web",
+    "Blazor",
+    "MudBlazor",
+    "WebAssembly",
+    "Clean Architecture"
+  ],
+  "name": "Clean Architecture Blazor Web App with MudBlazor Ui",
+  "description":  "This is a solution template for creating a MudBlazor Web application on ASP.NET Core 8 and following the principles of Clean Architecture.",
+  "identity": "Ubhaya.Hettiarachchi.CleanArchitecture.MudBlazored.CSharp",
+  "groupIdentity": "CleanArchitecture.MudBlazored",
+  "shortName": "clean-architecture-mudblazored",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "CleanArchitecture.MudBlazored",
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "source": "./",
+      "target": "./",
+      "exclude": [
+        ".github/workflows/package.yml",
+        ".template.config/**/*",
+        ".vs/**/*",
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "**/*.filelist",
+        "**/*.user",
+        "**/*.lock.json",
+        "**/.git/**",
+        "*.nuspec",
+        "README.md"
+      ]
+    }
+  ]
+}

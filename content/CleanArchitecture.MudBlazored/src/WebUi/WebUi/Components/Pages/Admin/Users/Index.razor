@@ -1,0 +1,29 @@
+@page "/admin/users"
+@attribute [Authorize(Permissions.ViewUsers | Permissions.ManageUsers)]
+
+<PageTitle>Users</PageTitle>
+
+<MyMudProviders />
+
+<h1>Users</h1>
+
+<p>This is a description.</p>
+
+@if (Model == null) return;
+
+<MudTable Items="Model.Users">
+    <HeaderContent>
+        <MudTh>Username</MudTh>
+        <MudTh>Email</MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate Context="user">
+        <MudTd>@user.UserName</MudTd>
+        <MudTd>@user.Email</MudTd>
+        <MudTd>
+            <FlexibleAuthorizeView Permissions="Permissions.ManageUsers">
+                <MudLink Href="@($"/admin/users/{user.Id}")">Edit</MudLink>
+            </FlexibleAuthorizeView>
+        </MudTd>
+    </RowTemplate>
+</MudTable>

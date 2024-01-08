@@ -1,0 +1,37 @@
+@page "/admin/access-control"
+@attribute [Authorize(Permissions.ViewAccessControl | Permissions.ConfigureAccessControl)]
+@rendermode InteractiveServer
+
+<PageTitle>Access Control</PageTitle>
+
+<MyMudProviders />
+
+@if (Model == null) return;
+
+<MudTable Items="Model.AvailablePermissions">
+    <HeaderContent>
+        <MudTh>Permissions</MudTh>
+        @foreach (var role in Model.Roles)
+        {
+            <MudTh>@role.Name</MudTh>
+        }
+    </HeaderContent>
+    <RowTemplate Context="permission">
+        <MudTh>@permission.ToStringFast()</MudTh>
+        @foreach (var role in Model.Roles)
+        {
+            <MudTh>
+                <FlexibleAuthorizeView Permissions="@Permissions.ConfigureAccessControl">
+                    <Authorized>
+                        <MudCheckBox T="bool" Value="@role.Has(permission)"
+                                     ValueChanged="async b => await Set(role, permission, b)"/>
+                    </Authorized>
+                    <NotAuthorized>
+                        <MudCheckBox T="bool" Value="@role.Has(permission)"
+                                     ValueChanged="async b => await Set(role, permission, b)"/>
+                    </NotAuthorized>
+                </FlexibleAuthorizeView>
+            </MudTh>
+        }
+    </RowTemplate>
+</MudTable>

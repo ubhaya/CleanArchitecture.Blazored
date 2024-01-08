@@ -1,0 +1,47 @@
+﻿<MudNavMenu>
+    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+    <MudNavLink Href="counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Counter</MudNavLink>
+    <MudNavLink Href="weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Weather</MudNavLink>
+	<MudNavLink Href="auth" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Auth Required</MudNavLink>
+
+	<AuthorizeView>
+		<MudNavLink Href="claims" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Pages">Claims</MudNavLink>
+	</AuthorizeView>
+	
+	<FlexibleAuthorizeView Permissions="Permissions.Todo">
+		<MudNavLink Href="todo" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Todo</MudNavLink>
+	</FlexibleAuthorizeView>
+	
+	<FlexibleAuthorizeView Permissions="Permissions.ViewUsers | Permissions.ManageUsers">
+		<MudNavLink Href="admin/users" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.People">Users</MudNavLink>
+	</FlexibleAuthorizeView>
+	
+	<FlexibleAuthorizeView Permissions="Permissions.ViewRoles | Permissions.ManageRoles">
+		<MudNavLink Href="admin/roles" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Badge">Roles</MudNavLink>
+	</FlexibleAuthorizeView>
+	
+	<FlexibleAuthorizeView Permissions="Permissions.ViewAccessControl | Permissions.ConfigureAccessControl">
+		<MudNavLink Href="admin/access-control" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.ManageAccounts">Access Control</MudNavLink>
+	</FlexibleAuthorizeView>
+	
+	<AuthorizeView>
+		<Authorized>
+			<MudNavLink Href="Account/Manage" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">@context.User.Identity?.Name</MudNavLink>
+			<MudNavLink Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Logout" >
+				<form action="Account/Logout" method="post">
+					<AntiforgeryToken />
+					<input type="hidden" name="ReturnUrl" value="@_currentUrl"/>
+					<MudButton ButtonType="ButtonType.Submit" Variant="Variant.Text">
+						Logout
+					</MudButton>
+				</form>
+			</MudNavLink>
+			
+		</Authorized>
+		<NotAuthorized>
+			<MudNavLink Href="Account/Register" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Register</MudNavLink>
+			<MudNavLink Href="Account/Login" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Login">Login</MudNavLink>
+		</NotAuthorized>
+	</AuthorizeView>
+
+</MudNavMenu>

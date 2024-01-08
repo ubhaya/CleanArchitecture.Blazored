@@ -1,2 +1,14 @@
 <Project>
+    <Import Project="BuildSettings/CleanArchitecture.MudBlazored.props"/>
+    
+    <PropertyGroup>
+        <ProjectName>CleanArchitecture.Blazored</ProjectName>
+        <SourceFilePath>content/$(ProjectName)</SourceFilePath>
+        <MudBlazorProjectName>CleanArchitecture.MudBlazored</MudBlazorProjectName>
+        <MudBlazorDestinationFolderPath>content/$(MudBlazorProjectName)</MudBlazorDestinationFolderPath>
+    </PropertyGroup>
+        
+    <ItemGroup>
+        <None Include=".github/**/*" />
+    </ItemGroup>
 </Project>

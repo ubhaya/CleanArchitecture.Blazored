@@ -1,0 +1,31 @@
+@attribute [Authorize]
+
+@if (State.Initialized)
+{
+    <MudToolBar>
+        <MudText Typo="Typo.h6" Align="Align.Start">@State.SelectedList!.Title</MudText>
+        <MudSpacer/>
+        <MudIconButton Edge="Edge.End" Color="Color.Default"
+                       Title="List Options..."
+                       Icon="@Icons.Material.Filled.MoreHoriz"
+                       OnClick="ShowDialog"/>
+    </MudToolBar>
+
+    <MudList id="todo-items" Dense="true">
+        @foreach (var item in State.SelectedList!.Items)
+        {
+            <MudListItem>
+                <MudCheckBox T="bool" Value="item.Done" ValueChanged="@(async (b) => await ToggleDone(item, b))">
+                    @if (!IsSelectedItem(item))
+                    {
+                        <MudText Class="@(item.Done ? "done-todo" : string.Empty)">@item.Title</MudText>
+                    }
+                    else
+                    {
+                        <MudTextField @ref="_titleInput"  T="string" bind-Value="item.Title" OnBlur="SaveItem" />
+                    }
+                </MudCheckBox>
+            </MudListItem>
+        }
+    </MudList>
+}

@@ -30,6 +30,8 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     </PropertyGroup>
+    
+    <Import Project="BuildSettings.props"/>
 
     <PropertyGroup>
         <PackageVersionNumber Condition="'$(PackageVersionNumber)'==''">v0.0.1-alpha</PackageVersionNumber>
@@ -44,15 +46,21 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\.idea\**;"/>
+        <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\.idea\**;content\**\.gitignore;">
+            <Visible>false</Visible>
+        </Content>
         <Compile Remove="**\*"/>
     </ItemGroup>
 
     <ItemGroup>
         <None Include="README.md" Pack="true" PackagePath=""/>
         <None Include="content\CleanArchitecture.Blazored\.template.config\icon.png" Packe="true" PackagePath=""/>
+        <None Remove="content\**" Condition=" '$(Configuration)' == 'Debug' " />
     </ItemGroup>
 
-    <Import Project="BuildSettings.props"/>
-
+    <ItemGroup>
+      <EmbeddedResource Remove="content\**" />
+    </ItemGroup>
+    
+    <Import Project="BuildSettings.targets"/>
 </Project>

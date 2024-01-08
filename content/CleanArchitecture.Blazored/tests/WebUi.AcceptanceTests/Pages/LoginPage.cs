@@ -15,17 +15,17 @@ public sealed class LoginPage : BasePage
     public override IPage Page { get; protected set; }
 
     public Task SetEmail(string email)
-        => Page.FillAsync("//html/body/div[1]/main/article/div/div[1]/section/form/div[1]/input", email);
+        => Page.FillAsync(Selectors.LoginPage.EmailFieldSelector, email);
 
     public Task SetPassword(string password)
-        => Page.FillAsync("//html/body/div[1]/main/article/div/div[1]/section/form/div[2]/input", password);
+        => Page.FillAsync(Selectors.LoginPage.PasswordFieldSelector, password);
 
     public Task ClickLogin()
-        => Page.ClickAsync("//html/body/div[1]/main/article/div/div[1]/section/form/div[4]/button");
+        => Page.ClickAsync(Selectors.LoginPage.LoginButtonSelector);
 
     public Task<string?> ProfileLinkText()
-        => Page.Locator("a[href='Account/Manage']").TextContentAsync();
+        => Page.Locator(Selectors.LoginPage.ProfileLinkTextSelector).TextContentAsync();
 
     public Task<bool> InvalidLoginAttemptMessageVisible()
-        => Page.Locator("text=Error: Invalid login attempt").IsVisibleAsync();
+        => Page.Locator(Selectors.LoginPage.InvalidLoginAttemptMessageSelector).IsVisibleAsync();
 }

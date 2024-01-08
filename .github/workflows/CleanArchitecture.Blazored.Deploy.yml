@@ -23,7 +23,7 @@ jobs:
           dotnet-version: 8.x
       - name: Restore dependencies
         run: dotnet restore CleanArchitecture.Blazored.csproj
-      - name: Build solution
+      - name: Build Project
         run: dotnet build --no-restore CleanArchitecture.Blazored.csproj -c Release
       - name: Get latest release tag
         id: get_tag

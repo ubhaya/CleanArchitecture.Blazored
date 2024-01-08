@@ -1,0 +1,61 @@
+name: CleanArchitecture.MudBlazored
+run-name: Build and Run Test for MudBlazor Project Template
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_run:
+    workflows: [ "CleanArchitecture.Blazored.Deploy" ]
+    types:
+      - completed
+
+env:
+  SqlServerPassword: CleanArchitecture@123
+  ProjectName: CleanArchitecture.MudBlazored
+  TemplateName: clean-architecture-mudblazored
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    services:
+      sql-server:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          ACCEPT_EULA: 'Y'
+          MSSQL_SA_PASSWORD: ${{ env.SqlServerPassword }}
+        ports:
+          - 1433:1433
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: 8.x
+      - name: Create Generated Project
+        run: dotnet pack CleanArchitecture.Blazored.csproj
+      - name: Install Project Template
+        run: dotnet new install ./bin/Release/CleanArchitecture.Blazored.1.0.0.nupkg
+      - name: Create Sample Project
+        run: dotnet new ${{ env.TemplateName }} -n ${{ env.ProjectName }} -o ${{ env.ProjectName }}
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.ProjectName }}/${{ env.ProjectName }}.sln
+      - name: Build solution
+        run: dotnet build --no-restore ${{ env.ProjectName }}/${{ env.ProjectName }}.sln -c Release
+      - name: Execute Application.IntegrationTests
+        run: |
+          dotnet test -c Release --no-build ${{ env.ProjectName }}/tests/Application.IntegrationTests/Application.IntegrationTests.csproj
+        env:
+          ConnectionStrings__DefaultConnection: Server=localhost,1433;Database=CleanArchitecture_Application_IntegrationTests;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;
+      - name: Execute Application.UnitTest
+        run: dotnet test -c Release --no-build ${{ env.ProjectName }}/tests/Application.UnitTests/Application.UnitTests.csproj
+      - name: Execute Domain.UnitTest
+        run: dotnet test -c Release --no-build ${{ env.ProjectName }}/tests/Domain.UnitTests/Domain.UnitTests.csproj
+      - name: Install Playwright
+        run: pwsh ${{ env.ProjectName }}/tests/WebUi.AcceptanceTests/bin/Release/net8.0/playwright.ps1 install
+      - name: Execute WebUi.AcceptanceTests
+        run: dotnet test -c Release --no-build ${{ env.ProjectName }}/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj
+        

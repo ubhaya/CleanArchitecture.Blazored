@@ -1,0 +1,16 @@
+@rendermode InteractiveWebAssembly
+@if (State is null) return;
+<MudDialog>
+    <DialogContent>
+        <EditForm Model="_newTodoList" OnValidSubmit="CreateNewList">
+            <FluentValidationValidator DisableAssemblyScanning="true"/>
+            <CustomValidation @ref="_customValidation"/>
+            <MudTextField @ref="_titleInput" T="string" bind-Value="@_newTodoList.Title" Placeholder="Title..." Label="Title"
+                          For="()=>_newTodoList.Title"/>
+        </EditForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">Create</MudButton>
+        <MudButton ButtonType="ButtonType.Button" Color="Color.Default" OnClick="Cancel">Cancel</MudButton>
+    </DialogActions>
+</MudDialog>

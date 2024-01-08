@@ -1,0 +1,56 @@
+@page "/admin/roles"
+@attribute [Authorize(Permissions.ViewRoles)]
+@rendermode InteractiveServer
+
+<PageTitle>Roles</PageTitle>
+
+<MyMudProviders />
+
+<h1>Roles</h1>
+
+<p>This is a description.</p>
+
+@if (Model == null) return;
+
+<MudTable Items="Model.Roles">
+    <HeaderContent>
+        <MudTh>Name</MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate Context="role">
+        @if (role != _roleToEdit)
+        {
+            <MudTd>
+                <MudText>@role.Name</MudText>
+            </MudTd>
+            <MudTd>
+                <FlexibleAuthorizeView Permissions="Permissions.ManageRoles">
+                    <MudIconButton Color="Color.Secondary" OnClick="() => EditRole(role)" Icon="@Icons.Material.Filled.Edit"/>
+                    <MudIconButton Color="Color.Secondary" OnClick="() => DeleteRole(role)" Icon="@Icons.Material.Filled.Delete"/>
+                </FlexibleAuthorizeView>
+            </MudTd>
+        }
+        else
+        {
+            <MudTd>
+                <MudTextField T="string" bind-Value="@role.Name"/>
+            </MudTd>
+            <MudTd>
+                <FlexibleAuthorizeView Permissions="Permissions.ManageRoles">
+                    <MudIconButton Color="Color.Secondary" OnClick="() => UpdateRole()" Icon="@Icons.Material.Filled.Check"/>
+                    <MudIconButton Color="Color.Secondary" OnClick="() => CancelEditRole()" Icon="@Icons.Material.Filled.Undo"/>
+                </FlexibleAuthorizeView>
+            </MudTd>
+        }
+    </RowTemplate>
+    <FooterContent>
+        <FlexibleAuthorizeView Permissions="Permissions.ManageRoles">
+            <MudTd>
+                <MudTextField T="string" bind-Value="_newRoleName" Placeholder="New Role..."/>
+            </MudTd>
+            <MudTd>
+                <MudIconButton Color="Color.Primary" OnClick="AddRole" Icon="@Icons.Material.Filled.Add"/>
+            </MudTd>
+        </FlexibleAuthorizeView>
+    </FooterContent>
+</MudTable>

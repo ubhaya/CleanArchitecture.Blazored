@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+    <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
+    <AssemblyName>CleanArchitecture.MudBlazored.WebUi.Client</AssemblyName>
+    <RootNamespace>CleanArchitecture.MudBlazored.WebUi.Client</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.FluentValidation" Version="2.1.0" />
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
+	<PackageReference Include="MudBlazor" Version="6.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Scrutor" Version="4.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\Application.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Pages\Admin\Users\Edit.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Pages\Auth.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Pages\Claims\Index.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Pages\Counter.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Pages\Todo\TodoItems.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Pages\Todo\TodoLists.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Pages\Todo\TodoState.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Pages\Admin\Users\Edit.razor" />
+    <AdditionalFiles Include="Pages\Claims\Index.razor" />
+    <AdditionalFiles Include="Pages\Todo\TodoItems.razor" />
+    <AdditionalFiles Include="Pages\Todo\TodoLists.razor" />
+    <AdditionalFiles Include="Pages\Todo\TodoState.razor" />
+  </ItemGroup>
+
+</Project>

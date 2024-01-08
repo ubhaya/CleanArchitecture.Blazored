@@ -12,10 +12,10 @@ on:
       - completed
 
 env:
-  SqlServerPassword: Sashrika@123
+  SqlServerPassword: CleanArchitecture@123
 
 jobs:
-  build:
+  build-test-bootstrapblazor:
     runs-on: ubuntu-latest
     
     services: 
@@ -28,25 +28,90 @@ jobs:
           - 1433:1433
     
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4.0.0
         with:
           dotnet-version: 8.x
+
+      - name: Create Generated Project
+        run: dotnet restore CleanArchitecture.Blazored.csproj
+
       - name: Restore dependencies
         run: dotnet restore CleanArchitecture.Blazored.Dev.sln
+
       - name: Build solution
         run: dotnet build --no-restore CleanArchitecture.Blazored.Dev.sln -c Release
+
       - name: Execute Application.IntegrationTests
         run: |
          dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Application.IntegrationTests/Application.IntegrationTests.csproj
         env:
           ConnectionStrings__DefaultConnection: Server=localhost,1433;Database=CleanArchitecture_Application_IntegrationTests;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;
+
       - name: Execute Application.UnitTest
         run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Application.UnitTests/Application.UnitTests.csproj
+
       - name: Execute Domain.UnitTest
         run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/Domain.UnitTests/Domain.UnitTests.csproj
+
       - name: Install Playwright
         run: pwsh content/CleanArchitecture.Blazored/tests/WebUi.AcceptanceTests/bin/Release/net8.0/playwright.ps1 install
+
       - name: Execute WebUi.AcceptanceTests
-        run: dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj
+        run: |
+          dotnet run --project content/CleanArchitecture.Blazored/src/WebUi/WebUi/WebUi.csproj -lp https -c Release &
+          dotnet test -c Release --no-build content/CleanArchitecture.Blazored/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj        
+        env:
+          ConnectionStrings__DefaultConnection: "Server=localhost,1433;Database=CleanArchitecture_Application_AcceptanceTests.Blazored;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;"
+
+  build-test-mudblazor:
+          runs-on: ubuntu-latest
+          
+          services: 
+            sql-server:
+              image: mcr.microsoft.com/mssql/server:2019-latest
+              env:
+                ACCEPT_EULA: 'Y'
+                MSSQL_SA_PASSWORD: ${{ env.SqlServerPassword }}
+              ports:
+                - 1433:1433
+          
+          steps:
+            - name: Checkout Repo
+              uses: actions/checkout@v3
+      
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4.0.0
+              with:
+                dotnet-version: 8.x
+      
+            - name: Create Generated Project
+              run: dotnet restore CleanArchitecture.Blazored.csproj
+      
+            - name: Restore dependencies
+              run: dotnet restore CleanArchitecture.Blazored.Dev.sln
+      
+            - name: Build solution
+              run: dotnet build --no-restore CleanArchitecture.Blazored.Dev.sln -c Release
+      
+            - name: Execute Application.IntegrationTests
+              run: |
+               dotnet test -c Release --no-build content/CleanArchitecture.MudBlazored/tests/Application.IntegrationTests/Application.IntegrationTests.csproj
+              env:
+                ConnectionStrings__DefaultConnection: Server=localhost,1433;Database=CleanArchitecture_Application_IntegrationTests;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;
+      
+            - name: Execute Application.UnitTest
+              run: dotnet test -c Release --no-build content/CleanArchitecture.MudBlazored/tests/Application.UnitTests/Application.UnitTests.csproj
+      
+            - name: Execute Domain.UnitTest
+              run: dotnet test -c Release --no-build content/CleanArchitecture.MudBlazored/tests/Domain.UnitTests/Domain.UnitTests.csproj
+      
+            - name: Install Playwright
+              run: pwsh content/CleanArchitecture.MudBlazored/tests/WebUi.AcceptanceTests/bin/Release/net8.0/playwright.ps1 install
+
+            - name: Execute WebUi.AcceptanceTests
+              run: dotnet test -c Release --no-build content/CleanArchitecture.MudBlazored/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj
+              

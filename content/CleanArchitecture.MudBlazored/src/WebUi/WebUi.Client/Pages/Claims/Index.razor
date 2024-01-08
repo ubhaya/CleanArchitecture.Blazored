@@ -1,0 +1,23 @@
+@page "/claims"
+@attribute [Authorize]
+@rendermode InteractiveAuto
+
+
+<PageTitle>Claims</PageTitle>
+
+<MyMudProviders />
+
+<MudText Typo="Typo.h3">Claims</MudText>
+
+<MudText Typo="Typo.body1">This component displays available claims.</MudText>
+
+<AuthorizeView>
+    <MudList>
+        @foreach (var claim in context.User.Claims)
+        {
+            <MudListItem>
+                <b>@claim.Type</b>: @claim.Value
+            </MudListItem>
+        }
+    </MudList>
+</AuthorizeView>

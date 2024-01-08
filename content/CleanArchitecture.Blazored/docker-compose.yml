@@ -1,8 +1,14 @@
 services:
   webui:
+    container_name: WebUi
     build: 
       context: .
       dockerfile: Dockerfile
+    healthcheck:
+      test: curl --fail -s http://localhost:8080/health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
     ports:
       - "8080:8080"
     environment:
@@ -11,9 +17,10 @@ services:
       - db
   
   db:
+    container_name: Database
     image: "mcr.microsoft.com/mssql/server:2019-latest"
     ports:
-      - "42069:1433"
+      - "12123:1433"
     environment:
       MSSQL_SA_PASSWORD: CleanArchitecture@123
       ACCEPT_EULA: 'Y'
