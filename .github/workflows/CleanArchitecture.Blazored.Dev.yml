@@ -113,10 +113,5 @@ jobs:
               run: pwsh content/CleanArchitecture.MudBlazored/tests/WebUi.AcceptanceTests/bin/Release/net8.0/playwright.ps1 install
 
             - name: Execute WebUi.AcceptanceTests
-              run: |
-                dotnet run --project content/CleanArchitecture.MudBlazored/src/WebUi/WebUi/WebUi.csproj -lp https -c Release &
-                dotnet test -c Release --no-build content/CleanArchitecture.MudBlazored/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj        
-              env:
-                ConnectionStrings__DefaultConnection: "Server=localhost,1433;Database=CleanArchitecture_Application_AcceptanceTests.MudBlazored;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;"
-
-
+              run: dotnet test -c Release --no-build content/CleanArchitecture.MudBlazored/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj
+              

@@ -57,8 +57,5 @@ jobs:
       - name: Install Playwright
         run: pwsh ${{ env.ProjectName }}/tests/WebUi.AcceptanceTests/bin/Release/net8.0/playwright.ps1 install
       - name: Execute WebUi.AcceptanceTests
-        run: |
-          dotnet run --project ${{ env.ProjectName }}/src/WebUi/WebUi/WebUi.csproj -lp https -c Release &
-          dotnet test -c Release --no-build ${{ env.ProjectName }}/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj        
-        env:
-          ConnectionStrings__DefaultConnection: "Server=localhost,1433;Database=CleanArchitecture_Application_AcceptanceTests.MudBlazored;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;"
+        run: dotnet test -c Release --no-build ${{ env.ProjectName }}/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj
+        
