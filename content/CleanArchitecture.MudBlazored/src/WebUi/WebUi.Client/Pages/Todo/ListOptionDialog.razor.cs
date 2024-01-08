@@ -10,9 +10,10 @@ public partial class ListOptionDialog
     [Parameter] public TodoState? State { get; set; }
     [CascadingParameter] private MudDialogInstance MudDialog { get; set; } = default!;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await _titleInput!.FocusAsync();
+        if (firstRender)
+            await _titleInput!.FocusAsync();
     }
 
     private async Task SaveList()

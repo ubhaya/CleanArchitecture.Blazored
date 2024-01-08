@@ -15,9 +15,15 @@ public partial class ListCreateDialog
     
     private CustomValidation? _customValidation;
     
-    private TodoListDto _newTodoList = new();
+    private readonly TodoListDto _newTodoList = new();
     
-    private MudTextField<string> _titleInput;
+    private MudTextField<string>? _titleInput;
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await _titleInput!.FocusAsync();
+    }
     
     private async Task CreateNewList()
     {
