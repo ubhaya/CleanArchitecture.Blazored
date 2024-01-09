@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using CleanArchitecture.Blazored.Domain.Events;
+using Microsoft.Extensions.DependencyInjection.Common.Logging;
 
 namespace CleanArchitecture.Blazored.Application.TodoItems.EventHandlers;
 
@@ -14,7 +15,7 @@ public class TodoItemCompletedEventHandler : INotificationHandler<TodoItemComple
 
     public Task Handle(TodoItemCompletedEvent notification, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("CleanArchitecture Domain Event: {DomainEvent}", notification.GetType().Name);
+        _logger.CleanArchitectureDomainEvent(notification.GetType().Name);
 
         return Task.CompletedTask;
     }

@@ -1,6 +1,7 @@
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
 using CleanArchitecture.Blazored.Application.Common.Services.Identity;
+using Microsoft.Extensions.DependencyInjection.Common.Logging;
 
 namespace CleanArchitecture.Blazored.Application.Common.Behaviours;
 
@@ -32,7 +33,6 @@ public sealed class LoggingBehaviour<TRequest>
             userName = await _identityService.GetUserNameAsync(userId);
         }
         
-        _logger.LogInformation("CleanArchitecture Request: {Name} {@UserId} {@UserName} {@Request}",
-            requestName, userId, userName, request);
+        _logger.CleanArchitectureRequest(requestName, userId, userName, request.ToString());
     }
 }

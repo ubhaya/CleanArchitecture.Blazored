@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection.Common.Logging;
 using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Blazored.Application.Common.Behaviours;
@@ -25,10 +26,8 @@ public sealed class UnhandledExceptionBehaviour<TRequest, TResponse>
         catch (Exception ex)
         {
             var requestName = typeof(TRequest).Name;
-
-            _logger.LogError(
-                ex, "CleanArchitecture Request: Unhandled Exception for Request {Name} {@Request}",
-                requestName, request);
+            
+            _logger.CleanArchitectureUnhandledException(ex, requestName, request.ToString());
 
             throw;
         }
