@@ -31,7 +31,7 @@
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     </PropertyGroup>
     
-    <Import Project="BuildSettings.props"/>
+    <Import Project="TemplateItems\MsBuild\BuildSettings.props"/>
 
     <PropertyGroup>
         <PackageVersionNumber Condition="'$(PackageVersionNumber)'==''">v0.0.1-alpha</PackageVersionNumber>
@@ -46,7 +46,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\.idea\**;content\**\.gitignore;">
+        <ContentToIncludeInPackage Include="content\**\*" Condition=" '$(Configuration)' == 'Release' "/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Content Include="@(ContentToIncludeInPackage)" Exclude="content\**\bin\**;content\**\obj\**;content\**\.idea\**;content\**\.gitignore;">
             <Visible>false</Visible>
         </Content>
         <Compile Remove="**\*"/>
@@ -62,5 +66,5 @@
       <EmbeddedResource Remove="content\**" />
     </ItemGroup>
     
-    <Import Project="BuildSettings.targets"/>
+    <Import Project="TemplateItems\MsBuild\BuildSettings.targets"/>
 </Project>
