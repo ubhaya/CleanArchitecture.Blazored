@@ -10,6 +10,8 @@
     </PropertyGroup>
         
     <ItemGroup>
-        <None Include=".github/**/*" />
+        <None Include="../.github/**/*" />
+        <None Include="../.dockerignore"/>
+        <None Include="../.gitignore"/>
     </ItemGroup>
 </Project>
