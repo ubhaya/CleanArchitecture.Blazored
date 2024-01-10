@@ -19,6 +19,25 @@
   },
   "sourceName": "CleanArchitecture.MudBlazored",
   "preferNameDirectory": true,
+  "symbols": {
+    "httpPort": {
+      "type": "generated",
+      "generator": "port",
+      "datatype": "int",
+      "replaces": "5131"
+    },
+    "httpsPort": {
+      "type": "generated",
+      "generator": "port",
+      "datatype": "int",
+      "replaces": "7179"
+    },
+    "iisExpress": {
+      "type": "generated",
+      "generator": "port",
+      "datatype":"int"
+    }
+  },
   "sources": [
     {
       "source": "./",
