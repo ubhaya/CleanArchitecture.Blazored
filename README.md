@@ -11,11 +11,29 @@ Please consider this a preview, I am still actively working on this template. If
 
 If you find this project useful, please give it a star. Thanks! ⭐
 
+## Stats
+
+![Alt](https://repobeats.axiom.co/api/embed/d254c1409571ffbbea64ed9a705d4daf634b03f4.svg "Repobeats analytics image")
+
+## Getting Started
+
+### Quick Installation Guid
+
+Install Package
+
+```powershell, bash
+dotnet new install CleanArchitecture.Blazored
+```
+
+### Usage
+
+Refer documentation from each template
+
 ## Templates
 
-* [Clean Architecture Bootstrap Blazor Web App](content/CleanArchitecture.Blazored/README.md)
+* [Clean Architecture Bootstrap Blazor Web App](src/content/CleanArchitecture.Blazored/README.md)
 
-* [Clean Architecture MudBlazor Web App](content/CleanArchitecture.MudBlazored/README.md)
+* [Clean Architecture MudBlazor Web App](src/content/CleanArchitecture.MudBlazored/README.md)
 
 ## Support
 If you are having problems, please let me know by [creating an issue](https://github.com/ubhaya/CleanArchitecture.Blazored/issues).

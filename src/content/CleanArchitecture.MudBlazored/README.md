@@ -11,11 +11,7 @@ If you find this project useful, please give it a star. Thanks! ⭐
 ## Getting Started
 The solution template requires the latest version of [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0).
 
-Install the project template:
-
-```bash
-dotnet new install CleanArchitecture.Blazored
-```
+[Install the project template](https://github.com/ubhaya/CleanArchitecture.Blazored/blob/main/README.md)
 
 Create a new app:
 
