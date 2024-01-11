@@ -40,7 +40,7 @@ jobs:
         run: dotnet restore src/CleanArchitecture.Blazored.csproj
 
       - name: Restore dependencies
-        run: dotnet restore src/CleanArchitecture.Blazored.Dev.sln
+        run: dotnet restore CleanArchitecture.Blazored.Dev.sln
 
       - name: Build solution
         run: dotnet build --no-restore CleanArchitecture.Blazored.Dev.sln -c Release
@@ -92,10 +92,10 @@ jobs:
               run: dotnet restore src/CleanArchitecture.Blazored.csproj
       
             - name: Restore dependencies
-              run: dotnet restore src/CleanArchitecture.Blazored.Dev.sln
+              run: dotnet restore CleanArchitecture.Blazored.Dev.sln
       
             - name: Build solution
-              run: dotnet build --no-restore src/CleanArchitecture.Blazored.Dev.sln -c Release
+              run: dotnet build --no-restore CleanArchitecture.Blazored.Dev.sln -c Release
       
             - name: Execute Application.IntegrationTests
               run: |

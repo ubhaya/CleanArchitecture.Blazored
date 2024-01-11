@@ -36,9 +36,9 @@ jobs:
         with:
           dotnet-version: 8.x
       - name: Create Generated Project
-        run: dotnet pack CleanArchitecture.Blazored.csproj
+        run: dotnet pack src/CleanArchitecture.Blazored.csproj
       - name: Install Project Template
-        run: dotnet new install ./bin/Release/CleanArchitecture.Blazored.1.0.0.nupkg
+        run: dotnet new install ./src/bin/Release/CleanArchitecture.Blazored.1.0.0.nupkg
       - name: Create Sample Project
         run: dotnet new ${{ env.TemplateName }} -n ${{ env.ProjectName }} -o ${{ env.ProjectName }}
       - name: Restore dependencies
