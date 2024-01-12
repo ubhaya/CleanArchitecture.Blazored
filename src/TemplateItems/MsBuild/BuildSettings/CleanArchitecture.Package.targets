@@ -3,6 +3,10 @@
         <Message Text="Compiling markeddown files"/>
         <Exec Command="markedpp TemplateItems/Docs/README.md -o ../README.md" />
     </Target>
+    <Target Name="Build CleanArchitecture Blazored MsBuild" BeforeTargets="Restore">
+        <Exec Command="dotnet build CleanArchitecture.Blazored.MsBuild/ -c Release -o TemplateItems\MsBuild\bin" ConsoleToMSBuild="true">
+        </Exec>
+    </Target>
 
     <Import Project="CleanArchitecture.Blazored.Hepler.targets"/>
 </Project>
