@@ -3,6 +3,8 @@
                AssemblyFile="../bin/CleanArchitecture.Blazored.MsBuild.dll"/>
 
     <UsingTask TaskName="CleanArchitecture.Blazored.MsBuild.ReplaceFilename"
-               AssemblyFile="../bin/CleanArchitecture.Blazored.MsBuild.dll">
-    </UsingTask>
+               AssemblyFile="../bin/CleanArchitecture.Blazored.MsBuild.dll"/>
+    
+    <UsingTask TaskName="CleanArchitecture.Blazored.MsBuild.GenerateTemplateMarkDownFile"
+               AssemblyFile="../bin/CleanArchitecture.Blazored.MsBuild.dll"/>
 </Project>

@@ -1,6 +1,7 @@
 <Project>
     <Target Name="Generate Markeddown files" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug'">
         <Message Text="Compiling markeddown files"/>
+        <GenerateTemplateMarkDownFile DirectoryToSearch="content"/>
         <Exec Command="markedpp TemplateItems/Docs/README.md -o ../README.md" />
     </Target>
     <Target Name="Build CleanArchitecture Blazored MsBuild" BeforeTargets="Restore">
