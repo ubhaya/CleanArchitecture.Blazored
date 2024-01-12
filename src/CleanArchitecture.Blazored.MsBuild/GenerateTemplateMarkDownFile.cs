@@ -25,7 +25,9 @@ public class GenerateTemplateMarkDownFile : Task
             foreach (var projectFile in allProjectFiles)
             {
                 var name = projectFile[(projectFile.LastIndexOf(Path.DirectorySeparatorChar) + 1)..];
-                var readMeFile = Path.GetRelativePath(rootDirectory, Path.Combine(projectFile, "README.md"));
+                var readMeFile =
+                    ConvertToCrossPlatformPath(Path.GetRelativePath(rootDirectory,
+                        Path.Combine(projectFile, "README.md")));
             
                 projects.Add(new ProjectData
                 {
@@ -52,6 +54,11 @@ public class GenerateTemplateMarkDownFile : Task
         }
 
         return directory;
+    }
+
+    private string ConvertToCrossPlatformPath(string path)
+    {
+        return path.Replace('\\', '/');
     }
 
     private void CreateTemplateFile(List<ProjectData> projects)

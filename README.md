@@ -31,8 +31,8 @@ Refer documentation from each template
 
 ## Templates
 <!-- include (Templates.g.md) -->
-* [CleanArchitecture.Blazored](src\content\CleanArchitecture.Blazored\README.md)
-* [CleanArchitecture.MudBlazored](src\content\CleanArchitecture.MudBlazored\README.md)
+* [CleanArchitecture.Blazored](src/content/CleanArchitecture.Blazored/README.md)
+* [CleanArchitecture.MudBlazored](src/content/CleanArchitecture.MudBlazored/README.md)
 <!-- /include -->
 
 ## Support
