@@ -30,11 +30,7 @@ dotnet new install CleanArchitecture.Blazored
 Refer documentation from each template
 
 ## Templates
-<!-- include (Templates.md) -->
-
-* [Clean Architecture Bootstrap Blazor Web App]
-
-* [Clean Architecture MudBlazor Web App]<!-- /include -->
+!include (Templates.md)
 
 ## Support
 If you are having problems, please let me know by [creating an issue].
@@ -42,7 +38,7 @@ If you are having problems, please let me know by [creating an issue].
 ## License
 This project is licensed with the [MIT license].
 
-[Clean Architecture Bootstrap Blazor Web App]: src/content/CleanArchitecture.Blazored/README.md
-[Clean Architecture MudBlazor Web App]: src/content/CleanArchitecture.MudBlazored/README.md
-[creating an issue]: https://github.com/ubhaya/CleanArchitecture.Blazored/issues
-[MIT license]: https://github.com/ubhaya/CleanArchitecture.Blazored/blob/main/LICENSE
+[Clean Architecture Bootstrap Blazor Web App]: <src/content/CleanArchitecture.Blazored/README.md>
+[Clean Architecture MudBlazor Web App]: <src/content/CleanArchitecture.MudBlazored/README.md>
+[creating an issue]: <https://github.com/ubhaya/CleanArchitecture.Blazored/issues>
+[MIT license]: <https://github.com/ubhaya/CleanArchitecture.Blazored/blob/main/LICENSE>

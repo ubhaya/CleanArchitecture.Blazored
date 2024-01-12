@@ -1,0 +1,8 @@
+<Project>
+    <Target Name="Generate Markeddown files" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug'">
+        <Message Text="Compiling markeddown files"/>
+        <Exec Command="markedpp TemplateItems/Docs/README.md -o ../README.md" />
+    </Target>
+
+    <Import Project="CleanArchitecture.Blazored.Hepler.targets"/>
+</Project>
