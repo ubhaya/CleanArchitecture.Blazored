@@ -30,10 +30,7 @@ dotnet new install CleanArchitecture.Blazored
 Refer documentation from each template
 
 ## Templates
-<!-- include (TemplatesSection.g.md) -->
-* [CleanArchitecture.Blazored](src/content/CleanArchitecture.Blazored/README.md)
-* [CleanArchitecture.MudBlazored](src/content/CleanArchitecture.MudBlazored/README.md)
-<!-- /include -->
+!include (TemplatesSection.g.md)
 
 ## Support
 If you are having problems, please let me know by [creating an issue].
@@ -41,5 +38,5 @@ If you are having problems, please let me know by [creating an issue].
 ## License
 This project is licensed with the [MIT license].
 
-[creating an issue]: https://github.com/ubhaya/CleanArchitecture.Blazored/issues
-[MIT license]: https://github.com/ubhaya/CleanArchitecture.Blazored/blob/main/LICENSE
+[creating an issue]: <https://github.com/ubhaya/CleanArchitecture.Blazored/issues>
+[MIT license]: <https://github.com/ubhaya/CleanArchitecture.Blazored/blob/main/LICENSE>

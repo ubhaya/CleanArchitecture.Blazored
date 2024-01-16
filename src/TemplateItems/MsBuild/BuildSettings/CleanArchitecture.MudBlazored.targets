@@ -1,5 +1,5 @@
 <Project>
-    <Target Name="CopyFiles" BeforeTargets="Restore">
+    <Target Name="CopyFiles" AfterTargets="Restore">
         <Message Text="Start to copy item from $(ProjectName) to $(MudBlazorProjectName)" Importance="high"/>
         <Message Text="File Path: $(ProjectDir)/$(MudBlazorDestinationFolderPath)" Importance="high"/>
         <Message Text="Files to restore: %(AllFilesInSource.Identity)" Importance="high"/>

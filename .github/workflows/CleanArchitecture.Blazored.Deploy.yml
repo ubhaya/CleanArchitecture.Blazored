@@ -22,9 +22,9 @@ jobs:
         with: 
           dotnet-version: 8.x
       - name: Restore dependencies
-        run: dotnet restore CleanArchitecture.Blazored.csproj
+        run: dotnet restore src/CleanArchitecture.Blazored.csproj
       - name: Build Project
-        run: dotnet build --no-restore CleanArchitecture.Blazored.csproj -c Release
+        run: dotnet build --no-restore src/CleanArchitecture.Blazored.csproj -c Release
       - name: Get latest release tag
         id: get_tag
         env:
@@ -52,7 +52,7 @@ jobs:
         if: steps.prep_version.outputs.version == null || steps.prep_version.outputs.version == ''
         run: exit 1
       - name: Pack Nuget package
-        run: dotnet pack CleanArchitecture.Blazored.csproj /p:PackageVersionNumber=${{ steps.prep_version.outputs.version }} --configuration Release --output ${{ env.NuGetDirectory }}
+        run: dotnet pack src/CleanArchitecture.Blazored.csproj /p:PackageVersionNumber=${{ steps.prep_version.outputs.version }} --configuration Release --output ${{ env.NuGetDirectory }}
       - uses: actions/upload-artifact@v3
         if: github.event_name =='release'
         with: 

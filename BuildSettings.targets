@@ -1,3 +1,0 @@
-<Project>
-    <Import Project="BuildSettings/CleanArchitecture.MudBlazored.targets"/>
-</Project>

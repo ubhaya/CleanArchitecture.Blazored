@@ -31,7 +31,7 @@
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     </PropertyGroup>
     
-    <Import Project="BuildSettings.props"/>
+    <Import Project="TemplateItems\MsBuild\BuildSettings.props"/>
 
     <PropertyGroup>
         <PackageVersionNumber Condition="'$(PackageVersionNumber)'==''">v0.0.1-alpha</PackageVersionNumber>
@@ -46,14 +46,26 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\.idea\**;content\**\.gitignore;">
+        <ContentToIncludeInPackage Include="content\**\*" Condition=" '$(Configuration)' == 'Release' "/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <ContentToExcludeInPackage Include="content\**\bin\**"/>
+        <ContentToExcludeInPackage Include="content\**\obj\**"/>
+        <ContentToExcludeInPackage Include="content\**\.idea\**"/>
+        <ContentToExcludeInPackage Include="content\**\.gitignore"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Content Include="@(ContentToIncludeInPackage)" Exclude="@(ContentToExcludeInPackage)">
             <Visible>false</Visible>
         </Content>
         <Compile Remove="**\*"/>
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="README.md" Pack="true" PackagePath=""/>
+        <None Include="..\README.md" Pack="true" PackagePath=""/>
+        <None Include="..\LICENSE" Pack="true" PackagePath=""/>
         <None Include="content\CleanArchitecture.Blazored\.template.config\icon.png" Packe="true" PackagePath=""/>
         <None Remove="content\**" Condition=" '$(Configuration)' == 'Debug' " />
     </ItemGroup>
@@ -61,6 +73,10 @@
     <ItemGroup>
       <EmbeddedResource Remove="content\**" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="TemplateItems\Configurations\" />
+    </ItemGroup>
     
-    <Import Project="BuildSettings.targets"/>
+    <Import Project="TemplateItems\MsBuild\BuildSettings.targets"/>
 </Project>

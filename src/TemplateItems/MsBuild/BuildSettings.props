@@ -1,4 +1,5 @@
 <Project>
+    <Import Project="BuildSettings/CleanArchitecture.Blazored.props"/>
     <Import Project="BuildSettings/CleanArchitecture.MudBlazored.props"/>
     
     <PropertyGroup>
@@ -9,6 +10,8 @@
     </PropertyGroup>
         
     <ItemGroup>
-        <None Include=".github/**/*" />
+        <None Include="../.github/**/*" />
+        <None Include="../.dockerignore"/>
+        <None Include="../.gitignore"/>
     </ItemGroup>
 </Project>
