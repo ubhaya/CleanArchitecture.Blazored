@@ -30,7 +30,7 @@ dotnet new install CleanArchitecture.Blazored
 Refer documentation from each template
 
 ## Templates
-<!-- include (Templates.g.md) -->
+<!-- include (TemplatesSection.g.md) -->
 * [CleanArchitecture.Blazored](src/content/CleanArchitecture.Blazored/README.md)
 * [CleanArchitecture.MudBlazored](src/content/CleanArchitecture.MudBlazored/README.md)
 <!-- /include -->

@@ -1,8 +1,18 @@
 <Project>
     <Target Name="Generate Markeddown files" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug'">
         <Message Text="Compiling markeddown files"/>
-        <GenerateTemplateMarkDownFile DirectoryToSearch="content"/>
-        <Exec Command="markedpp TemplateItems/Docs/README.md -o ../README.md" />
+        <GenerateTemplateMarkDownFile DirectoryToSearch="content" OutputFileName="TemplatesSection.g.md"/>
+        <Exec Command="markedpp TemplateItems/Docs/README_Package.md -o ../README.md" />
+        <GenerateTemplateReadMeFiles>
+            <Output TaskParameter="ReadMeFiles" ItemName="ReadMeFiles"/>
+        </GenerateTemplateReadMeFiles>
+        <ItemGroup>
+            <ReadMeFilesWithKey Include="@(ReadMeFiles)">
+                <Key>%(ReadMeFiles.Key)</Key>
+                <Value>%(ReadMeFiles.Identity)</Value>
+            </ReadMeFilesWithKey>
+        </ItemGroup>
+        <Exec Command="markedpp TemplateItems/Docs/%(ReadMeFilesWithKey.Key) -o %(ReadMeFilesWithKey.Value)"/>
     </Target>
     <Target Name="Build CleanArchitecture Blazored MsBuild" BeforeTargets="Restore">
         <Exec Command="dotnet build CleanArchitecture.Blazored.MsBuild/ -c Release -o TemplateItems/MsBuild/bin" ConsoleToMSBuild="true">

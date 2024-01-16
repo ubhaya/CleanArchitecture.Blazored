@@ -6,8 +6,9 @@ namespace CleanArchitecture.Blazored.MsBuild;
 
 public class GenerateTemplateMarkDownFile : Task
 {
-    private string OutputDirectory = "TemplateItems/Docs/Templates.g.md";
+    private const string OutputDirectory = "TemplateItems/Docs";
     [Required] public string DirectoryToSearch { get; set; } = string.Empty;
+    [Required] public string OutputFileName { get; set; } = string.Empty;
     
     public override bool Execute()
     {
@@ -74,8 +75,10 @@ public class GenerateTemplateMarkDownFile : Task
             sb.Append(')');
             sb.AppendLine();
         }
+
+        var outputFile = Path.Combine(OutputDirectory, OutputFileName);
         
-        File.WriteAllText(OutputDirectory, sb.ToString());
+        File.WriteAllText(outputFile, sb.ToString());
     }
 }
 

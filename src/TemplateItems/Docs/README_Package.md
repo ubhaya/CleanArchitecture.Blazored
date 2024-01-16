@@ -30,7 +30,7 @@ dotnet new install CleanArchitecture.Blazored
 Refer documentation from each template
 
 ## Templates
-!include (Templates.g.md)
+!include (TemplatesSection.g.md)
 
 ## Support
 If you are having problems, please let me know by [creating an issue].
