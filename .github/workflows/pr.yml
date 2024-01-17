@@ -18,12 +18,12 @@ jobs:
               console.log("PR type: bug fix.");
             }
             
-            if(RegExp(isChecked.source + "New feature \\(non-breaking change which adds functionality\\)").test(body)) {
+            if(RegExp(isChecked.source + "New Template").test(body)) {
               labels.push("enhancement");
               console.log("PR type: enhancement.");
             }
 
-            if(RegExp(isChecked.source + "Breaking change \\(fix or feature that would cause existing functionality to not work as expected\\)").test(body)) {
+            if(RegExp(isChecked.source + "Template Enhancement").test(body)) {
               labels.push("breaking change");
               console.log("PR type: breaking change.");
             }
