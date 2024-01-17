@@ -23,8 +23,8 @@ Testing sections can be removed for documentation changes
 ## Types of changes
 <!-- What types of changes does your code introduce? Put an `x` in all the boxes that apply: -->
 - [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] New Template
+- [ ] Template Enhancement
 
 <!-- If you made any visual changes, provide screenshots of before/after, it its moving parts, please provide high quality gif, wemb or mp4 -->
 

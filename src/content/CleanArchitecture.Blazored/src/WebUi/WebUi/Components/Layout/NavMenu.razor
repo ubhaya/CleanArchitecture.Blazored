@@ -39,7 +39,7 @@
         <AuthorizeView>
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="claims">
-                    <span class="oi oi-document" aria-hidden="true"></span> Claims
+                    <span class="bi bi-card-checklist" aria-hidden="true"></span> Claims
                 </NavLink>
             </div>
         </AuthorizeView>
@@ -47,7 +47,7 @@
         <FlexibleAuthorizeView Permissions="@Permissions.Todo">
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="todo">
-                    <span class="oi oi-list" aria-hidden="true"></span> Todo
+                    <span class="bi bi-list-task" aria-hidden="true"></span> Todo
                 </NavLink>
             </div>
         </FlexibleAuthorizeView>
@@ -55,7 +55,7 @@
         <FlexibleAuthorizeView Permissions="@(Permissions.ViewUsers | Permissions.ManageUsers)">
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="admin/users">
-                    <span class="oi oi-people" aria-hidden="true"></span> Users
+                    <span class="bi bi-people-fill" aria-hidden="true"></span> Users
                 </NavLink>
             </div>
         </FlexibleAuthorizeView>
@@ -63,7 +63,7 @@
         <FlexibleAuthorizeView Permissions="@(Permissions.ViewRoles | Permissions.ManageRoles)">
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="admin/roles">
-                    <span class="oi oi-badge" aria-hidden="true"></span> Roles
+                    <span class="bi bi-person-badge" aria-hidden="true"></span> Roles
                 </NavLink>
             </div>
         </FlexibleAuthorizeView>
@@ -71,7 +71,7 @@
         <FlexibleAuthorizeView Permissions="@(Permissions.ViewAccessControl | Permissions.ConfigureAccessControl)">
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="admin/access-control">
-                    Access Control
+                    <span class="bi bi-universal-access"></span> Access Control
                 </NavLink>
             </div>
         </FlexibleAuthorizeView>

@@ -9,21 +9,21 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const pr = context.payload.pul_request;
+            const pr = context.payload.pull_request;
             const body = pr.body;
-            let labels =[];
+            let labels = [];
             const isChecked = /-\s*\[\s*[x|X]\s*\]\s*/;
-            if (RegExp(isChecked.source) + "Bug fix \\(non-breaking change which fixes an issue\\)").test(body)){
+            if (RegExp(isChecked.source + "Bug fix \\(non-breaking change which fixes an issue\\)").test(body)) {
               labels.push("bug");
               console.log("PR type: bug fix.");
             }
-
-            if(RegExp(isChecked.source + "New feature \\(non-breaking change which adds functionality\\)").test(body)) {
+            
+            if(RegExp(isChecked.source + "New Template").test(body)) {
               labels.push("enhancement");
               console.log("PR type: enhancement.");
             }
 
-            if(RegExp(isChecked.source + "Breaking change \\(fix or feature that would cause existing functionality to not work as expected\\)").test(body)) {
+            if(RegExp(isChecked.source + "Template Enhancement").test(body)) {
               labels.push("breaking change");
               console.log("PR type: breaking change.");
             }
