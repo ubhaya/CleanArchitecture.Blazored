@@ -1,0 +1,71 @@
+version: 2
+updates:
+  - package-ecosystem: nuget
+    directory: "/src/"
+    schedule: 
+      interval: daily
+  
+  - package-ecosystem: nuget
+    directory: "/src/CleanArchitecture.Blazored.MsBuild/"
+    schedule: 
+      interval: daily
+      
+  - package-ecosystem: nuget
+    directory: "/src/content/CleanArchitecture.Blazored/src/Application/"
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: "/src/content/CleanArchitecture.Blazored/src/Domain/"
+    schedule:
+      interval: daily
+      
+  - package-ecosystem: nuget
+    directory: "/src/content/CleanArchitecture.Blazored/src/Infrastructure/"
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: "/src/content/CleanArchitecture.Blazored/src/WebUi/Shared/"
+    schedule:
+      interval: daily
+      
+  - package-ecosystem: nuget
+    directory: "/src/content/CleanArchitecture.Blazored/src/WebUi/WebUi/"
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: "/src/content/CleanArchitecture.Blazored/src/WebUi/WebUi.Client/"
+    schedule:
+      interval: daily
+      
+  - package-ecosystem: nuget
+    directory: "/src/content/CleanArchitecture.Blazored/test/Application.IntegrationTests/"
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: "/src/content/CleanArchitecture.Blazored/test/Application.UnitTests/"
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: "/src/content/CleanArchitecture.Blazored/test/Domain.UnitTests/"
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: "/src/content/CleanArchitecture.Blazored/test/WebUi.AcceptanceTests"
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: "/src/content/CleanArchitecture.MudBlazored/src/WebUi/WebUi"
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: "/src/content/CleanArchitecture.MudBlazored/src/WebUi/WebUi.Client"
+    schedule:
+      interval: daily
