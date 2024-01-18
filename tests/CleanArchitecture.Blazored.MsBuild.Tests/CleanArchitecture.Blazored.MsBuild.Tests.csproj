@@ -1,0 +1,212 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="6.12.0" />
+        <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.8.3" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0"/>
+        <PackageReference Include="Moq" Version="4.20.70" />
+        <PackageReference Include="coverlet.collector" Version="6.0.0"/>
+        <PackageReference Include="xunit" Version="2.6.6" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.5.6">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\CleanArchitecture.Blazored.MsBuild\CleanArchitecture.Blazored.MsBuild.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\bool-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\bool-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\complete-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\complete-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\empty-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\error-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\guid-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\guid-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\int-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\int-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\long-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\long-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\notvalidtype-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\notvalidvalue-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\string-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\string-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\success-fluent-success-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\testscript-fail.msbuild">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\testscript-success.msbuild">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestXUnit\testscript-success-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\bool-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\bool-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\complete-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\complete-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\empty-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\error-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\guid-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\guid-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\int-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\int-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\long-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\long-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\notvalidtype-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\notvalidvalue-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\string-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\string-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\success-fluent-success-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\testscript-fail.msbuild">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\testscript-success.msbuild">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTestMSTest\testscript-success-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\bool-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\bool-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\complete-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\complete-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\empty-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\error-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\guid-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\guid-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\int-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\int-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\long-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\long-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\notvalidtype-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\notvalidvalue-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\string-prop.setting">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\string-prop-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\success-fluent-success-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\testscript-fail.msbuild">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\testscript-success.msbuild">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\AppSettingStronglyTypedTest\testscript-success-class.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>
