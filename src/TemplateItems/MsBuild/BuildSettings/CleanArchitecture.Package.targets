@@ -14,10 +14,4 @@
         </ItemGroup>
         <Exec Command="markedpp TemplateItems/Docs/%(ReadMeFilesWithKey.Key) -o %(ReadMeFilesWithKey.Value)"/>
     </Target>
-    <Target Name="Build CleanArchitecture Blazored MsBuild" BeforeTargets="Restore">
-        <Exec Command="dotnet build CleanArchitecture.Blazored.MsBuild/ -c Release -o TemplateItems/MsBuild/bin" ConsoleToMSBuild="true">
-        </Exec>
-    </Target>
-
-    <Import Project="CleanArchitecture.Blazored.Hepler.targets"/>
 </Project>

@@ -60,9 +60,5 @@
               FinalOutputPath="$(ProjectDepsFilePath)" />
     </ItemGroup>
   </Target>
-  
-  <Target Name="Checking" BeforeTargets="Build">
-    <Message Importance="high" Text="Filename: $(MSBuildThisFileName)"/>
-  </Target>
 
 </Project>

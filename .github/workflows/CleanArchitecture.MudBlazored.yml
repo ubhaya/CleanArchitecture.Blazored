@@ -34,7 +34,10 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4.0.0
         with:
-          dotnet-version: 8.x
+          dotnet-version: 8.x      
+      - name: Build Generated Project
+        shell: pwsh
+        run: .\CleanArchitecture.Blazored.restore.ps1
       - name: Create Generated Project
         run: dotnet pack src/CleanArchitecture.Blazored.csproj
       - name: Install Project Template

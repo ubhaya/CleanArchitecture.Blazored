@@ -42,6 +42,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="CleanArchitecture.Blazored.MsBuild" Version="1.0.0"/>
         <PackageReference Include="Microsoft.TemplateEngine.Tasks" Version="*" PrivateAssets="all" IsImplicitlyDefined="true"/>
     </ItemGroup>
 

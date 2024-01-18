@@ -13,5 +13,7 @@
         <None Include="../.github/**/*" />
         <None Include="../.dockerignore"/>
         <None Include="../.gitignore"/>
+        <None Include="../nuget.config"/>
+        <None Include="../CleanArchitecture.Blazored.restore.ps1"/>
     </ItemGroup>
 </Project>
