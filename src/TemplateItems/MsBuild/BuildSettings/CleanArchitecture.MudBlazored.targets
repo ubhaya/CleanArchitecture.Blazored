@@ -1,29 +1,26 @@
 <Project>
-    <Target Name="ReplaceRequiredFileName" AfterTargets="ReplaceNamespacesAndAssemblyName">
+    <Target Name="MudBlazorReplaceRequiredFileName" AfterTargets="MudBlazorReplaceNamespacesAndAssemblyName" Condition=" '$(Configuration)' == 'Debug' ">
         <ItemGroup>
-            <AllFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/*" Exclude="@(ExcludedFilesInDestination)"/>
+            <MudBlazorAllFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/*" Exclude="@(MudBlazorExcludedFilesInDestination)"/>
         </ItemGroup>
         <ReplaceFilename
-                Filename="$(ProjectDir)/%(AllFilesInDestination.Identity)"
+                Filename="$(ProjectDir)/%(MudBlazorAllFilesInDestination.Identity)"
                 MatchExpression="$(ProjectName)"
                 ReplacementText="$(MudBlazorProjectName)">
         </ReplaceFilename>
     </Target>
-    <Target Name="ReplaceNamespacesAndAssemblyName" AfterTargets="CopyFiles">
+    <Target Name="MudBlazorReplaceNamespacesAndAssemblyName" AfterTargets="MudBlazorCopyFiles" Condition=" '$(Configuration)' == 'Debug' ">
         <ItemGroup>
-            <AllFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/*" Exclude="@(ExcludedFilesInDestination)"/>
+            <MudBlazorAllFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/*" Exclude="@(MudBlazorExcludedFilesInDestination)"/>
         </ItemGroup>
         <Message Text="Changing Namespaces and AssemblyName" Importance="high"/>
         <ReplaceFileText
-                Filename="$(ProjectDir)/%(AllFilesInDestination.Identity)"
+                Filename="$(ProjectDir)/%(MudBlazorAllFilesInDestination.Identity)"
                 MatchExpression="\bCleanArchitecture\.Blazored\b"
                 ReplacementText="$(MudBlazorProjectName)"/>
     </Target>
-    <Target Name="CopyFiles" BeforeTargets="Build">
-        <Message Text="Start to copy item from $(ProjectName) to $(MudBlazorProjectName)" Importance="high"/>
-        <Message Text="File Path: $(ProjectDir)/$(MudBlazorDestinationFolderPath)" Importance="high"/>
-        <Message Text="Files to restore: %(AllFilesInSource.Identity)" Importance="high"/>
-        <Copy SourceFiles="@(AllFilesInSource)" DestinationFolder="$(ProjectDir)/$(MudBlazorDestinationFolderPath)/%(RecursiveDir)" SkipUnchangedFiles="true"/>
-        <Message Text="Finish to copy item from $(ProjectName) to $(MudBlazorProjectName)" Importance="high"/>
+    <Target Name="MudBlazorCopyFiles" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' ">
+        <Message Text="Files to restore: %(MudBlazorAllFilesInSource.Identity)" Importance="normal"/>
+        <Copy SourceFiles="@(MudBlazorAllFilesInSource)" DestinationFolder="$(ProjectDir)/$(MudBlazorDestinationFolderPath)/%(RecursiveDir)" SkipUnchangedFiles="true"/>
     </Target>
 </Project>
