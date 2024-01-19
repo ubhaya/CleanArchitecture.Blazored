@@ -20,7 +20,6 @@
                 ReplacementText="$(MudBlazorProjectName)"/>
     </Target>
     <Target Name="MudBlazorCopyFiles" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' ">
-        <Message Text="Files to restore: %(MudBlazorAllFilesInSource.Identity)" Importance="normal"/>
         <Copy SourceFiles="@(MudBlazorAllFilesInSource)" DestinationFolder="$(ProjectDir)/$(MudBlazorDestinationFolderPath)/%(RecursiveDir)" SkipUnchangedFiles="true"/>
     </Target>
 </Project>

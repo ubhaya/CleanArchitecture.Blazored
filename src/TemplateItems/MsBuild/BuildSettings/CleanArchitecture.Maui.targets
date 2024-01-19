@@ -1,6 +1,5 @@
 <Project>
     <Target Name="MauiCopyFiles" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' ">
-        <Message Text="Files to restore: %(MauiAllFilesInSource.Identity)" Importance="normal"/>
         <Copy SourceFiles="@(MauiAllFilesInSource)" DestinationFolder="$(ProjectDir)/$(MauiDestinationFolderPath)/%(RecursiveDir)" SkipUnchangedFiles="true"/>
     </Target>
     <Target Name="MauiReplaceNamespacesAndAssemblyName" AfterTargets="MauiCopyFiles" Condition=" '$(Configuration)' == 'Debug' ">
@@ -21,5 +20,14 @@
             Filename="$(ProjectDir)/%(MauiAllFilesInDestination.Identity)"
             MatchExpression="$(ProjectName)"
             ReplacementText="$(MauiProjectName)"/>
+    </Target>
+    <Target Name="MauiMoveFilesAround" AfterTargets="MauiReplaceRequiredFileName" Condition=" '$(Configuration)' == 'Debug' ">
+        <ItemGroup>
+            <MauiAllFilesInDestination Include="$(MauiDestinationFolderPath)/**/*" Exclude="@(MauiExcludedFilesInDestination)"/>
+        </ItemGroup>
+        <ReplaceAndMoveFiles
+                Filename="$(ProjectDir)/%(MauiAllFilesInDestination.Identity)"
+                MatchExpression="WebUi"
+                ReplacementText="MobileUi"/>
     </Target>
 </Project>

@@ -12,6 +12,8 @@
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/bin/*"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/Debug/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/Release/*"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/*.feature.cs"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/*.md"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/WebUi.AcceptanceTests/Pages/Selectors.cs"/>
@@ -21,6 +23,10 @@
         <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/.template.config/**/*"/>
         <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/**/*.md"/>
         <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/.template.config/template.json"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/**/bin/*"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/**/obj/*"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/**/Debug/*"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/**/Release/*"/>
     </ItemGroup>
     <ItemGroup>
         <MauiAllFilesInSource Include="$(SourceFilePath)/**/*" Exclude="@(MauiExcludedFilesInSource)"/>

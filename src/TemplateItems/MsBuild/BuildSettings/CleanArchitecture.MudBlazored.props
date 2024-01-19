@@ -12,6 +12,8 @@
         <MudBlazorExcludedFilesInSource Include="$(SourceFilePath)/**/bin/*"/>
         <MudBlazorExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
         <MudBlazorExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
+        <MudBlazorExcludedFilesInSource Include="$(SourceFilePath)/**/Debug/*"/>
+        <MudBlazorExcludedFilesInSource Include="$(SourceFilePath)/**/Release/*"/>
         <MudBlazorExcludedFilesInSource Include="$(SourceFilePath)/**/*.feature.cs"/>
         <MudBlazorExcludedFilesInSource Include="$(SourceFilePath)/**/*.md"/>
         <MudBlazorExcludedFilesInSource Include="$(SourceFilePath)/tests/WebUi.AcceptanceTests/Pages/Selectors.cs"/>
@@ -21,6 +23,10 @@
         <MudBlazorExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/.template.config/**/*"/>
         <MudBlazorExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/*.md"/>
         <MudBlazorExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/.template.config/template.json"/>
+        <MudBlazorExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/bin/*"/>
+        <MudBlazorExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/obj/*"/>
+        <MudBlazorExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/Debug/*"/>
+        <MudBlazorExcludedFilesInDestination Include="$(MudBlazorDestinationFolderPath)/**/Release/*"/>
     </ItemGroup>
     <ItemGroup>
         <MudBlazorAllFilesInSource Include="$(SourceFilePath)/**/*" Exclude="@(MudBlazorExcludedFilesInSource)"/>
