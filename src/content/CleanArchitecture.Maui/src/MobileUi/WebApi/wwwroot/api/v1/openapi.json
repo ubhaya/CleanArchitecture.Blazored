@@ -31,6 +31,55 @@
         ]
       }
     },
+    "/api/Admin/GetConfiguration": {
+      "get": {
+        "operationId": "GetApiAdminGetConfiguration",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessControlVm"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/Admin/UpdateConfiguration": {
+      "put": {
+        "operationId": "PutApiAdminUpdateConfiguration",
+        "requestBody": {
+          "x-name": "updatedRole",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/account/register": {
       "post": {
         "operationId": "PostAccountRegister",
@@ -408,6 +457,70 @@
             "format": "int32"
           }
         }
+      },
+      "AccessControlVm": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleDto"
+            }
+          },
+          "AvailablePermissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Permissions"
+            }
+          }
+        }
+      },
+      "RoleDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Permissions": {
+            "$ref": "#/components/schemas/Permissions"
+          }
+        }
+      },
+      "Permissions": {
+        "type": "integer",
+        "description": "",
+        "x-enumFlags": true,
+        "x-enumNames": [
+          "None",
+          "ViewRoles",
+          "ManageRoles",
+          "ViewUsers",
+          "ManageUsers",
+          "ConfigureAccessControl",
+          "ViewAccessControl",
+          "Counter",
+          "Forecast",
+          "Todo",
+          "All"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128,
+          256,
+          -1
+        ]
       },
       "HttpValidationProblemDetails": {
         "allOf": [

@@ -1,0 +1,14 @@
+### Get Access Control
+GET {{baseAddress}}/api/Admin/GetConfiguration
+Authorization: Bearer {{access_token}}
+
+### Put Access Control
+PUT {{baseAddress}}/api/Admin/UpdateConfiguration
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "Id": "885178d6-28b8-4f53-a3a6-03d17872ac34",
+  "Name": "Administrators",
+  "Permissions": 1
+}

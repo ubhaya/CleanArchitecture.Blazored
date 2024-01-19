@@ -1,0 +1,13 @@
+### Login
+POST {{baseAddress}}/account/login?useCookies=false&useSessionCookies=false
+Content-Type: application/json
+
+{
+  "Email": "admin@localhost",
+  "Password": "Password123!"
+}
+
+> {%
+    client.global.set("access_token", response.body.accessToken);
+    client.global.set("refresh_token", response.body.refreshToken);
+%}
