@@ -2,7 +2,6 @@ using CleanArchitecture.MudBlazored.WebUi.Client.Components;
 using CleanArchitecture.MudBlazored.WebUi.Shared.TodoLists;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.JSInterop;
 using MudBlazor;
 using Newtonsoft.Json;
 

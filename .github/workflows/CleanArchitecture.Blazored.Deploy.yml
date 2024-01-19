@@ -21,8 +21,9 @@ jobs:
         uses: actions/setup-dotnet@v4.0.0
         with: 
           dotnet-version: 8.x
-      - name: Restore dependencies
-        run: dotnet restore src/CleanArchitecture.Blazored.csproj
+      - name: Build Generated Project
+        shell: pwsh
+        run: .\CleanArchitecture.Blazored.restore.ps1
       - name: Build Project
         run: dotnet build --no-restore src/CleanArchitecture.Blazored.csproj -c Release
       - name: Get latest release tag

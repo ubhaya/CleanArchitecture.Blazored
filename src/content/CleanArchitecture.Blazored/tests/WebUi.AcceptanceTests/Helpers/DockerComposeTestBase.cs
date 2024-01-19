@@ -1,7 +1,4 @@
-using Ductus.FluentDocker.Builders;
-using Ductus.FluentDocker.Common;
 using Ductus.FluentDocker.Services;
-using Ductus.FluentDocker.Services.Extensions;
 using Ductus.FluentDocker.Services.Impl;
 
 namespace CleanArchitecture.Blazored.WebUi.AcceptanceTests.Helpers;
