@@ -1,0 +1,28 @@
+<Project>
+    <PropertyGroup>
+        <ProjectName>CleanArchitecture.Blazored</ProjectName>
+        <SourceFilePath>../../../../$(ProjectName)</SourceFilePath>
+        <MauiProjectName>CleanArchitecture.Maui</MauiProjectName>
+        <MauiDestinationFolderPath>../../../</MauiDestinationFolderPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/WebUi/WebUi/**/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/WebUi/WebUi.Client/**/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/.template.config/**/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/bin/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/*.feature.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/*.md"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/WebUi.AcceptanceTests/Pages/Selectors.cs"/>
+
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/src/WebUi/WebUi/**/*"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/src/WebUi/WebUi.Client/**/*"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/.template.config/**/*"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/**/*.md"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/.template.config/template.json"/>
+    </ItemGroup>
+    <ItemGroup>
+        <MauiAllFilesInSource Include="$(SourceFilePath)/**/*" Exclude="@(MauiExcludedFilesInSource)"/>
+    </ItemGroup>
+</Project>

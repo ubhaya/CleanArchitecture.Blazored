@@ -1,0 +1,25 @@
+<Project>
+    <Target Name="MauiCopyFiles" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' ">
+        <Message Text="Files to restore: %(MauiAllFilesInSource.Identity)" Importance="normal"/>
+        <Copy SourceFiles="@(MauiAllFilesInSource)" DestinationFolder="$(ProjectDir)/$(MauiDestinationFolderPath)/%(RecursiveDir)" SkipUnchangedFiles="true"/>
+    </Target>
+    <Target Name="MauiReplaceNamespacesAndAssemblyName" AfterTargets="MauiCopyFiles" Condition=" '$(Configuration)' == 'Debug' ">
+        <ItemGroup>
+            <MauiAllFilesInDestination Include="$(MauiDestinationFolderPath)/**/*" Exclude="@(MauiExcludedFilesInDestination)"/>
+        </ItemGroup>
+        <Message Text="Changing Namespaces and AssemblyName" Importance="high"/>
+        <ReplaceFileText
+                Filename="$(ProjectDir)/%(MauiAllFilesInDestination.Identity)"
+                MatchExpression="\bCleanArchitecture\.Blazored\b"
+                ReplacementText="$(MauiProjectName)"/>
+    </Target>
+    <Target Name="MauiReplaceRequiredFileName" AfterTargets="MauiReplaceNamespacesAndAssemblyName" Condition=" '$(Configuration)' == 'Debug' ">
+        <ItemGroup>
+            <MauiAllFilesInDestination Include="$(MauiDestinationFolderPath)/**/*" Exclude="@(MauiExcludedFilesInDestination)"/>
+        </ItemGroup>
+        <ReplaceFilename
+            Filename="$(ProjectDir)/%(MauiAllFilesInDestination.Identity)"
+            MatchExpression="$(ProjectName)"
+            ReplacementText="$(MauiProjectName)"/>
+    </Target>
+</Project>

@@ -6,6 +6,8 @@
         <SourceFilePath>content/$(ProjectName)</SourceFilePath>
         <MudBlazorProjectName>CleanArchitecture.MudBlazored</MudBlazorProjectName>
         <MudBlazorDestinationFolderPath>content/$(MudBlazorProjectName)</MudBlazorDestinationFolderPath>
+        <MauiProjectName>CleanArchitecture.Maui</MauiProjectName>
+        <MauiDestinationFolderPath>content/$(MauiProjectName)</MauiDestinationFolderPath>
     </PropertyGroup>
         
     <ItemGroup>
