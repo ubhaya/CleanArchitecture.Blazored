@@ -1,28 +1,30 @@
+using CleanArchitecture.Maui.Infrastructure.Data;
+using CleanArchitecture.Maui.MobileUi.WebApi.DependencyInjection;
 using FastEndpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddFastEndpoints();
+builder.RegisterCleanArchitectureServices();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    try
+    {
+        var initializer = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
+        await initializer.InitializeAsync();
+        await initializer.SeedAsync();
+    }
+    catch (Exception ex)
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex,"An error occurred during database initialisation.");
+    }
 }
 
-app.UseFastEndpoints();
-app.UseHttpsRedirection();
+// Configure the HTTP request pipeline.
+app.UseCleanArchitectureMiddleware();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.RunAsync();
+await app.RunAsync();

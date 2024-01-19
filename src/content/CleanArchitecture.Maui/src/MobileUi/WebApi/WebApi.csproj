@@ -11,9 +11,23 @@
 
     <ItemGroup>
         <PackageReference Include="FastEndpoints" Version="5.21.2" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="FastEndpoints.Swagger" Version="5.21.2" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.1" />
+        <PackageReference Include="NSwag.AspNetCore" Version="14.0.2" />
+        <PackageReference Include="NSwag.MSBuild" Version="14.0.2">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
+    
+    <PropertyGroup>
+        <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    </PropertyGroup>
+
+    <Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
+        <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net80) run" /> <!--/variables:Configuration=$(Configuration)" />-->
+    </Target>
 
     <ItemGroup>
         <InternalsVisibleTo Include="CleanArchitecture.Maui.Application.IntegrationTests" />
@@ -22,6 +36,10 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Application\Application.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\" />
     </ItemGroup>
 
 </Project>
