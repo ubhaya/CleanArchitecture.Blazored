@@ -11,6 +11,10 @@
                 Filename="$(ProjectDir)/%(MauiAllFilesInDestination.Identity)"
                 MatchExpression="\bCleanArchitecture\.Blazored\b"
                 ReplacementText="$(MauiProjectName)"/>
+        <ReplaceFileText
+                Filename="$(ProjectDir)/%(MauiAllFilesInDestination.Identity)"
+                MatchExpression="\bWebUi\b"
+                ReplacementText="MobileUi"/>
     </Target>
     <Target Name="MauiReplaceRequiredFileName" AfterTargets="MauiReplaceNamespacesAndAssemblyName" Condition=" '$(Configuration)' == 'Debug' ">
         <ItemGroup>

@@ -7,21 +7,21 @@
 # Include specific folders and their contents in src
 !src/
 src/*
-!src/WebUi/
-src/WebUi/*
-!src/WebUi/WebUi/
-!src/WebUi/WebUi/**
-!src/WebUi/WebUI.Client/
-!src/WebUi/WebUI.Client/**
+!src/MobileUi/
+src/MobileUi/*
+!src/MobileUi/WebApi/
+!src/MobileUi/WebApi/**
+!src/MobileUi/WebUI.Client/
+!src/MobileUi/WebUI.Client/**
 
 # Include specific folders and their contents in tests
 !tests/
 tests/*
-!tests/WebUi.AcceptanceTests
-tests/WebUi.AcceptanceTests/*
-!tests/WebUi.AcceptanceTests/Pages/
-tests/WebUi.AcceptanceTests/Pages/*
-!tests/WebUi.AcceptanceTests/Pages/Selectors.cs
+!tests/MobileUi.AcceptanceTests
+tests/MobileUi.AcceptanceTests/*
+!tests/MobileUi.AcceptanceTests/Pages/
+tests/MobileUi.AcceptanceTests/Pages/*
+!tests/MobileUi.AcceptanceTests/Pages/Selectors.cs
 
 
 ## Ignore Visual Studio temporary files, build results, and

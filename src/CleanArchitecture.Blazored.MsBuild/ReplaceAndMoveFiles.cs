@@ -20,7 +20,7 @@ public class ReplaceAndMoveFiles : Task
             Directory.CreateDirectory(destinationDirectory!);
 
             // Move the file
-            File.Move(FileName, newPath);
+            File.Move(FileName, newPath, overwrite: true);
             
             Log.LogMessage($"Moved: {FileName} to {newPath}");
             return true;
