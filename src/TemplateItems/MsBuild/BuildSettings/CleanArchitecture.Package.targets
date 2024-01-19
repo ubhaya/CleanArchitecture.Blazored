@@ -1,6 +1,6 @@
 <Project>
     <Target Name="Generate Markeddown files" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug'">
-        <Message Text="Compiling markeddown files"/>
+        <Message Importance="high" Text="Compiling markeddown files"/>
         <GenerateTemplateMarkDownFile DirectoryToSearch="content" OutputFileName="TemplatesSection.g.md"/>
         <Exec Command="markedpp TemplateItems/Docs/README_Package.md -o ../README.md" />
         <GenerateTemplateReadMeFiles>

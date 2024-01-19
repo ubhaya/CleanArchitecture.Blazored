@@ -24,19 +24,21 @@
     <NoWarn>NU5100</NoWarn>
     <DebugType>embedded</DebugType>
     <IsPackable>true</IsPackable>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Framework" Version="17.8.3" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.8.3" PrivateAssets="asll" />
+    <PackageReference Include="Humanizer.Core" Version="2.14.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="17.8.3" PrivateAssets="all" ExcludeAssets="Runtime" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.8.3" PrivateAssets="all" ExcludeAssets="Runtime" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- These lines pack the build props/targets files to the `build` folder in the generated package.
      By convention, the .NET SDK will look for build\<Package Id>.props and build\<Package Id>.targets
      for automatic inclusion in the build. -->
-    <Content Include="build\CleanArchitecture.Blazored.MsBuild.props" PackagePath="build\" />
-    <Content Include="build\CleanArchitecture.Blazored.MsBuild.targets" PackagePath="build\" />
+    <Content Include="build/CleanArchitecture.Blazored.MsBuild.props" PackagePath="build\" />
+    <Content Include="build/CleanArchitecture.Blazored.MsBuild.targets" PackagePath="build\" />
   </ItemGroup>
 
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
@@ -58,6 +60,16 @@
               Include="$(ProjectDepsFilePath)"
               TargetPath="$(ProjectDepsFileName)"
               FinalOutputPath="$(ProjectDepsFilePath)" />
+    </ItemGroup>
+  </Target>
+  
+  <Target Name="PackTaskDependencies" BeforeTargets="GenerateNuspec">
+    <ItemGroup>
+      <_PackageFiles Include="bin/$(Configuration)/*/Humanizer.Core.dll;">
+        <PackagePath>tasks/%(RecursiveDir)</PackagePath>
+        <Visible>false</Visible>
+        <BuildAction>Content</BuildAction>
+      </_PackageFiles>
     </ItemGroup>
   </Target>
 
