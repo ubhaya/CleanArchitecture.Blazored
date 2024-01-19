@@ -1,5 +1,4 @@
 ﻿using System.CodeDom.Compiler;
-using System.Text;
 using Microsoft.Build.Framework;
 using Task = Microsoft.Build.Utilities.Task;
 

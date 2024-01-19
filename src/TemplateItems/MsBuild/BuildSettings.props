@@ -1,6 +1,5 @@
 <Project>
-    <Import Project="BuildSettings/CleanArchitecture.Blazored.props"/>
-    <Import Project="BuildSettings/CleanArchitecture.MudBlazored.props"/>
+    <Import Project="BuildSettings/*.props"/>
     
     <PropertyGroup>
         <ProjectName>CleanArchitecture.Blazored</ProjectName>

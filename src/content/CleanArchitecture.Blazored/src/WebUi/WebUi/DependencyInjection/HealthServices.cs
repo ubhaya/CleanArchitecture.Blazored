@@ -1,5 +1,4 @@
 using CleanArchitecture.Blazored.Infrastructure.Data;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 namespace CleanArchitecture.Blazored.WebUi.DependencyInjection;
 

@@ -8,7 +8,7 @@
         <Title>Clean Architecture Blazor Template</Title>
         <Authors>Ubhaya Hettiarachchi</Authors>
         <Description>Clean Architecture Blazor Template for .NET.</Description>
-        <PackageTags>clean-architecture project template csharp dotnet blazor</PackageTags>
+        <PackageTags>clean-architecture project template csharp dotnet blazor mudblazor</PackageTags>
         <PackageProjectUrl>https://github.com/ubhaya/CleanArchitecture.Blazored.git</PackageProjectUrl>
         <RepositoryUrl>https://github.com/ubhaya/CleanArchitecture.Blazored.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
