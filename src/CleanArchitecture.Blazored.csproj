@@ -55,6 +55,8 @@
         <ContentToExcludeInPackage Include="content\**\obj\**"/>
         <ContentToExcludeInPackage Include="content\**\.idea\**"/>
         <ContentToExcludeInPackage Include="content\**\.gitignore"/>
+        <ContentToExcludeInPackage Remove="CleanArchitecture.Blazored.MsBuild\**"/>
+        <ContentToExcludeInPackage Remove="content\**" Condition=" '$(Configuration)' == 'Debug' "/>
     </ItemGroup>
     
     <ItemGroup>
@@ -68,10 +70,8 @@
         <None Include="..\README.md" Pack="true" PackagePath=""/>
         <None Include="..\LICENSE" Pack="true" PackagePath=""/>
         <None Include="content\CleanArchitecture.Blazored\.template.config\icon.png" Packe="true" PackagePath=""/>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="TemplateItems\Configurations\" />
+        <None Remove="content\**" Condition=" '$(Configuration)' == 'Debug' "/>
+        <None Remove="CleanArchitecture.Blazored.MsBuild\**"/>
     </ItemGroup>
     
     <Import Project="TemplateItems\MsBuild\BuildSettings.targets"/>

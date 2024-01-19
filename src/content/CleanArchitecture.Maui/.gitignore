@@ -2,6 +2,7 @@
 /*
 !.gitignore
 !README.md
+!CleanArchitecture.Maui.sln
 !.template.config/
 !.template.config/**
 # Include specific folders and their contents in src
@@ -17,6 +18,9 @@ src/MobileUi/*
 # Include specific folders and their contents in tests
 !tests/
 tests/*
+!tests/Application.IntegrationTests
+tests/Application.IntegrationTests/*
+!tests/Application.IntegrationTests/Application.IntegrationTests.csproj
 !tests/MobileUi.AcceptanceTests
 tests/MobileUi.AcceptanceTests/*
 !tests/MobileUi.AcceptanceTests/Pages/

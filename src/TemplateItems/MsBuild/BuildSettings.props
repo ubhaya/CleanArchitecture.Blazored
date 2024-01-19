@@ -11,6 +11,8 @@
     </PropertyGroup>
         
     <ItemGroup>
+        <None Remove="**/*" Condition=" '$(Configuration)' == 'Debug' "/>
+        <None Include="TemplateItems/**/*"/>
         <None Include="../.github/**/*" />
         <None Include="../.dockerignore"/>
         <None Include="../.gitignore"/>

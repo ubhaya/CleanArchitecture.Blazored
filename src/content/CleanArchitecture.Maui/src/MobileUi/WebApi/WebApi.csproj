@@ -5,6 +5,8 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <InvariantGlobalization>true</InvariantGlobalization>
+        <AssemblyName>CleanArchitecture.Maui.MobileUi.WebApi</AssemblyName>
+        <RootNamespace>CleanArchitecture.Maui.MobileUi.WebApi</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
