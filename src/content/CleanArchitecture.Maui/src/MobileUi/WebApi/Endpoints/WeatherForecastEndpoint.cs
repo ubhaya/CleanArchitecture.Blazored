@@ -1,22 +1,24 @@
+using CleanArchitecture.Maui.MobileUi.Shared.Authorization;
 using CleanArchitecture.Maui.MobileUi.Shared.WeatherForecasts;
-using FastEndpoints;
 
 namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints;
 
-public class WeatherForecastEndpoint : EndpointWithoutRequest<IEnumerable<WeatherForecast>>
+public class WeatherForecastEndpoint : IEndpointsDefinition
 {
     private readonly string[] _summaries =
     [
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     ];
-    public override void Configure()
+
+    public void DefineEndpoints(WebApplication app)
     {
-        Verbs(Http.GET);
-        Routes("/weatherforecast");
-        AllowAnonymous();
+        app.MapGet("/weatherforecast", GetWeatherForecast)
+            .WithName("GetWeatherForecast")
+            .WithOpenApi()
+            .RequireAuthorization(Permissions.Forecast);
     }
 
-    public override async Task HandleAsync(CancellationToken cancellationToken)
+    private WeatherForecast[] GetWeatherForecast()
     {
         var forecasts = Enumerable.Range(1, 5).Select(index =>
                 new WeatherForecast
@@ -26,6 +28,6 @@ public class WeatherForecastEndpoint : EndpointWithoutRequest<IEnumerable<Weathe
                     Summary = _summaries[Random.Shared.Next(_summaries.Length)]
                 })
             .ToArray();
-        await SendAsync(forecasts, cancellation: cancellationToken);
+        return forecasts;
     }
 }

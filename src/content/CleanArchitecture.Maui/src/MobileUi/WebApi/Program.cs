@@ -1,6 +1,5 @@
 using CleanArchitecture.Maui.Infrastructure.Data;
 using CleanArchitecture.Maui.MobileUi.WebApi.DependencyInjection;
-using FastEndpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
