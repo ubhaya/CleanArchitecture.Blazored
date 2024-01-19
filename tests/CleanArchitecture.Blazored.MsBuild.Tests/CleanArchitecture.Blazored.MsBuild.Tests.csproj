@@ -207,6 +207,17 @@
       <None Update="Resources\AppSettingStronglyTypedTest\testscript-success-class.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Include="Resources\ReplaceFilenameTest\ExampleFile.Success.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <Compile Remove="Resources\ReplaceFilenameTest\ExampleFile.Match.cs" />
+      <None Include="Resources\ReplaceFilenameTest\ExampleFile.Match.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <Compile Remove="Resources\ReplaceFileTextTest\Example.Contains.cs" />
+      <None Include="Resources\ReplaceFileTextTest\ExampleFile.Contains.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

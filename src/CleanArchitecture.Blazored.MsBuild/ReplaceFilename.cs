@@ -17,7 +17,11 @@ public class ReplaceFilename : Task
 
             if (!fileNameWithoutExtension.Contains(MatchExpression)) return true;
             var path = Path.GetDirectoryName(Filename);
-            ArgumentNullException.ThrowIfNull(path);
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                Log.LogError($"path variable cannot be null in {Filename}");
+                return false;
+            }
             fileNameWithoutExtension = fileNameWithoutExtension.Replace(MatchExpression, ReplacementText);
             var extension = Path.GetExtension(Filename);
             var newFileName = Path.Combine(path, $"{fileNameWithoutExtension}{extension}");
