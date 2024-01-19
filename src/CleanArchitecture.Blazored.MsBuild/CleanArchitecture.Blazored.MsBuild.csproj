@@ -72,5 +72,59 @@
       </_PackageFiles>
     </ItemGroup>
   </Target>
+  
+  <UsingTask TaskName="AddCustomTaskToTarget"
+             TaskFactory="RoslynCodeTaskFactory"
+             AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Files ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System"/>
+      <Using Namespace="System.IO"/>
+      <Using Namespace="System.CodeDom.Compiler"/>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+                const string FileName = "build/CleanArchitecture.Blazored.MsBuild.props";
+                var tasks = Files.Where(item=>item.GetMetadata("Extension")==".cs").Select(item => item.GetMetadata("Filename")).Select(fileName => "$"+$"(MSBuildThisFileName).{fileName}");
+                Log.LogMessage(MessageImportance.High, $"Count : {tasks.Count()}");
+                var baseTextWriter = new StringWriter();
+                var indentWriter = new IndentedTextWriter(baseTextWriter);
+                indentWriter.Indent = 0;
+                foreach (var task in tasks)
+                {
+                    indentWriter.WriteLine($$"""
+                                             <UsingTask TaskName="{{task}}"
+                                                        AssemblyFile="{{"$"+"(CustomTasksAssembly)"}}" />
+                                             """);
+                }
+        
+                var template = File.ReadAllText("build/UsingTasks.props.template");
+        
+                var replacingText = $$"""
+                                    <!--Register our custom task Starts-->
+                                    
+                                    {{baseTextWriter}}
+                                    <!--Register our custom task Ends-->
+                                    """;
+                
+                var newContent = template.Replace("<!--Register our custom task-->", replacingText);
+                        
+                File.WriteAllText(FileName, newContent);
+                ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+  
+  
 
+  <Target Name="AddCustomTask" BeforeTargets="Restore">
+    <Message Importance="high" Text="Project Dir: $(ProjectDir)"/>
+    <ItemGroup>
+      <AllTasks Include="$(ProjectDir)/*.cs" Exclude="AddCustomTaskToTarget.cs"/>
+    </ItemGroup>
+    <AddCustomTaskToTarget
+            Files="@(AllTasks)"/>
+  </Target>
+  
 </Project>

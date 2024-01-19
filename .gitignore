@@ -449,3 +449,4 @@ $RECYCLE.BIN/
 ##
 .vscode/*
 *.g.md
+CleanArchitecture.Blazored.MsBuild.props

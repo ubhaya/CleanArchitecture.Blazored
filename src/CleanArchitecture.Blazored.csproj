@@ -68,11 +68,6 @@
         <None Include="..\README.md" Pack="true" PackagePath=""/>
         <None Include="..\LICENSE" Pack="true" PackagePath=""/>
         <None Include="content\CleanArchitecture.Blazored\.template.config\icon.png" Packe="true" PackagePath=""/>
-        <None Remove="content\**" Condition=" '$(Configuration)' == 'Debug' " />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="content\**" />
     </ItemGroup>
 
     <ItemGroup>
