@@ -14,6 +14,11 @@ src/MobileUi/*
 !src/MobileUi/WebApi/**
 !src/MobileUi/WebUI.Client/
 !src/MobileUi/WebUI.Client/**
+!src/Infrastructure/
+src/Infrastructure/**
+!src/Infrastructure/DependencyInjection/
+src/Infrastructure/DependencyInjection/**
+!src/Infrastructure/DependencyInjection/AuthenticationServices.cs
 
 # Include specific folders and their contents in tests
 !tests/

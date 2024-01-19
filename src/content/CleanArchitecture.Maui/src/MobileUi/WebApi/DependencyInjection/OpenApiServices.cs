@@ -9,25 +9,27 @@ public class OpenApiServices : IServiceInstaller, IMiddlewareInstaller
     {
         services.AddOpenApiDocument(configure =>
         {
-            configure.Title = "CleanArchitecture Api";
-            configure.AddSecurity("basic", Enumerable.Empty<string>(),
+            configure.Title = "CleanArchitecture API";
+            configure.AddSecurity("JWT", Enumerable.Empty<string>(),
                 new OpenApiSecurityScheme
                 {
-                    Type = OpenApiSecuritySchemeType.Basic,
-                    Name = ".AspNetCore.Identity.Application",
+                    Type = OpenApiSecuritySchemeType.ApiKey,
+                    Name = "Authorization",
                     In = OpenApiSecurityApiKeyLocation.Header,
                     Description = "Type into the textbox: Bearer {your JWT token}."
                 });
+
             configure.OperationProcessors.Add(
-                new AspNetCoreOperationSecurityScopeProcessor("basic"));
+                new AspNetCoreOperationSecurityScopeProcessor("JWT"));
         });
     }
 
     public void InstallMiddleWare(WebApplication app)
     {
-        app.UseOpenApi();
-
-        app.UseSwaggerUi();
+        app.UseSwaggerUi(configure =>
+        {
+            configure.DocumentPath = "/api/v1/openapi.json";
+        });
 
         app.UseReDoc(configure =>
         {

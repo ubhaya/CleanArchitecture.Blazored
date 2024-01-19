@@ -3,7 +3,6 @@ using CleanArchitecture.Maui.MobileUi.Shared.Authorization;
 using CleanArchitecture.Maui.MobileUi.WebApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 
 namespace CleanArchitecture.Maui.MobileUi.WebApi.DependencyInjection;
 

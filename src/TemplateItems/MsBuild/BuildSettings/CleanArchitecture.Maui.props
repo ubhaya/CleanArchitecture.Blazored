@@ -19,6 +19,7 @@
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/WebUi.AcceptanceTests/Pages/Selectors.cs"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/*.sln"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/Application.IntegrationTests/Application.IntegrationTests.csproj"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/DependencyInjection/AuthenticationServices.cs"/>
 
         <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/src/WebUi/WebUi/**/*"/>
         <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/src/WebUi/WebUi.Client/**/*"/>

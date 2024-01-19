@@ -1,4 +1,4 @@
-using System.Collections.Immutable;
+using CleanArchitecture.Maui.Infrastructure.Identity;
 using CleanArchitecture.Maui.MobileUi.WebApi.Endpoints;
 
 namespace CleanArchitecture.Maui.MobileUi.WebApi.DependencyInjection;
@@ -42,5 +42,7 @@ internal static class EndpointDefinitionsExtension
         {
             endpointsDefinition.DefineEndpoints(app);
         }
+
+        app.MapGroup("/account").MapIdentityApi<ApplicationUser>();
     }
 }
