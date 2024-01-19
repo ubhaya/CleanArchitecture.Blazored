@@ -24,8 +24,10 @@ jobs:
             }
 
             if(RegExp(isChecked.source + "Template Enhancement").test(body)) {
-              labels.push("breaking change");
-              console.log("PR type: breaking change.");
+              labels.push("enhancement");
+              labels.push("management");
+              console.log("PR type: enhancement.");
+              console.log("PR type: management.");
             }
             
             if(!pr.draft) {

@@ -1,4 +1,5 @@
 using System.Text;
+using Humanizer;
 using Microsoft.Build.Framework;
 using Task = Microsoft.Build.Utilities.Task;
 
@@ -32,7 +33,7 @@ public class GenerateTemplateMarkDownFile : Task
             
                 projects.Add(new ProjectData
                 {
-                    Name = name,
+                    Name = name.Humanize(LetterCasing.Title),
                     Data = readMeFile
                 });
             }

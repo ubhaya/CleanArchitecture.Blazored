@@ -1,10 +1,8 @@
 using System.Net;
 using CleanArchitecture.Blazored.WebUi.AcceptanceTests.Helpers;
-using Ductus.FluentDocker.Builders;
 using Ductus.FluentDocker.Common;
 using Ductus.FluentDocker.Extensions;
 using Ductus.FluentDocker.Model.Compose;
-using Ductus.FluentDocker.Services;
 using Ductus.FluentDocker.Services.Extensions;
 using Ductus.FluentDocker.Services.Impl;
 

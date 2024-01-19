@@ -36,11 +36,12 @@ jobs:
         with:
           dotnet-version: 8.x
 
-      - name: Create Generated Project
-        run: dotnet restore src/CleanArchitecture.Blazored.csproj
+      - name: Build Generated Project
+        shell: pwsh
+        run: .\CleanArchitecture.Blazored.restore.ps1
 
       - name: Restore dependencies
-        run: dotnet restore CleanArchitecture.Blazored.Dev.sln
+        run: dotnet restore CleanArchitecture.Blazored.Dev.sln --configfile ./nuget.config
 
       - name: Build solution
         run: dotnet build --no-restore CleanArchitecture.Blazored.Dev.sln -c Release
@@ -87,12 +88,13 @@ jobs:
               uses: actions/setup-dotnet@v4.0.0
               with:
                 dotnet-version: 8.x
-      
-            - name: Create Generated Project
-              run: dotnet restore src/CleanArchitecture.Blazored.csproj
+
+            - name: Build Generated Project
+              shell: pwsh
+              run: .\CleanArchitecture.Blazored.restore.ps1
       
             - name: Restore dependencies
-              run: dotnet restore CleanArchitecture.Blazored.Dev.sln
+              run: dotnet restore CleanArchitecture.Blazored.Dev.sln --configfile ./nuget.config
       
             - name: Build solution
               run: dotnet build --no-restore CleanArchitecture.Blazored.Dev.sln -c Release

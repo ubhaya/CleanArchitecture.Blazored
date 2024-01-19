@@ -6,9 +6,125 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <!-- Nuget Package Details -->
+  <PropertyGroup>
+    <version>1.0.0</version>
+    <title>CleanArchitecture.Blazored.MsBuild</title>
+    <authors>John</authors>
+    <description>Generates a strongly typed setting class base on a txt file</description>
+    <tags>MyTags</tags>
+    <copyright>Copyright ©Contoso 2022</copyright>
+
+    <!-- we need the assemblies bundled, so set this so we don't expose any dependencies to the outside world -->
+    <GenerateDependencyFile>true</GenerateDependencyFile>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    <!-- This property tells MSBuild where the root folder of the package's build assets should be. Because we are not a library package, we should not pack to 'lib'. Instead, we choose 'tasks' by convention. -->
+    <BuildOutputTargetFolder>tasks</BuildOutputTargetFolder>
+    <!-- NuGet does validation that libraries in a package are exposed as dependencies, but we _explicitly_ do not want that behavior for MSBuild tasks. They are isolated by design. Therefore we ignore this specific warning. -->
+    <NoWarn>NU5100</NoWarn>
+    <DebugType>embedded</DebugType>
+    <IsPackable>true</IsPackable>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Framework" Version="17.8.3" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.8.3" />
+    <PackageReference Include="Humanizer.Core" Version="2.14.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="17.8.3" PrivateAssets="all" ExcludeAssets="Runtime" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.8.3" PrivateAssets="all" ExcludeAssets="Runtime" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- These lines pack the build props/targets files to the `build` folder in the generated package.
+     By convention, the .NET SDK will look for build\<Package Id>.props and build\<Package Id>.targets
+     for automatic inclusion in the build. -->
+    <Content Include="build/CleanArchitecture.Blazored.MsBuild.props" PackagePath="build\" />
+    <Content Include="build/CleanArchitecture.Blazored.MsBuild.targets" PackagePath="build\" />
+  </ItemGroup>
+
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <!-- The dependencies of your MSBuild task must be packaged inside the package, they cannot be expressed as normal PackageReferences -->
+      <BuildOutputInPackage
+              Include="@(ReferenceCopyLocalPaths)"
+              TargetPath="%(ReferenceCopyLocalPaths.DestinationSubPath)" />
+    </ItemGroup>
+  </Target>
+
+  <!-- This target adds the generated deps.json file to our package output -->
+  <Target Name="AddBuildDependencyFileToBuiltProjectOutputGroupOutput"
+          BeforeTargets="BuiltProjectOutputGroup"
+          Condition=" '$(GenerateDependencyFile)' == 'true'">
+
+    <ItemGroup>
+      <BuiltProjectOutputGroupOutput
+              Include="$(ProjectDepsFilePath)"
+              TargetPath="$(ProjectDepsFileName)"
+              FinalOutputPath="$(ProjectDepsFilePath)" />
+    </ItemGroup>
+  </Target>
+  
+  <Target Name="PackTaskDependencies" BeforeTargets="GenerateNuspec">
+    <ItemGroup>
+      <_PackageFiles Include="bin/$(Configuration)/*/Humanizer.Core.dll;">
+        <PackagePath>tasks/%(RecursiveDir)</PackagePath>
+        <Visible>false</Visible>
+        <BuildAction>Content</BuildAction>
+      </_PackageFiles>
+    </ItemGroup>
+  </Target>
+  
+  <UsingTask TaskName="AddCustomTaskToTarget"
+             TaskFactory="RoslynCodeTaskFactory"
+             AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Files ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System"/>
+      <Using Namespace="System.IO"/>
+      <Using Namespace="System.CodeDom.Compiler"/>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+                const string FileName = "build/CleanArchitecture.Blazored.MsBuild.props";
+                var tasks = Files.Where(item=>item.GetMetadata("Extension")==".cs").Select(item => item.GetMetadata("Filename")).Select(fileName => "$"+$"(MSBuildThisFileName).{fileName}");
+                Log.LogMessage(MessageImportance.High, $"Count : {tasks.Count()}");
+                var baseTextWriter = new StringWriter();
+                var indentWriter = new IndentedTextWriter(baseTextWriter);
+                indentWriter.Indent = 0;
+                foreach (var task in tasks)
+                {
+                    indentWriter.WriteLine($$"""
+                                             <UsingTask TaskName="{{task}}"
+                                                        AssemblyFile="{{"$"+"(CustomTasksAssembly)"}}" />
+                                             """);
+                }
+        
+                var template = File.ReadAllText("build/UsingTasks.props.template");
+        
+                var replacingText = $$"""
+                                    <!--Register our custom task Starts-->
+                                    
+                                    {{baseTextWriter}}
+                                    <!--Register our custom task Ends-->
+                                    """;
+                
+                var newContent = template.Replace("<!--Register our custom task-->", replacingText);
+                        
+                File.WriteAllText(FileName, newContent);
+                ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+  
+  
+
+  <Target Name="AddCustomTask" BeforeTargets="Restore">
+    <Message Importance="high" Text="Project Dir: $(ProjectDir)"/>
+    <ItemGroup>
+      <AllTasks Include="$(ProjectDir)/*.cs" Exclude="AddCustomTaskToTarget.cs"/>
+    </ItemGroup>
+    <AddCustomTaskToTarget
+            Files="@(AllTasks)"/>
+  </Target>
+  
 </Project>
