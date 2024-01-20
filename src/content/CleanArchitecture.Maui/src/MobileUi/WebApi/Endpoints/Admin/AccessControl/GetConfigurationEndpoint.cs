@@ -11,7 +11,9 @@ public sealed class GetConfigurationEndpoint : IEndpointsDefinition
     {
         app.MapGet("api/Admin/GetConfiguration",
                 GetConfiguration)
-            .RequireAuthorization(Permissions.ViewAccessControl);
+            .RequireAuthorization(Permissions.ViewAccessControl)
+            .WithName("GetConfiguration")
+            .WithOpenApi();
     }
 
     private static async Task<AccessControlVm> GetConfiguration(IMediator mediator, CancellationToken cancellationToken)

@@ -31,9 +31,126 @@
         ]
       }
     },
+    "/api/Admin/{id}": {
+      "delete": {
+        "operationId": "Delete Role",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "Put Roles",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "requestBody": {
+          "x-name": "updatedRole",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/Admin/GetRoles": {
+      "get": {
+        "operationId": "Get Roles",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolesVm"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/Admin/PostRole": {
+      "post": {
+        "operationId": "Post Roles",
+        "requestBody": {
+          "x-name": "newRole",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/Admin/GetConfiguration": {
       "get": {
-        "operationId": "GetApiAdminGetConfiguration",
+        "operationId": "GetConfiguration",
         "responses": {
           "200": {
             "description": "",
@@ -55,7 +172,7 @@
     },
     "/api/Admin/UpdateConfiguration": {
       "put": {
-        "operationId": "GetUpdateConfiguration",
+        "operationId": "UpdateConfiguration",
         "requestBody": {
           "x-name": "updatedRole",
           "content": {
@@ -458,7 +575,7 @@
           }
         }
       },
-      "AccessControlVm": {
+      "RolesVm": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -466,12 +583,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleDto"
-            }
-          },
-          "AvailablePermissions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Permissions"
             }
           }
         }
@@ -521,6 +632,24 @@
           256,
           -1
         ]
+      },
+      "AccessControlVm": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleDto"
+            }
+          },
+          "AvailablePermissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Permissions"
+            }
+          }
+        }
       },
       "HttpValidationProblemDetails": {
         "allOf": [
