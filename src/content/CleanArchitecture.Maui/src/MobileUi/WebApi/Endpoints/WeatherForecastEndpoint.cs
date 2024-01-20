@@ -14,7 +14,6 @@ public class WeatherForecastEndpoint : IEndpointsDefinition
     {
         app.MapGet("/weatherforecast", GetWeatherForecast)
             .WithName("GetWeatherForecast")
-            .WithOpenApi()
             .RequireAuthorization(Permissions.Forecast);
     }
 

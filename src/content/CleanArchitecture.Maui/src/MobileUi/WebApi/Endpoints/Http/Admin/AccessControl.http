@@ -8,7 +8,7 @@ Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
 {
-  "Id": "885178d6-28b8-4f53-a3a6-03d17872ac34",
+  "Id": "2e0723c7-c6f2-4eff-9da7-36ae865ad320",
   "Name": "Administrators",
-  "Permissions": 1
+  "Permissions": 16
 }

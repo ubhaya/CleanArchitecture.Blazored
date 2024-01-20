@@ -26,10 +26,8 @@ public class OpenApiServices : IServiceInstaller, IMiddlewareInstaller
 
     public void InstallMiddleWare(WebApplication app)
     {
-        app.UseSwaggerUi(configure =>
-        {
-            configure.DocumentPath = "/api/v1/openapi.json";
-        });
+        app.UseOpenApi();
+        app.UseSwaggerUi();
 
         app.UseReDoc(configure =>
         {

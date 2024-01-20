@@ -55,7 +55,7 @@
     },
     "/api/Admin/UpdateConfiguration": {
       "put": {
-        "operationId": "PutApiAdminUpdateConfiguration",
+        "operationId": "GetUpdateConfiguration",
         "requestBody": {
           "x-name": "updatedRole",
           "content": {

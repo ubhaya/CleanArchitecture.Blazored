@@ -12,7 +12,9 @@ public sealed class UpdateConfigurationEndpoint : IEndpointsDefinition
     {
         app.MapPut("api/Admin/UpdateConfiguration", PutUpdateConfiguration)
             .Produces(StatusCodes.Status204NoContent)
-            .RequireAuthorization(Permissions.ConfigureAccessControl);
+            .RequireAuthorization(Permissions.ConfigureAccessControl)
+            .WithName("GetUpdateConfiguration")
+            .WithOpenApi();
     }
 
     private static async Task<IResult> PutUpdateConfiguration(ISender mediator, RoleDto updatedRole,
