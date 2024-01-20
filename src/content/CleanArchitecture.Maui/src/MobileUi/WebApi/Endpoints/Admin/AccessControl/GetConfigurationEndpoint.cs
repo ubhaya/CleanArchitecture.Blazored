@@ -9,7 +9,7 @@ public sealed class GetConfigurationEndpoint : IEndpointsDefinition
 {
     public void DefineEndpoints(WebApplication app)
     {
-        app.MapGet("api/Admin/GetConfiguration",
+        app.MapGet("api/Admin/AccessControl",
                 GetConfiguration)
             .RequireAuthorization(Permissions.ViewAccessControl)
             .WithName("GetConfiguration")

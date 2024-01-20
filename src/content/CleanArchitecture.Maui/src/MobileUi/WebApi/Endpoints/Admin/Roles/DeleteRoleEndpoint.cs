@@ -8,7 +8,7 @@ public sealed class DeleteRoleEndpoint : IEndpointsDefinition
 {
     public void DefineEndpoints(WebApplication app)
     {
-        app.MapDelete("api/Admin/{id}", DeleteRole)
+        app.MapDelete("api/Admin/Roles/{id}", DeleteRole)
             .RequireAuthorization(Permissions.ManageRoles)
             .Produces(StatusCodes.Status204NoContent)
             .Produces(StatusCodes.Status404NotFound)

@@ -10,7 +10,7 @@ public sealed class PostRoleEndpoint : IEndpointsDefinition
 {
     public void DefineEndpoints(WebApplication app)
     {
-        app.MapPost("api/Admin/PostRole", PostRole)
+        app.MapPost("api/Admin/Roles", PostRole)
             .RequireAuthorization(Permissions.ManageRoles)
             .Produces(StatusCodes.Status204NoContent)
             .WithName("Post Roles")

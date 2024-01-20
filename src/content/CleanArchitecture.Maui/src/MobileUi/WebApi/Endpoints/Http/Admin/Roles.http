@@ -1,9 +1,9 @@
 ### Get Roles
-GET {{baseAddress}}/api/Admin/GetRoles
+GET {{baseAddress}}/api/Admin/Roles
 Authorization: Bearer {{access_token}}
 
 ### Post Role
-POST {{baseAddress}}/api/Admin/PostRole
+POST {{baseAddress}}/api/Admin/Roles
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ### Put Role
-PUT {{baseAddress}}/api/Admin/d5ef6901-f7ae-44f4-becb-9e9099d74e4c
+PUT {{baseAddress}}/api/Admin/Roles/d5ef6901-f7ae-44f4-becb-9e9099d74e4c
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
@@ -25,5 +25,5 @@ Content-Type: application/json
 }
 
 ### Delete Role
-DELETE {{baseAddress}}/api/Admin/4f3450b0-5caa-4175-a222-dd811fbb33c0
+DELETE {{baseAddress}}/api/Admin/Roles/4f3450b0-5caa-4175-a222-dd811fbb33c0
 Authorization: Bearer {{access_token}}

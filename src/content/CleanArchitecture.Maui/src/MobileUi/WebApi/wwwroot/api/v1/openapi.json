@@ -31,7 +31,101 @@
         ]
       }
     },
-    "/api/Admin/{id}": {
+    "/api/Admin/Users/{id}": {
+      "get": {
+        "operationId": "Get User",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDetailsVm"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "Put User",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "requestBody": {
+          "x-name": "updatedUser",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/Admin/Users": {
+      "get": {
+        "operationId": "GetApiAdminUsers",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersVm"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/Admin/Roles/{id}": {
       "delete": {
         "operationId": "Delete Role",
         "parameters": [
@@ -99,7 +193,7 @@
         ]
       }
     },
-    "/api/Admin/GetRoles": {
+    "/api/Admin/Roles": {
       "get": {
         "operationId": "Get Roles",
         "responses": {
@@ -119,9 +213,7 @@
             "JWT": []
           }
         ]
-      }
-    },
-    "/api/Admin/PostRole": {
+      },
       "post": {
         "operationId": "Post Roles",
         "requestBody": {
@@ -148,7 +240,7 @@
         ]
       }
     },
-    "/api/Admin/GetConfiguration": {
+    "/api/Admin/AccessControl": {
       "get": {
         "operationId": "GetConfiguration",
         "responses": {
@@ -168,9 +260,7 @@
             "JWT": []
           }
         ]
-      }
-    },
-    "/api/Admin/UpdateConfiguration": {
+      },
       "put": {
         "operationId": "UpdateConfiguration",
         "requestBody": {
@@ -575,7 +665,7 @@
           }
         }
       },
-      "RolesVm": {
+      "UserDetailsVm": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -584,6 +674,9 @@
             "items": {
               "$ref": "#/components/schemas/RoleDto"
             }
+          },
+          "User": {
+            "$ref": "#/components/schemas/UserDto"
           }
         }
       },
@@ -632,6 +725,51 @@
           256,
           -1
         ]
+      },
+      "UserDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Id": {
+            "type": "string"
+          },
+          "UserName": {
+            "type": "string"
+          },
+          "Email": {
+            "type": "string"
+          },
+          "Roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "UsersVm": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserDto"
+            }
+          }
+        }
+      },
+      "RolesVm": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleDto"
+            }
+          }
+        }
       },
       "AccessControlVm": {
         "type": "object",

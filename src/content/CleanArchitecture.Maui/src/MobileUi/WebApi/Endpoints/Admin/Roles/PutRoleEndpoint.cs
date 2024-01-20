@@ -10,7 +10,7 @@ public sealed class PutRoleEndpoint : IEndpointsDefinition
 {
     public void DefineEndpoints(WebApplication app)
     {
-        app.MapPut("api/Admin/{id}", PutRole)
+        app.MapPut("api/Admin/Roles/{id}", PutRole)
             .RequireAuthorization(Permissions.ManageRoles)
             .Produces(StatusCodes.Status204NoContent)
             .Produces(StatusCodes.Status400BadRequest)

@@ -9,7 +9,7 @@ public sealed class GetRolesEndpoint : IEndpointsDefinition
 {
     public void DefineEndpoints(WebApplication app)
     {
-        app.MapGet("api/Admin/GetRoles", GetRoles)
+        app.MapGet("api/Admin/Roles", GetRoles)
             .RequireAuthorization(Permissions.ViewRoles)
             .WithName("Get Roles")
             .WithOpenApi();

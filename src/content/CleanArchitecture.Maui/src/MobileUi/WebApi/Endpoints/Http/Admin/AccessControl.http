@@ -1,9 +1,9 @@
 ### Get Access Control
-GET {{baseAddress}}/api/Admin/GetConfiguration
+GET {{baseAddress}}/api/Admin/AccessControl
 Authorization: Bearer {{access_token}}
 
 ### Put Access Control
-PUT {{baseAddress}}/api/Admin/UpdateConfiguration
+PUT {{baseAddress}}/api/Admin/AccessControl
 Content-Type: application/json
 Authorization: Bearer {{access_token}}
 

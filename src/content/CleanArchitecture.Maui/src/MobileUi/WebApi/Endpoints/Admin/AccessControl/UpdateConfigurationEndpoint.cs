@@ -11,7 +11,7 @@ public sealed class UpdateConfigurationEndpoint : IEndpointsDefinition
 {
     public void DefineEndpoints(WebApplication app)
     {
-        app.MapPut("api/Admin/UpdateConfiguration", PutUpdateConfiguration)
+        app.MapPut("api/Admin/AccessControl", PutUpdateConfiguration)
             .Produces(StatusCodes.Status204NoContent)
             .RequireAuthorization(Permissions.ConfigureAccessControl)
             .WithName("UpdateConfiguration")
