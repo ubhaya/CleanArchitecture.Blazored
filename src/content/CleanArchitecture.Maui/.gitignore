@@ -12,8 +12,8 @@ src/*
 src/MobileUi/*
 !src/MobileUi/WebApi/
 !src/MobileUi/WebApi/**
-!src/MobileUi/WebUI.Client/
-!src/MobileUi/WebUI.Client/**
+!src/MobileUi/Mobile/
+!src/MobileUi/Mobile/**
 !src/Infrastructure/
 src/Infrastructure/**
 !src/Infrastructure/DependencyInjection/
