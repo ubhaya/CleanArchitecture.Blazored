@@ -43,6 +43,6 @@ internal static class EndpointDefinitionsExtension
             endpointsDefinition.DefineEndpoints(app);
         }
 
-        app.MapGroup("/account").MapIdentityApi<ApplicationUser>();
+        //app.MapGroup("/account").MapIdentityApi<ApplicationUser>();
     }
 }

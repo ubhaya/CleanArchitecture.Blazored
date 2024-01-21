@@ -510,360 +510,6 @@
           }
         ]
       }
-    },
-    "/account/register": {
-      "post": {
-        "operationId": "PostAccountRegister",
-        "requestBody": {
-          "x-name": "registration",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RegisterRequest"
-              }
-            }
-          },
-          "x-position": 1
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/account/login": {
-      "post": {
-        "operationId": "PostAccountLogin",
-        "parameters": [
-          {
-            "name": "useCookies",
-            "in": "query",
-            "schema": {
-              "type": "boolean",
-              "nullable": true
-            },
-            "x-position": 2
-          },
-          {
-            "name": "useSessionCookies",
-            "in": "query",
-            "schema": {
-              "type": "boolean",
-              "nullable": true
-            },
-            "x-position": 3
-          }
-        ],
-        "requestBody": {
-          "x-name": "login",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
-              }
-            }
-          },
-          "x-position": 1
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AccessTokenResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/account/refresh": {
-      "post": {
-        "operationId": "PostAccountRefresh",
-        "requestBody": {
-          "x-name": "refreshRequest",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RefreshRequest"
-              }
-            }
-          },
-          "x-position": 1
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AccessTokenResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/account/confirmEmail": {
-      "get": {
-        "operationId": "GetAccountConfirmEmail",
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 1
-          },
-          {
-            "name": "code",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 2
-          },
-          {
-            "name": "changedEmail",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 3
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/account/resendConfirmationEmail": {
-      "post": {
-        "operationId": "PostAccountResendConfirmationEmail",
-        "requestBody": {
-          "x-name": "resendRequest",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ResendConfirmationEmailRequest"
-              }
-            }
-          },
-          "x-position": 1
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/account/forgotPassword": {
-      "post": {
-        "operationId": "PostAccountForgotPassword",
-        "requestBody": {
-          "x-name": "resetRequest",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ForgotPasswordRequest"
-              }
-            }
-          },
-          "x-position": 1
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/account/resetPassword": {
-      "post": {
-        "operationId": "PostAccountResetPassword",
-        "requestBody": {
-          "x-name": "resetRequest",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ResetPasswordRequest"
-              }
-            }
-          },
-          "x-position": 1
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/account/manage/2fa": {
-      "post": {
-        "operationId": "PostAccountManage2fa",
-        "requestBody": {
-          "x-name": "tfaRequest",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TwoFactorRequest"
-              }
-            }
-          },
-          "x-position": 1
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TwoFactorResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      }
-    },
-    "/account/manage/info": {
-      "get": {
-        "operationId": "GetAccountManageInfo",
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InfoResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      },
-      "post": {
-        "operationId": "PostAccountManageInfo",
-        "requestBody": {
-          "x-name": "infoRequest",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/InfoRequest"
-              }
-            }
-          },
-          "x-position": 1
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InfoResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      }
     }
   },
   "components": {
@@ -872,18 +518,18 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Date": {
+          "date": {
             "type": "string",
             "format": "date-time"
           },
-          "TemperatureC": {
+          "temperatureC": {
             "type": "integer",
             "format": "int32"
           },
-          "Summary": {
+          "summary": {
             "type": "string"
           },
-          "TemperatureF": {
+          "temperatureF": {
             "type": "integer",
             "format": "int32"
           }
@@ -893,13 +539,13 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "PriorityLevels": {
+          "priorityLevels": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LookupDto"
             }
           },
-          "Lists": {
+          "lists": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TodoListDto"
@@ -911,11 +557,11 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Id": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "Title": {
+          "title": {
             "type": "string"
           }
         }
@@ -924,17 +570,17 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Id": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "Title": {
+          "title": {
             "type": "string"
           },
-          "Colour": {
+          "colour": {
             "type": "string"
           },
-          "Items": {
+          "items": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TodoItemDto"
@@ -946,25 +592,25 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Id": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "ListId": {
+          "listId": {
             "type": "integer",
             "format": "int32"
           },
-          "Title": {
+          "title": {
             "type": "string"
           },
-          "Done": {
+          "done": {
             "type": "boolean"
           },
-          "Priority": {
+          "priority": {
             "type": "integer",
             "format": "int32"
           },
-          "Note": {
+          "note": {
             "type": "string"
           }
         }
@@ -973,7 +619,7 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Title": {
+          "title": {
             "type": "string"
           }
         }
@@ -982,11 +628,11 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Id": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "Title": {
+          "title": {
             "type": "string"
           }
         }
@@ -995,11 +641,11 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "ListId": {
+          "listId": {
             "type": "integer",
             "format": "int32"
           },
-          "Title": {
+          "title": {
             "type": "string"
           }
         }
@@ -1008,25 +654,25 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Id": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "ListId": {
+          "listId": {
             "type": "integer",
             "format": "int32"
           },
-          "Title": {
+          "title": {
             "type": "string"
           },
-          "Done": {
+          "done": {
             "type": "boolean"
           },
-          "Priority": {
+          "priority": {
             "type": "integer",
             "format": "int32"
           },
-          "Note": {
+          "note": {
             "type": "string"
           }
         }
@@ -1035,13 +681,13 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Roles": {
+          "roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleDto"
             }
           },
-          "User": {
+          "user": {
             "$ref": "#/components/schemas/UserDto"
           }
         }
@@ -1050,13 +696,13 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Id": {
+          "id": {
             "type": "string"
           },
-          "Name": {
+          "name": {
             "type": "string"
           },
-          "Permissions": {
+          "permissions": {
             "$ref": "#/components/schemas/Permissions"
           }
         }
@@ -1096,16 +742,16 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Id": {
+          "id": {
             "type": "string"
           },
-          "UserName": {
+          "userName": {
             "type": "string"
           },
-          "Email": {
+          "email": {
             "type": "string"
           },
-          "Roles": {
+          "roles": {
             "type": "array",
             "items": {
               "type": "string"
@@ -1117,7 +763,7 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Users": {
+          "users": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserDto"
@@ -1129,7 +775,7 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Roles": {
+          "roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleDto"
@@ -1141,242 +787,17 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Roles": {
+          "roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleDto"
             }
           },
-          "AvailablePermissions": {
+          "availablePermissions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Permissions"
             }
-          }
-        }
-      },
-      "HttpValidationProblemDetails": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ProblemDetails"
-          },
-          {
-            "type": "object",
-            "additionalProperties": {
-              "nullable": true
-            },
-            "properties": {
-              "Errors": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        ]
-      },
-      "ProblemDetails": {
-        "type": "object",
-        "additionalProperties": {
-          "nullable": true
-        },
-        "properties": {
-          "Type": {
-            "type": "string",
-            "nullable": true
-          },
-          "Title": {
-            "type": "string",
-            "nullable": true
-          },
-          "Status": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "Detail": {
-            "type": "string",
-            "nullable": true
-          },
-          "Instance": {
-            "type": "string",
-            "nullable": true
-          }
-        }
-      },
-      "RegisterRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "Email": {
-            "type": "string"
-          },
-          "Password": {
-            "type": "string"
-          }
-        }
-      },
-      "AccessTokenResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "TokenType": {
-            "type": "string"
-          },
-          "AccessToken": {
-            "type": "string"
-          },
-          "ExpiresIn": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "RefreshToken": {
-            "type": "string"
-          }
-        }
-      },
-      "LoginRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "Email": {
-            "type": "string"
-          },
-          "Password": {
-            "type": "string"
-          },
-          "TwoFactorCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "TwoFactorRecoveryCode": {
-            "type": "string",
-            "nullable": true
-          }
-        }
-      },
-      "RefreshRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "RefreshToken": {
-            "type": "string"
-          }
-        }
-      },
-      "ResendConfirmationEmailRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "Email": {
-            "type": "string"
-          }
-        }
-      },
-      "ForgotPasswordRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "Email": {
-            "type": "string"
-          }
-        }
-      },
-      "ResetPasswordRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "Email": {
-            "type": "string"
-          },
-          "ResetCode": {
-            "type": "string"
-          },
-          "NewPassword": {
-            "type": "string"
-          }
-        }
-      },
-      "TwoFactorResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "SharedKey": {
-            "type": "string"
-          },
-          "RecoveryCodesLeft": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "RecoveryCodes": {
-            "type": "array",
-            "nullable": true,
-            "items": {
-              "type": "string"
-            }
-          },
-          "IsTwoFactorEnabled": {
-            "type": "boolean"
-          },
-          "IsMachineRemembered": {
-            "type": "boolean"
-          }
-        }
-      },
-      "TwoFactorRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "Enable": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "TwoFactorCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "ResetSharedKey": {
-            "type": "boolean"
-          },
-          "ResetRecoveryCodes": {
-            "type": "boolean"
-          },
-          "ForgetMachine": {
-            "type": "boolean"
-          }
-        }
-      },
-      "InfoResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "Email": {
-            "type": "string"
-          },
-          "IsEmailConfirmed": {
-            "type": "boolean"
-          }
-        }
-      },
-      "InfoRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "NewEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "NewPassword": {
-            "type": "string",
-            "nullable": true
-          },
-          "OldPassword": {
-            "type": "string",
-            "nullable": true
           }
         }
       }

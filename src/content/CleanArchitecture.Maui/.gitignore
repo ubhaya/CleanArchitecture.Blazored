@@ -16,6 +16,13 @@ src/MobileUi/*
 !src/MobileUi/Mobile/**
 !src/Infrastructure/
 src/Infrastructure/**
+!src/Infrastructure/Infrastructure.csproj
+!src/Infrastructure/Data/
+src/Infrastructure/Data/**
+!src/Infrastructure/Data/Migrations
+!src/Infrastructure/Data/Migrations/**
+!src/Infrastructure/Data/ApiAuthorizationDbContext.cs
+!src/Infrastructure/Data/ApplicationDbContext.cs
 !src/Infrastructure/DependencyInjection/
 src/Infrastructure/DependencyInjection/**
 !src/Infrastructure/DependencyInjection/AuthenticationServices.cs

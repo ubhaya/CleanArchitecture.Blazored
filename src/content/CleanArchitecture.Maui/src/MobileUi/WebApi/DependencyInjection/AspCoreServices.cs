@@ -4,6 +4,7 @@ public sealed class AspCoreServices : IServiceInstaller, IMiddlewareInstaller
 {
     public void InstallerService(IServiceCollection services, IConfiguration configuration)
     {
+        services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddAntiforgery();
     }
@@ -25,5 +26,6 @@ public sealed class AspCoreServices : IServiceInstaller, IMiddlewareInstaller
 
         app.UseStaticFiles();
         app.UseAntiforgery();
+        app.MapControllers();
     }
 }

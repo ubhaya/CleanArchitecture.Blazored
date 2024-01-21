@@ -9,6 +9,8 @@ namespace CleanArchitecture.Blazored.Infrastructure.DependencyInjection;
 
 public class PersistenceServices : IServiceInstaller
 {
+    public int Order => 1;
+
     public void InstallerService(IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection") ??

@@ -1,6 +1,7 @@
 using CleanArchitecture.Maui.Application.Common.Services.Identity;
 using CleanArchitecture.Maui.MobileUi.Shared.Authorization;
 using CleanArchitecture.Maui.MobileUi.WebApi.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 
@@ -16,12 +17,8 @@ public class AuthenticationServices : IServiceInstaller, IMiddlewareInstaller
         services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
         services.AddSingleton<IAuthorizationPolicyProvider, FlexibleAuthorizationPolicyProvider>();
 
-        services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer();
-        services.AddAuthorization();
+        services.AddAuthentication()
+            .AddIdentityServerJwt();
         
         services.AddHttpContextAccessor();
         services.AddScoped<ICurrentUser, CurrentUser>();
@@ -30,6 +27,7 @@ public class AuthenticationServices : IServiceInstaller, IMiddlewareInstaller
     public void InstallMiddleWare(WebApplication app)
     {
         app.UseCors();
+        app.UseIdentityServer();
         app.UseAuthentication();
         app.UseAuthorization();
     }
