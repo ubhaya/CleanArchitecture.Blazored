@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Maui.MobileUi.IdentityServer.Data;
+namespace CleanArchitecture.Maui.Infrastructure.Data;
 
 public class IdentityServerDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
 {

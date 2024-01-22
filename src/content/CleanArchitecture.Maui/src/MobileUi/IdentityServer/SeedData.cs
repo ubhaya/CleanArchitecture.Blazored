@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
+using CleanArchitecture.Maui.Infrastructure;
+using CleanArchitecture.Maui.Infrastructure.Data;
 using CleanArchitecture.Maui.Infrastructure.Identity;
-using CleanArchitecture.Maui.MobileUi.IdentityServer.Data;
 using IdentityModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

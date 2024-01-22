@@ -1,8 +1,9 @@
-﻿#nullable disable
-
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CleanArchitecture.Maui.MobileUi.IdentityServer.Data.Migrations.IdentityServer.ApplicationDb
+#nullable disable
+
+namespace CleanArchitecture.Maui.Infrastructure.Data.Migrations.ApplicationDb
 {
     /// <inheritdoc />
     public partial class Initial : Migration
@@ -15,6 +16,7 @@ namespace CleanArchitecture.Maui.MobileUi.IdentityServer.Data.Migrations.Identit
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Permissions = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)

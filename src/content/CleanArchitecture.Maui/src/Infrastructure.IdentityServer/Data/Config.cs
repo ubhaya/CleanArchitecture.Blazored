@@ -1,7 +1,7 @@
 ﻿using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
 
-namespace CleanArchitecture.Maui.MobileUi.IdentityServer;
+namespace CleanArchitecture.Maui.Infrastructure.Data;
 
 public static class Config
 {

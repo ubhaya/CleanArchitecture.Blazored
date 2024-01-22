@@ -1,6 +1,7 @@
-﻿using CleanArchitecture.Maui.MobileUi.IdentityServer;
-using IdentityServerAspNetIdentity;
+﻿using CleanArchitecture.Maui.Infrastructure.Data;
+using CleanArchitecture.Maui.MobileUi.IdentityServer;
 using Serilog;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -21,17 +22,22 @@ try
         .ConfigureServices()
         .ConfigurePipeline();
 
-    // this seeding is only for the template to bootstrap the DB and users.
-    // in production you will likely want a different approach.
-    if (args.Contains("/seed"))
+    using (var scope = app.Services.CreateScope())
     {
-        Log.Information("Seeding database...");
-        SeedData.EnsureSeedData(app);
-        Log.Information("Done seeding database. Exiting.");
-        return;
+        try
+        {
+            var initializer = scope.ServiceProvider.GetRequiredService<IdentityServerDbContextInitializer>();
+            await initializer.InitializeAsync();
+            await initializer.SeedAsync();
+        }
+        catch (Exception ex)
+        {
+            var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "An error occurred during database initialisation.");
+        }
     }
 
-    app.Run();
+    await app.RunAsync();
 }
 catch (Exception ex) when (
                             // https://github.com/dotnet/runtime/issues/60600

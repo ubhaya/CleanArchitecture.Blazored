@@ -1,8 +1,9 @@
-﻿#nullable disable
-
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CleanArchitecture.Maui.MobileUi.IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
+#nullable disable
+
+namespace CleanArchitecture.Maui.Infrastructure.Data.Migrations.ConfigurationDb
 {
     /// <inheritdoc />
     public partial class Initial : Migration
