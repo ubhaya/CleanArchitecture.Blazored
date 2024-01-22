@@ -1,0 +1,4 @@
+<Project>
+    <Import Project="src/TemplateItems/MsBuild/BuildSettings.props"/>
+    <Import Project="src/TemplateItems/MsBuild/BuildSettings.targets"/>
+</Project>

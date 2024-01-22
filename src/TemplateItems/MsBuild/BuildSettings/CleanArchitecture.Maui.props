@@ -6,6 +6,7 @@
         <MauiDestinationFolderPath>../../../</MauiDestinationFolderPath>
     </PropertyGroup>
     <ItemGroup>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/*.sln"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/WebUi/WebUi/**/*"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/WebUi/WebUi.Client/**/*"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/.template.config/**/*"/>
@@ -16,8 +17,14 @@
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/Release/*"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/*.feature.cs"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/*.md"/>
+        
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Data/ApplicationDbContext.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Data/ApplicationDbContextInitializer.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Data/Migrations/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/DependencyInjection/AuthenticationServices.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Identity/*" Exclude="$(SourceFilePath)/src/Infrastructure/Identity/IdentityService.cs"/>
+        
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/WebUi.AcceptanceTests/Pages/Selectors.cs"/>
-        <MauiExcludedFilesInSource Include="$(SourceFilePath)/*.sln"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/Application.IntegrationTests/Application.IntegrationTests.csproj"/>
 
         <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/src/WebUi/WebUi/**/*"/>
