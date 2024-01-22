@@ -1,9 +1,11 @@
 using System.Reflection;
+using CleanArchitecture.Maui.Infrastructure.Identity;
 using CleanArchitecture.Maui.MobileUi.IdentityServer.Data;
-using CleanArchitecture.Maui.MobileUi.IdentityServer.Models;
+using CleanArchitecture.Maui.MobileUi.Shared.Authorization;
 using Duende.IdentityServer;
 using Duende.IdentityServer.EntityFramework.DbContexts;
 using Duende.IdentityServer.EntityFramework.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -18,7 +20,7 @@ internal static class HostingExtensions
         builder.Services.AddRazorPages();
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
                                throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        builder.Services.AddDbContext<IdentityServerDbContext>(options =>
             options.UseSqlServer(connectionString, optionsBuilder =>
             {
                 optionsBuilder.EnableRetryOnFailure(
@@ -27,10 +29,17 @@ internal static class HostingExtensions
                     errorNumbersToAdd: null);
             }));
 
-        builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
+        builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
+            .AddEntityFrameworkStores<IdentityServerDbContext>()
+            //.AddClaimsPrincipalFactory<ApplicationUserClaimsPrincipalFactory>()
             .AddDefaultTokenProviders();
 
+        builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+        builder.Services.AddSingleton<IAuthorizationPolicyProvider, FlexibleAuthorizationPolicyProvider>();
+
+        builder.Services
+            .AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
+        
         builder.Services
             .AddIdentityServer(options =>
             {
@@ -57,7 +66,7 @@ internal static class HostingExtensions
             .AddOperationalStore(options =>
             {
                 options.ConfigureDbContext = b =>
-                    b.UseSqlServer(connectionString,sql =>
+                    b.UseSqlServer(connectionString, sql =>
                     {
                         sql.MigrationsAssembly(migrationsAssembly);
                         sql.EnableRetryOnFailure(

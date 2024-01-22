@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using CleanArchitecture.Maui.MobileUi.IdentityServer.Models;
+using CleanArchitecture.Maui.Infrastructure.Identity;
 using Duende.IdentityServer;
 using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Services;

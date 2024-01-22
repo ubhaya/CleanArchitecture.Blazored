@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
+using CleanArchitecture.Maui.Infrastructure.Identity;
 using CleanArchitecture.Maui.MobileUi.IdentityServer.Data;
-using CleanArchitecture.Maui.MobileUi.IdentityServer.Models;
 using IdentityModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +14,7 @@ public class SeedData
     {
         using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
         {
-            var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+            var context = scope.ServiceProvider.GetService<IdentityServerDbContext>();
             context.Database.Migrate();
 
             var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();

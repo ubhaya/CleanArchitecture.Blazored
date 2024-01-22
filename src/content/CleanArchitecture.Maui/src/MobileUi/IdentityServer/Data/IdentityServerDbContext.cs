@@ -1,12 +1,12 @@
-﻿using CleanArchitecture.Maui.MobileUi.IdentityServer.Models;
+﻿using CleanArchitecture.Maui.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Maui.MobileUi.IdentityServer.Data;
 
-public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+public class IdentityServerDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    public IdentityServerDbContext(DbContextOptions<IdentityServerDbContext> options)
         : base(options)
     {
     }
