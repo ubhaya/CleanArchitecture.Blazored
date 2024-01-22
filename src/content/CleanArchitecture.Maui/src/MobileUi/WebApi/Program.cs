@@ -1,8 +1,29 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.Authority = "https://localhost:5001";
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = false
+        };
+    });
+
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("api_scope", policy =>
+    {
+        //policy.RequireAuthenticatedUser();
+        policy.RequireClaim("scope", "clean_architecture_maui_api");
+    });
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -20,6 +41,10 @@ var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
+
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.MapGet("/weatherforecast", () =>
     {
