@@ -9,11 +9,9 @@
 !src/
 src/*
 !src/MobileUi/
-src/MobileUi/*
-!src/MobileUi/WebApi/
-!src/MobileUi/WebApi/**
-!src/MobileUi/WebUI.Client/
-!src/MobileUi/WebUI.Client/**
+!src/MobileUi/*
+src/MobileUi/Shared/
+src/MobileUi/Shared/**
 
 # Include specific folders and their contents in tests
 !tests/
