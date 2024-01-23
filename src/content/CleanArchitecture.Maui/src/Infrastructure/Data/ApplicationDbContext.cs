@@ -7,21 +7,18 @@ using CleanArchitecture.Maui.Infrastructure.Common;
 using CleanArchitecture.Maui.Infrastructure.Data.Interceptors;
 using CleanArchitecture.Maui.Infrastructure.Identity;
 using System.Reflection;
-using Duende.IdentityServer.EntityFramework.Options;
-using Microsoft.Extensions.Options;
 
 namespace CleanArchitecture.Maui.Infrastructure.Data;
 
-public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser, ApplicationRole>, IApplicationDbContext
+public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     private readonly IMediator _mediator;
     private readonly AuditableEntitySaveChangesInterceptor _auditableEntitySaveChangesInterceptor;
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
-        IOptions<OperationalStoreOptions> operationalStoreOptions,
         IMediator mediator,
         AuditableEntitySaveChangesInterceptor auditableEntitySaveChangesInterceptor)
-        : base(options, operationalStoreOptions)
+        : base(options)
     {
         _mediator = mediator;
         _auditableEntitySaveChangesInterceptor = auditableEntitySaveChangesInterceptor;

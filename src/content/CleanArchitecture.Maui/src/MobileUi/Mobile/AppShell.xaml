@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="Mobile.AppShell"
+    x:Class="CleanArchitecture.Maui.MobileUi.Mobile.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Mobile"
+    xmlns:local="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile;"
     Shell.FlyoutBehavior="Disabled"
     Title="Mobile">
 
+    <ShellContent
+        Title="Login"
+        Route="LoginPage"
+        ContentTemplate="{DataTemplate local:LoginPage}"/>
+    
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"

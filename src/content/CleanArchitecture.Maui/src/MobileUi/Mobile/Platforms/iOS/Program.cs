@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace Mobile;
+namespace CleanArchitecture.Maui.MobileUi.Mobile;
 
 public class Program
 {

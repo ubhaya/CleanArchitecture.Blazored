@@ -9,23 +9,21 @@
 !src/
 src/*
 !src/MobileUi/
-src/MobileUi/*
-!src/MobileUi/WebApi/
-!src/MobileUi/WebApi/**
-!src/MobileUi/Mobile/
-!src/MobileUi/Mobile/**
+!src/MobileUi/*
+src/MobileUi/Shared/
+src/MobileUi/Shared/**
 !src/Infrastructure/
 src/Infrastructure/**
-!src/Infrastructure/Infrastructure.csproj
+!src/Infrastructure/Directory.Build.props
 !src/Infrastructure/Data/
 src/Infrastructure/Data/**
-!src/Infrastructure/Data/Migrations
-!src/Infrastructure/Data/Migrations/**
-!src/Infrastructure/Data/ApiAuthorizationDbContext.cs
 !src/Infrastructure/Data/ApplicationDbContext.cs
-!src/Infrastructure/DependencyInjection/
-src/Infrastructure/DependencyInjection/**
-!src/Infrastructure/DependencyInjection/AuthenticationServices.cs
+!src/Infrastructure/Data/ApplicationDbContextInitializer.cs
+!src/Infrastructure.IdentityServer/
+!src/Infrastructure.IdentityServer/*
+!src/Infrastructure.Shared/
+!src/Infrastructure.Shared/*
+
 
 # Include specific folders and their contents in tests
 !tests/

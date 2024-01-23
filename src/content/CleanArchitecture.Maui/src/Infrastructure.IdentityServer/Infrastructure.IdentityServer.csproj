@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblyName>CleanArchitecture.Maui.Infrastructure.IdentityServer</AssemblyName>
+        <RootNamespace>CleanArchitecture.Maui.Infrastructure</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.1" />
+        <PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="6.3.8" />
+        <PackageReference Include="Duende.IdentityServer.EntityFramework" Version="6.3.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Infrastructure.Shared\Infrastructure.Shared.csproj" />
+    </ItemGroup>
+
+</Project>
