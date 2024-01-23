@@ -1,5 +1,6 @@
+using CleanArchitecture.Maui.Infrastructure.Data;
+using CleanArchitecture.Maui.MobileUi.WebApi.DependencyInjection;
 using CleanArchitecture.Maui.MobileUi.WebApi.Options;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,16 +29,27 @@ builder.Services.AddAuthorizationBuilder()
         policy.RequireClaim("scope", oidcSettings.RequiredScope??Enumerable.Empty<string>());
     });
 
-builder.Services.AddSwaggerGen();
+builder.RegisterCleanArchitectureServices();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    try
+    {
+        var initializer = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
+        await initializer.InitializeAsync();
+        await initializer.SeedAsync();
+    }
+    catch (Exception ex)
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex,"An error occurred during database initialisation.");
+    }
 }
+
+// Configure the HTTP request pipeline.
+app.UseCleanArchitectureMiddleware();
 
 app.UseHttpsRedirection();
 
@@ -50,24 +62,5 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
 
-app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+await app.RunAsync();

@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Maui.MobileUi.Mobile;
+namespace CleanArchitecture.Maui.MobileUi.Mobile;
 
 public partial class App : Application
 {

@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using CleanArchitecture.Maui.MobileUi.Mobile.Helpers;
 using CleanArchitecture.Maui.MobileUi.Mobile.Options;
 using CommunityToolkit.Maui;
