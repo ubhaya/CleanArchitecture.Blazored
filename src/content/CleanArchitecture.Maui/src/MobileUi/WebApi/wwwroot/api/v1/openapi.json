@@ -518,18 +518,18 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "date": {
+          "Date": {
             "type": "string",
             "format": "date-time"
           },
-          "temperatureC": {
+          "TemperatureC": {
             "type": "integer",
             "format": "int32"
           },
-          "summary": {
+          "Summary": {
             "type": "string"
           },
-          "temperatureF": {
+          "TemperatureF": {
             "type": "integer",
             "format": "int32"
           }
@@ -539,13 +539,13 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "priorityLevels": {
+          "PriorityLevels": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LookupDto"
             }
           },
-          "lists": {
+          "Lists": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TodoListDto"
@@ -557,11 +557,11 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "id": {
+          "Id": {
             "type": "integer",
             "format": "int32"
           },
-          "title": {
+          "Title": {
             "type": "string"
           }
         }
@@ -570,17 +570,17 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "id": {
+          "Id": {
             "type": "integer",
             "format": "int32"
           },
-          "title": {
+          "Title": {
             "type": "string"
           },
-          "colour": {
+          "Colour": {
             "type": "string"
           },
-          "items": {
+          "Items": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TodoItemDto"
@@ -592,25 +592,25 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "id": {
+          "Id": {
             "type": "integer",
             "format": "int32"
           },
-          "listId": {
+          "ListId": {
             "type": "integer",
             "format": "int32"
           },
-          "title": {
+          "Title": {
             "type": "string"
           },
-          "done": {
+          "Done": {
             "type": "boolean"
           },
-          "priority": {
+          "Priority": {
             "type": "integer",
             "format": "int32"
           },
-          "note": {
+          "Note": {
             "type": "string"
           }
         }
@@ -619,7 +619,7 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "title": {
+          "Title": {
             "type": "string"
           }
         }
@@ -628,11 +628,11 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "id": {
+          "Id": {
             "type": "integer",
             "format": "int32"
           },
-          "title": {
+          "Title": {
             "type": "string"
           }
         }
@@ -641,11 +641,11 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "listId": {
+          "ListId": {
             "type": "integer",
             "format": "int32"
           },
-          "title": {
+          "Title": {
             "type": "string"
           }
         }
@@ -654,25 +654,25 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "id": {
+          "Id": {
             "type": "integer",
             "format": "int32"
           },
-          "listId": {
+          "ListId": {
             "type": "integer",
             "format": "int32"
           },
-          "title": {
+          "Title": {
             "type": "string"
           },
-          "done": {
+          "Done": {
             "type": "boolean"
           },
-          "priority": {
+          "Priority": {
             "type": "integer",
             "format": "int32"
           },
-          "note": {
+          "Note": {
             "type": "string"
           }
         }
@@ -681,13 +681,13 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "roles": {
+          "Roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleDto"
             }
           },
-          "user": {
+          "User": {
             "$ref": "#/components/schemas/UserDto"
           }
         }
@@ -696,13 +696,13 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "id": {
+          "Id": {
             "type": "string"
           },
-          "name": {
+          "Name": {
             "type": "string"
           },
-          "permissions": {
+          "Permissions": {
             "$ref": "#/components/schemas/Permissions"
           }
         }
@@ -742,16 +742,16 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "id": {
+          "Id": {
             "type": "string"
           },
-          "userName": {
+          "UserName": {
             "type": "string"
           },
-          "email": {
+          "Email": {
             "type": "string"
           },
-          "roles": {
+          "Roles": {
             "type": "array",
             "items": {
               "type": "string"
@@ -763,7 +763,7 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "users": {
+          "Users": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserDto"
@@ -775,7 +775,7 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "roles": {
+          "Roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleDto"
@@ -787,13 +787,13 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "roles": {
+          "Roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleDto"
             }
           },
-          "availablePermissions": {
+          "AvailablePermissions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Permissions"

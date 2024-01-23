@@ -40,6 +40,9 @@ jobs:
         shell: pwsh
         run: .\CleanArchitecture.Blazored.restore.ps1
 
+      - name: Install Maui workload
+        run: dotnet workload install maui
+
       - name: Restore dependencies
         run: dotnet restore CleanArchitecture.Blazored.Dev.sln --configfile ./nuget.config
 
@@ -92,7 +95,10 @@ jobs:
             - name: Build Generated Project
               shell: pwsh
               run: .\CleanArchitecture.Blazored.restore.ps1
-      
+
+            - name: Install Maui workload
+              run: dotnet workload install maui
+
             - name: Restore dependencies
               run: dotnet restore CleanArchitecture.Blazored.Dev.sln --configfile ./nuget.config
       

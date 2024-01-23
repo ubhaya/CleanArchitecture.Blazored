@@ -95,9 +95,6 @@
       "className": "{controller}Client",
       "operationGenerationMode": "MultipleClientsFromOperationId",
       "additionalNamespaceUsages": [
-        "Microsoft.AspNetCore.Mvc",
-        "Microsoft.AspNetCore.Authentication.BearerToken",
-        "Microsoft.AspNetCore.Identity.Data",
         "CleanArchitecture.Maui.MobileUi.Shared.TodoItems",
         "CleanArchitecture.Maui.MobileUi.Shared.TodoLists",
         "CleanArchitecture.Maui.MobileUi.Shared.WeatherForecasts",
@@ -152,7 +149,7 @@
       "enumNameGeneratorType": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "ApiClients.g.cs",
+      "output": "../Mobile/ApiClients.g.cs",
       "newLineBehavior": "Auto"
     }
   }
