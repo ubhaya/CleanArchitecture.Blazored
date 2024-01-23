@@ -1,7 +1,8 @@
 ﻿using Android.App;
 using Android.Runtime;
+using CleanArchitecture.Maui.MobileUi.Mobile;
 
-namespace Mobile;
+namespace CleanArchitecture.Maui.MobileUi.Mobile;
 
 [Application]
 public class MainApplication : MauiApplication

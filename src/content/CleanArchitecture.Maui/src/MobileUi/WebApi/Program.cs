@@ -1,3 +1,4 @@
+using CleanArchitecture.Maui.MobileUi.WebApi.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
@@ -6,10 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+var oidcSettings = new OidcSettings();
+builder.Configuration.GetRequiredSection(nameof(OidcSettings)).Bind(oidcSettings);
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
-        options.Authority = "https://localhost:5001";
+        options.Authority = oidcSettings.Authority;
 
         options.TokenValidationParameters = new TokenValidationParameters
         {
@@ -20,8 +24,8 @@ builder.Services.AddAuthentication("Bearer")
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("api_scope", policy =>
     {
-        //policy.RequireAuthenticatedUser();
-        policy.RequireClaim("scope", "clean_architecture_maui_api");
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("scope", oidcSettings.RequiredScope??Enumerable.Empty<string>());
     });
 
 builder.Services.AddSwaggerGen();

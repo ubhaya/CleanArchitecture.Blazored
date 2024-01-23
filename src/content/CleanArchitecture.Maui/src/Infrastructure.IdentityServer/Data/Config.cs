@@ -24,12 +24,24 @@ public static class Config
             new()
             {
                 ClientId = "CleanArchitecture.Maui.MobileUi",
-                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                ClientName = "Clean Architecture Maui app",
+                AllowedGrantTypes = GrantTypes.Code,
+                
+                RedirectUris = {"mobile://"},
+                PostLogoutRedirectUris = {"mobile://"},
+                
                 ClientSecrets =
                 {
                     new Secret("secret".Sha256())
                 },
-                AllowedScopes = { "clean_architecture_maui_api" }
+                AllowedScopes = [ 
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile,
+                    "clean_architecture_maui_api" 
+                ],
+                
+                RefreshTokenUsage = TokenUsage.OneTimeOnly,
+                RefreshTokenExpiration = TokenExpiration.Sliding
             },
             new()
             {

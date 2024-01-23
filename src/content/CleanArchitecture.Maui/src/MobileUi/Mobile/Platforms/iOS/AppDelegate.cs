@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace Mobile;
+namespace CleanArchitecture.Maui.MobileUi.Mobile;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate
