@@ -1,3 +1,10 @@
+using CleanArchitecture.Maui.Application.Common.Services.Identity;
+using CleanArchitecture.Maui.MobileUi.Shared.Authorization;
+using CleanArchitecture.Maui.MobileUi.WebApi.Options;
+using CleanArchitecture.Maui.MobileUi.WebApi.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
+
 namespace CleanArchitecture.Maui.MobileUi.WebApi.DependencyInjection;
 
 public sealed class AspCoreServices : IServiceInstaller, IMiddlewareInstaller
@@ -6,6 +13,33 @@ public sealed class AspCoreServices : IServiceInstaller, IMiddlewareInstaller
     {
         services.AddEndpointsApiExplorer();
         services.AddAntiforgery();
+        
+        var oidcSettings = new OidcSettings();
+        configuration.GetRequiredSection(nameof(OidcSettings)).Bind(oidcSettings);
+        services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = oidcSettings.Authority;
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false,
+                    ValidateLifetime = false,
+                };
+            });
+
+        services.AddAuthorizationBuilder()
+            .AddPolicy("api_scope", policy =>
+            {
+                policy.RequireAuthenticatedUser();
+                policy.RequireClaim("scope", oidcSettings.RequiredScope??Enumerable.Empty<string>());
+            });
+     
+        services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+        services.AddSingleton<IAuthorizationPolicyProvider, FlexibleAuthorizationPolicyProvider>();
+        
+        services.AddHttpContextAccessor();
+        services.AddScoped<ICurrentUser, CurrentUser>();
     }
 
     public void InstallMiddleWare(WebApplication app)
@@ -25,5 +59,8 @@ public sealed class AspCoreServices : IServiceInstaller, IMiddlewareInstaller
 
         app.UseStaticFiles();
         app.UseAntiforgery();
+        
+        app.UseAuthentication();
+        app.UseAuthorization();
     }
 }

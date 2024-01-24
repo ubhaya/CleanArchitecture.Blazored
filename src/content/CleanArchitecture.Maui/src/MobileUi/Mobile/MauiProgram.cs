@@ -74,10 +74,7 @@ public static class MauiProgram
                 Browser = sp.GetRequiredService<WebAuthenticatorBrowser>()
             });
         });
-
-        //var insecureHttp = CreateInsecureHttpClientHandler();
-        // services.AddSingleton(insecureHttp);
-        // services.AddSingleton<AccessTokenMessageHandler>();
+        
         AddHttpClient(builder);
     }
 
@@ -88,7 +85,6 @@ public static class MauiProgram
         builder.Services.AddSingleton<AccessTokenMessageHandler>();
         builder.Services.AddHttpClient("CleanArchitecture.Maui.MobileUi", configureClient: client =>
                 client.BaseAddress = new Uri(baseAddress))
-            //.AddHttpMessageHandler<ServerCertificateHandler>();
             .AddHttpMessageHandler<AccessTokenMessageHandler>();
 
         builder.Services.AddScoped(sp =>
@@ -100,14 +96,5 @@ public static class MauiProgram
             .AddClasses()
             .AsImplementedInterfaces()
             .WithScopedLifetime());
-    }
-
-    private static HttpClientHandler CreateInsecureHttpClientHandler()
-    {
-        var clientHandler = new HttpClientHandler();
-        #if DEBUG
-        clientHandler.ServerCertificateCustomValidationCallback += (_, _, _, _) => true;
-        #endif
-        return clientHandler;
     }
 }

@@ -22,6 +22,7 @@ public class AccessTokenMessageHandler : DelegatingHandler
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
+        // Todo: AccessTokenMessageHandler is not perfect
         var accessToken = await _secureStorage.GetAsync(OidcConstance.AccessTokenKeyName);
 
         if (string.IsNullOrWhiteSpace(accessToken))
