@@ -45,16 +45,12 @@ public static class Config
             },
             new()
             {
-                ClientId = "CleanArchitecture.Maui.MobileUi.Mvc",
+                ClientId = "CleanArchitecture.Maui.MobileUi.Postman",
                 ClientSecrets =
                 {
                     new Secret("secret".Sha256())
                 },
-                AllowedGrantTypes = GrantTypes.Code,
-                RedirectUris = { "https://localhost:5002/signin-oidc" },
-
-                // where to redirect to after logout
-                PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
 
                 AllowedScopes =
                 [

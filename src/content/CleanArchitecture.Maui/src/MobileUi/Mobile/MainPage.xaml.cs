@@ -1,15 +1,21 @@
-﻿namespace CleanArchitecture.Maui.MobileUi.Mobile;
+﻿using CleanArchitecture.Maui.MobileUi.Client;
+using CleanArchitecture.Maui.MobileUi.Shared.WeatherForecasts;
+using Newtonsoft.Json;
+
+namespace CleanArchitecture.Maui.MobileUi.Mobile;
 
 public partial class MainPage : ContentPage
 {
+    private readonly IClient _client;
     int count = 0;
 
-    public MainPage()
+    public MainPage(IClient client)
     {
+        _client = client;
         InitializeComponent();
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
+    private async void OnCounterClicked(object sender, EventArgs e)
     {
         count++;
 
@@ -19,5 +25,14 @@ public partial class MainPage : ContentPage
             CounterBtn.Text = $"Clicked {count} times";
 
         SemanticScreenReader.Announce(CounterBtn.Text);
+
+        try
+        {
+            var result = await _client.GetWeatherForecastAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
     }
 }

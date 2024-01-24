@@ -35,15 +35,13 @@ public static class ConfigureServices
         
         services.AddIdentity<ApplicationUser, ApplicationRole>()
             .AddEntityFrameworkStores<IdentityServerDbContext>()
+            .AddClaimsPrincipalFactory<ApplicationUserClaimsPrincipalFactory>()
             .AddDefaultTokenProviders();
         
         services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
         services.AddSingleton<IAuthorizationPolicyProvider, FlexibleAuthorizationPolicyProvider>();
         
-        services
-            .AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
-        
-        services
+        var identityBuilder = services
             .AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
@@ -79,6 +77,8 @@ public static class ConfigureServices
                     });
             })
             .AddAspNetIdentity<ApplicationUser>();
+
+        identityBuilder.AddProfileService<ProfileService>();
         
         services.AddAuthentication()
             .AddGoogle(options =>

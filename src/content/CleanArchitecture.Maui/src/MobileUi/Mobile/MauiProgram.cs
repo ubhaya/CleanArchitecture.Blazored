@@ -1,8 +1,10 @@
 using System.Reflection;
+using CleanArchitecture.Maui.MobileUi.Client;
 using CleanArchitecture.Maui.MobileUi.Mobile.Helpers;
 using CleanArchitecture.Maui.MobileUi.Mobile.Options;
 using CommunityToolkit.Maui;
 using IdentityModel.OidcClient;
+using IdentityModel.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -13,7 +15,7 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
         var assembly = Assembly.GetExecutingAssembly();
-        using var stream = assembly.GetManifestResourceStream("Mobile.appsettings.json");
+        using var stream = assembly.GetManifestResourceStream("CleanArchitecture.Maui.MobileUi.Mobile.appsettings.json");
 
         if (stream is null) throw new NullReferenceException(nameof(stream));
 
@@ -73,9 +75,31 @@ public static class MauiProgram
             });
         });
 
-        var insecureHttp = CreateInsecureHttpClientHandler();
-        services.AddSingleton(insecureHttp);
-        services.AddSingleton<AccessTokenMessageHandler>();
+        //var insecureHttp = CreateInsecureHttpClientHandler();
+        // services.AddSingleton(insecureHttp);
+        // services.AddSingleton<AccessTokenMessageHandler>();
+        AddHttpClient(builder);
+    }
+
+    private static void AddHttpClient(MauiAppBuilder builder)
+    {
+        var baseAddress = builder.Configuration.GetValue<string>("BaseAddress") ??
+                          throw new NullReferenceException("Base Address Cannot be null");
+        builder.Services.AddSingleton<AccessTokenMessageHandler>();
+        builder.Services.AddHttpClient("CleanArchitecture.Maui.MobileUi", configureClient: client =>
+                client.BaseAddress = new Uri(baseAddress))
+            //.AddHttpMessageHandler<ServerCertificateHandler>();
+            .AddHttpMessageHandler<AccessTokenMessageHandler>();
+
+        builder.Services.AddScoped(sp =>
+            sp.GetRequiredService<IHttpClientFactory>()
+                .CreateClient("CleanArchitecture.Maui.MobileUi"));
+
+        builder.Services.Scan(scan => scan
+            .FromAssemblyOf<IClient>()
+            .AddClasses()
+            .AsImplementedInterfaces()
+            .WithScopedLifetime());
     }
 
     private static HttpClientHandler CreateInsecureHttpClientHandler()

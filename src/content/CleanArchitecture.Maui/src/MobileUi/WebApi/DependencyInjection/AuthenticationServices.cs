@@ -13,7 +13,6 @@ public class AuthenticationServices : IServiceInstaller, IMiddlewareInstaller
 {
     public void InstallerService(IServiceCollection services, IConfiguration configuration)
     {
-
         var oidcSettings = new OidcSettings();
         configuration.GetRequiredSection(nameof(OidcSettings)).Bind(oidcSettings);
         services.AddAuthentication("Bearer")
@@ -33,6 +32,9 @@ public class AuthenticationServices : IServiceInstaller, IMiddlewareInstaller
                 policy.RequireAuthenticatedUser();
                 policy.RequireClaim("scope", oidcSettings.RequiredScope??Enumerable.Empty<string>());
             });
+     
+        services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+        services.AddSingleton<IAuthorizationPolicyProvider, FlexibleAuthorizationPolicyProvider>();
         
         services.AddHttpContextAccessor();
         services.AddScoped<ICurrentUser, CurrentUser>();

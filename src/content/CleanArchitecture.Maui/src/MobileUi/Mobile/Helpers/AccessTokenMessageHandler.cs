@@ -12,8 +12,8 @@ public class AccessTokenMessageHandler : DelegatingHandler
     private readonly ISecureStorage _secureStorage;
     private readonly ILogger<AccessTokenMessageHandler> _logger;
 
-    public AccessTokenMessageHandler(HttpMessageHandler innerHandler, OidcClient oidcClient,
-        ISecureStorage secureStorage, ILogger<AccessTokenMessageHandler> logger) : base(innerHandler)
+    public AccessTokenMessageHandler(OidcClient oidcClient,
+        ISecureStorage secureStorage, ILogger<AccessTokenMessageHandler> logger)
     {
         _oidcClient = oidcClient;
         _secureStorage = secureStorage;
