@@ -1,4 +1,4 @@
-﻿using Duende.IdentityServer;
+using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
 
 namespace CleanArchitecture.Maui.Infrastructure.Data;

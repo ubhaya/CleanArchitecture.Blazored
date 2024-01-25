@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Maui.MobileUi.Mobile.Options;
+namespace CleanArchitecture.Maui.MobileUi.Mobile.Options;
 
 public class OidcClientSettings
 {

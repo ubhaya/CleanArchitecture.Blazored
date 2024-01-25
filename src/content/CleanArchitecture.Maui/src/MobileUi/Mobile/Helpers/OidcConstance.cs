@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Maui.MobileUi.Mobile.Helpers;
+namespace CleanArchitecture.Maui.MobileUi.Mobile.Helpers;
 
 public static class OidcConstance
 {

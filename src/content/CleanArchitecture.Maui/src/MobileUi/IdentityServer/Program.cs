@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Maui.Infrastructure.Data;
+using CleanArchitecture.Maui.Infrastructure.Data;
 using CleanArchitecture.Maui.MobileUi.IdentityServer;
 using Serilog;
 using ILogger = Microsoft.Extensions.Logging.ILogger;

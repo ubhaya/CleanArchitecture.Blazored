@@ -4,7 +4,6 @@ using CleanArchitecture.Maui.MobileUi.Mobile.Helpers;
 using CleanArchitecture.Maui.MobileUi.Mobile.Options;
 using CommunityToolkit.Maui;
 using IdentityModel.OidcClient;
-using IdentityModel.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
