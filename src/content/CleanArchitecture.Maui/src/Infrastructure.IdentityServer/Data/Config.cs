@@ -39,6 +39,7 @@ public static class Config
                     IdentityServerConstants.StandardScopes.Profile,
                     "clean_architecture_maui_api" 
                 ],
+                AllowOfflineAccess = true,
                 
                 RefreshTokenUsage = TokenUsage.OneTimeOnly,
                 RefreshTokenExpiration = TokenExpiration.Sliding
