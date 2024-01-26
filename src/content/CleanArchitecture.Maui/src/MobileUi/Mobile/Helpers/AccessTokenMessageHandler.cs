@@ -13,7 +13,8 @@ public class AccessTokenMessageHandler : DelegatingHandler
     private readonly ILogger<AccessTokenMessageHandler> _logger;
 
     public AccessTokenMessageHandler(OidcClient oidcClient,
-        ISecureStorage secureStorage, ILogger<AccessTokenMessageHandler> logger)
+        ISecureStorage secureStorage, 
+        ILogger<AccessTokenMessageHandler> logger)
     {
         _oidcClient = oidcClient;
         _secureStorage = secureStorage;

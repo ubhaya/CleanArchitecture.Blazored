@@ -58,6 +58,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Ardalis.GuardClauses" Version="4.4.0" />
         <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
         <PackageReference Include="IdentityModel.OidcClient" Version="5.2.1" />
@@ -74,6 +75,8 @@
     <ItemGroup>
       <None Remove="appsettings.json" />
       <EmbeddedResource Include="appsettings.json" />
+      <None Remove="appsettings.Development.json" />
+      <EmbeddedResource Include="appsettings.Development.json" />
     </ItemGroup>
 
     <ItemGroup>

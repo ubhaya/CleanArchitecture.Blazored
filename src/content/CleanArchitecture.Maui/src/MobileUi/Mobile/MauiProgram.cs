@@ -1,4 +1,5 @@
 using System.Reflection;
+using Ardalis.GuardClauses;
 using CleanArchitecture.Maui.MobileUi.Client;
 using CleanArchitecture.Maui.MobileUi.Mobile.Helpers;
 using CleanArchitecture.Maui.MobileUi.Mobile.Options;
@@ -15,13 +16,22 @@ public static class MauiProgram
     {
         var assembly = Assembly.GetExecutingAssembly();
         using var stream = assembly.GetManifestResourceStream("CleanArchitecture.Maui.MobileUi.Mobile.appsettings.json");
+#if DEBUG
+        using var developmentStream = assembly.GetManifestResourceStream("CleanArchitecture.Maui.MobileUi.Mobile.appsettings.Development.json");
+#endif
 
-        if (stream is null) throw new NullReferenceException(nameof(stream));
+        Guard.Against.Null(stream);
+#if DEBUG
+        Guard.Against.Null(developmentStream);
+#endif
 
         var config = new ConfigurationBuilder()
             .AddJsonStream(stream)
+#if DEBUG
+            .AddJsonStream(developmentStream)
+#endif
             .Build();
-        
+
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
@@ -79,13 +89,29 @@ public static class MauiProgram
 
     private static void AddHttpClient(MauiAppBuilder builder)
     {
-        var baseAddress = builder.Configuration.GetValue<string>("BaseAddress") ??
-                          throw new NullReferenceException("Base Address Cannot be null");
+        var baseUrl = builder.Configuration.GetValue<string>("BaseUrl");
+        var basePort = new BasePort();
+        builder.Configuration.GetRequiredSection(nameof(BasePort)).Bind(basePort);
+
+        var baseAddress = string.IsNullOrWhiteSpace(baseUrl)
+            ? DeviceInfo.Platform == DevicePlatform.Android
+                ? $"https://10.0.2.2:{basePort.Https}"
+                : $"https://localhost:{basePort.Https}"
+            : baseUrl;
+
+        builder.Services.AddSingleton<HttpsClientHandlerService>();
         builder.Services.AddSingleton<AccessTokenMessageHandler>();
         builder.Services.AddHttpClient("CleanArchitecture.Maui.MobileUi", configureClient: client =>
-                client.BaseAddress = new Uri(baseAddress))
+        {
+            client.BaseAddress = new Uri(baseAddress);
+        })
+        .ConfigurePrimaryHttpMessageHandler(sp =>
+        {
+            var handlerService = sp.GetRequiredService<HttpsClientHandlerService>();
+            return handlerService.GetPlatformMessageHandler();
+        })
             .AddHttpMessageHandler<AccessTokenMessageHandler>();
-
+        
         builder.Services.AddScoped(sp =>
             sp.GetRequiredService<IHttpClientFactory>()
                 .CreateClient("CleanArchitecture.Maui.MobileUi"));
