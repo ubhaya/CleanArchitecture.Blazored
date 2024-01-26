@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.ViewModels.Authentication"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="CleanArchitecture.Maui.MobileUi.Mobile.Views.Authentication.LoginPage"
+             x:DataType="viewModel:LoginPageViewModel">
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding CheckUserLoginDetailsCommand}"
+                                        EventName="Appearing" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="30,0"
+                             Margin="25">
+            <Label
+                Text="Welcome to Clean Architecture Login"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+
+            <Button Text="Login"
+                    Command="{Binding LoginCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    BackgroundColor="{StaticResource Secondary}"
+                    TextColor="{StaticResource Primary}"
+                    HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

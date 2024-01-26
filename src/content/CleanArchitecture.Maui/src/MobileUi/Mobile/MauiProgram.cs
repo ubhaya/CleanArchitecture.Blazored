@@ -3,13 +3,19 @@ using Ardalis.GuardClauses;
 using CleanArchitecture.Maui.MobileUi.Client;
 using CleanArchitecture.Maui.MobileUi.Mobile.Helpers;
 using CleanArchitecture.Maui.MobileUi.Mobile.Options;
+using CleanArchitecture.Maui.MobileUi.Mobile.ViewModels;
+using CleanArchitecture.Maui.MobileUi.Mobile.ViewModels.Authentication;
+using CleanArchitecture.Maui.MobileUi.Mobile.Views;
+using CleanArchitecture.Maui.MobileUi.Mobile.Views.Authentication;
 using CommunityToolkit.Maui;
+using epj.RouteGenerator;
 using IdentityModel.OidcClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Maui.MobileUi.Mobile;
 
+[AutoRoutes("Page")]
 public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
@@ -58,8 +64,8 @@ public static class MauiProgram
         var configuration = builder.Configuration;
 
         services.AddSingleton<AppShell>();
-        services.AddSingleton<LoginPage>();
-        services.AddSingleton<MainPage>();
+        services.AddSingleton<LoginPage, LoginPageViewModel>();
+        services.AddSingleton<MainPage, MainPageViewModel>();
         
         services.AddSingleton(Connectivity.Current);
         services.AddSingleton(SecureStorage.Default);
