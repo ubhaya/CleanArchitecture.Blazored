@@ -46,7 +46,7 @@ public sealed partial class LoginPageViewModel : BaseViewModel
             await _storage.SetAsync(OidcConstance.AccessTokenKeyName, loginResult.AccessToken);
             await _storage.SetAsync(OidcConstance.RefreshTokenKeyName, loginResult.RefreshToken);
 
-            await Shell.Current.GoToAsync($"//{Routes.MainPage}");
+            await ApplicationHelper.AddFlyoutMenuDetails();
         }
         catch (Exception ex)
         {
@@ -70,7 +70,7 @@ public sealed partial class LoginPageViewModel : BaseViewModel
                 return;
             }
 
-            await Shell.Current.GoToAsync($"//{Routes.MainPage}");
+            await ApplicationHelper.AddFlyoutMenuDetails();
         }
         catch (Exception ex)
         {

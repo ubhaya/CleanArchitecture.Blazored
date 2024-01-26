@@ -9,7 +9,7 @@
     xmlns:viewModel="using:CleanArchitecture.Maui.MobileUi.Mobile.ViewModels"
     xmlns:views="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.Views"
     xmlns:authentication="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.Views.Authentication"
-    Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarIsVisible="False"
     Title="Mobile">
 
     <Shell.Behaviors>
@@ -20,11 +20,38 @@
     
     <ShellContent
         Title="Login"
+        Route="LoginPage"
+        Shell.FlyoutBehavior="Disabled"
+        FlyoutItemIsVisible="False"
         ContentTemplate="{DataTemplate authentication:LoginPage}"/>
     
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage" />
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="20">
+            <Button Text="Log out"
+                    Command="{Binding LogoutCommand}"/>
+        </StackLayout>
+    </Shell.FlyoutFooter>
+    
+    <Shell.FlyoutHeader>
+        <StackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center" 
+                                   Padding="10">
+                <Image Source="dotnet_bot.png"
+                       HeightRequest="50"
+                       VerticalOptions="Center"
+                       Margin="0,0,10,0"/>
+                
+                <Label Text="Clean Architecture Mobile"
+                       FontSize="20"
+                       VerticalOptions="Center"
+                       Margin="10,0,0,0"/>
+            </HorizontalStackLayout>
+            <VerticalStackLayout HorizontalOptions="Center">
+                <toolkit:AvatarView BorderColor="Black"
+                                    ImageSource="dotnet_bot.png"
+                                    Text="Name"/>
+            </VerticalStackLayout>
+        </StackLayout>
+    </Shell.FlyoutHeader>
 
 </Shell>
