@@ -22,7 +22,7 @@
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Data/ApplicationDbContextInitializer.cs"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Data/Migrations/*"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/DependencyInjection/AuthenticationServices.cs"/>
-        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Identity/*" Exclude="$(SourceFilePath)/src/Infrastructure/Identity/IdentityService.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Identity/*"/>
         
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/WebUi.AcceptanceTests/Pages/Selectors.cs"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/Application.IntegrationTests/Application.IntegrationTests.csproj"/>

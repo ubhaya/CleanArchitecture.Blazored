@@ -67,6 +67,7 @@ public static class MauiProgram
         services.AddSingleton<AppShellViewModel>();
         services.AddSingleton<LoginPage, LoginPageViewModel>();
         services.AddSingleton<MainPage, MainPageViewModel>();
+        services.AddSingleton<WeatherPage, WeatherForecastViewModel>();
         
         services.AddSingleton(Connectivity.Current);
         services.AddSingleton(SecureStorage.Default);

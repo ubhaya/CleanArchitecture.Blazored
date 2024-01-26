@@ -19,6 +19,8 @@ src/Infrastructure/**
 src/Infrastructure/Data/**
 !src/Infrastructure/Data/ApplicationDbContext.cs
 !src/Infrastructure/Data/ApplicationDbContextInitializer.cs
+!src/Infrastructure/Identity/
+!src/Infrastructure/Identity/IdentityService.cs
 !src/Infrastructure.IdentityServer/
 !src/Infrastructure.IdentityServer/*
 !src/Infrastructure.Shared/

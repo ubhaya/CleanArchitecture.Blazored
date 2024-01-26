@@ -10,7 +10,7 @@ public static class ApplicationHelper
             .FirstOrDefault(f => f.Route == Routes.MainPage);
         if (mainPage is not null) Shell.Current.Items.Remove(mainPage);
 
-        var flyOutItem = new FlyoutItem()
+        var mainPageFlyoutItem = new FlyoutItem()
         {
             Title = "Main Page",
             Route = Routes.MainPage,
@@ -25,9 +25,26 @@ public static class ApplicationHelper
             }
         };
 
-        if (!Shell.Current.Items.Contains(flyOutItem))
+        var weatherForecastFlyout = new FlyoutItem
         {
-            Shell.Current.Items.Add(flyOutItem);
+            Title = "Weather Forecasts",
+            Route = Routes.WeatherPage,
+            FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
+            Items =
+            {
+                new ShellContent
+                {
+                    Title = "Weather Forecasts",
+                    ContentTemplate = new DataTemplate(typeof(WeatherPage))
+                }
+            }
+        };
+
+        Shell.Current.Items.Add(weatherForecastFlyout);
+
+        if (!Shell.Current.Items.Contains(mainPageFlyoutItem))
+        {
+            Shell.Current.Items.Add(mainPageFlyoutItem);
 
             if (DeviceInfo.Platform == DevicePlatform.WinUI)
             {
