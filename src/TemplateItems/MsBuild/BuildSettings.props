@@ -18,5 +18,6 @@
         <None Include="../.gitignore"/>
         <None Include="../nuget.config"/>
         <None Include="../CleanArchitecture.Blazored.restore.ps1"/>
+        <None Include="../AddProjectsToSolution.ps1" />
     </ItemGroup>
 </Project>
