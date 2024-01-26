@@ -1,6 +1,4 @@
 using CleanArchitecture.Maui.MobileUi.Client;
-using CleanArchitecture.Maui.MobileUi.Shared.WeatherForecasts;
-using Newtonsoft.Json;
 
 namespace CleanArchitecture.Maui.MobileUi.Mobile;
 

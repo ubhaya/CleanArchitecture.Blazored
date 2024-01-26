@@ -2,7 +2,6 @@ using CleanArchitecture.Maui.Application.AccessControl.Commands;
 using CleanArchitecture.Maui.MobileUi.Shared.AccessControl;
 using CleanArchitecture.Maui.MobileUi.Shared.Authorization;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.Admin.AccessControl;

@@ -1,13 +1,6 @@
-using System.Reflection;
-using CleanArchitecture.Maui.Infrastructure;
 using CleanArchitecture.Maui.Infrastructure.Data;
-using CleanArchitecture.Maui.Infrastructure.Identity;
-using CleanArchitecture.Maui.MobileUi.Shared.Authorization;
-using Duende.IdentityServer;
 using Duende.IdentityServer.EntityFramework.DbContexts;
 using Duende.IdentityServer.EntityFramework.Mappers;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 

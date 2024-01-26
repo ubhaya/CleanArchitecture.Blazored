@@ -1,4 +1,3 @@
-using CleanArchitecture.Maui.Infrastructure.Identity;
 using CleanArchitecture.Maui.MobileUi.WebApi.Endpoints;
 
 namespace CleanArchitecture.Maui.MobileUi.WebApi.DependencyInjection;

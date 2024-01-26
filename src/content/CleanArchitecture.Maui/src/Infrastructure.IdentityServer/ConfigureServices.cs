@@ -1,5 +1,4 @@
 using System.Reflection;
-using CleanArchitecture.Maui.Infrastructure;
 using CleanArchitecture.Maui.Infrastructure.Data;
 using CleanArchitecture.Maui.Infrastructure.Identity;
 using CleanArchitecture.Maui.MobileUi.Shared.Authorization;

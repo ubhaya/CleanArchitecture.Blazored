@@ -1,11 +1,9 @@
 using MediatR;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using CleanArchitecture.Maui.Application.Common.Services.Data;
 using CleanArchitecture.Maui.Domain.Entities;
 using CleanArchitecture.Maui.Infrastructure.Common;
 using CleanArchitecture.Maui.Infrastructure.Data.Interceptors;
-using CleanArchitecture.Maui.Infrastructure.Identity;
 using System.Reflection;
 
 namespace CleanArchitecture.Maui.Infrastructure.Data;

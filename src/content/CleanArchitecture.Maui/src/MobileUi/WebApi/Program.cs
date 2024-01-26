@@ -1,7 +1,5 @@
 using CleanArchitecture.Maui.Infrastructure.Data;
 using CleanArchitecture.Maui.MobileUi.WebApi.DependencyInjection;
-using CleanArchitecture.Maui.MobileUi.WebApi.Options;
-using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 

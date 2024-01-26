@@ -1,6 +1,5 @@
 using Android.App;
 using Android.Runtime;
-using CleanArchitecture.Maui.MobileUi.Mobile;
 
 namespace CleanArchitecture.Maui.MobileUi.Mobile;
 
