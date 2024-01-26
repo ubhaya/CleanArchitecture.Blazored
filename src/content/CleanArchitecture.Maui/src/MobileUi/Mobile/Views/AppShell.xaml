@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
     x:Class="CleanArchitecture.Maui.MobileUi.Mobile.Views.AppShell"
+    x:DataType="viewModel:AppShellViewModel"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile;"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModel="using:CleanArchitecture.Maui.MobileUi.Mobile.ViewModels"
     xmlns:views="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.Views"
     xmlns:authentication="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.Views.Authentication"
     Shell.FlyoutBehavior="Disabled"
     Title="Mobile">
 
+    <Shell.Behaviors>
+        <toolkit:EventToCommandBehavior x:TypeArguments="ShellNavigatingEventArgs"
+                                        Command="{Binding NavigatingCommand}"
+                                        EventName="Navigating"/>
+    </Shell.Behaviors>
+    
     <ShellContent
         Title="Login"
         ContentTemplate="{DataTemplate authentication:LoginPage}"/>

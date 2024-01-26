@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CleanArchitecture.Maui.MobileUi.Mobile.ViewModels;
 

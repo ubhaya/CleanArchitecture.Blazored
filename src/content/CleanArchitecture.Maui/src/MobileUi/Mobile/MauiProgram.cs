@@ -64,6 +64,7 @@ public static class MauiProgram
         var configuration = builder.Configuration;
 
         services.AddSingleton<AppShell>();
+        services.AddSingleton<AppShellViewModel>();
         services.AddSingleton<LoginPage, LoginPageViewModel>();
         services.AddSingleton<MainPage, MainPageViewModel>();
         

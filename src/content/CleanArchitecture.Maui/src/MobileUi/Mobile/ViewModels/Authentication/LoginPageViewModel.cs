@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Maui.MobileUi.Mobile.Helpers;
+using CleanArchitecture.Maui.MobileUi.Mobile.Helpers;
 using CommunityToolkit.Mvvm.Input;
 using IdentityModel.OidcClient;
 
