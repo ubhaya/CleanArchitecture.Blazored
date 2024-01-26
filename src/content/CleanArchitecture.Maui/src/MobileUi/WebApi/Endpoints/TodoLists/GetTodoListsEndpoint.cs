@@ -7,12 +7,13 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.TodoLists;
 
 public sealed class GetTodoListsEndpoint : IEndpointsDefinition
 {
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapGet("api/TodoLists/", GetTodoLists)
             .RequireAuthorization(Permissions.Todo)
-            .WithName("Get Todo Lists")
-            .WithOpenApi();
+            .WithName("TodoLists_GetTodoLists")
+            .WithGroupName("TodoLists")
+            .WithTags(["TodoLists"]);
     }
 
     private async Task<TodosVm> GetTodoLists(ISender sender, CancellationToken cancellationToken)

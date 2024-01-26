@@ -8,7 +8,10 @@
   "paths": {
     "/weatherforecast": {
       "get": {
-        "operationId": "GetWeatherForecast",
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "WeatherForecast_GetWeatherForecast",
         "responses": {
           "200": {
             "description": "",
@@ -33,7 +36,10 @@
     },
     "/api/TodoLists/{id}": {
       "delete": {
-        "operationId": "Delete Todo Lists",
+        "tags": [
+          "TodoLists"
+        ],
+        "operationId": "TodoLists_DeleteTodoLists",
         "parameters": [
           {
             "name": "id",
@@ -58,7 +64,10 @@
         ]
       },
       "put": {
-        "operationId": "Put Todo List",
+        "tags": [
+          "TodoLists"
+        ],
+        "operationId": "TodoLists_PutTodoList",
         "parameters": [
           {
             "name": "id",
@@ -100,7 +109,10 @@
     },
     "/api/TodoLists": {
       "get": {
-        "operationId": "Get Todo Lists",
+        "tags": [
+          "TodoLists"
+        ],
+        "operationId": "TodoLists_GetTodoLists",
         "responses": {
           "200": {
             "description": "",
@@ -120,7 +132,10 @@
         ]
       },
       "post": {
-        "operationId": "Post Todo List",
+        "tags": [
+          "TodoLists"
+        ],
+        "operationId": "TodoLists_PostTodoList",
         "requestBody": {
           "x-name": "request",
           "content": {
@@ -155,7 +170,10 @@
     },
     "/api/TodoItems/{id}": {
       "delete": {
-        "operationId": "Delete Todo Item",
+        "tags": [
+          "TodoItems"
+        ],
+        "operationId": "TodoItems_DeleteTodoItem",
         "parameters": [
           {
             "name": "id",
@@ -180,7 +198,10 @@
         ]
       },
       "put": {
-        "operationId": "Put Todo Item",
+        "tags": [
+          "TodoItems"
+        ],
+        "operationId": "TodoItems_PutTodoItem",
         "parameters": [
           {
             "name": "id",
@@ -222,7 +243,10 @@
     },
     "/api/TodoItems": {
       "post": {
-        "operationId": "Post Todo Item",
+        "tags": [
+          "TodoItems"
+        ],
+        "operationId": "TodoItems_PostTodoItem",
         "requestBody": {
           "x-name": "request",
           "content": {
@@ -257,7 +281,10 @@
     },
     "/api/Admin/Users/{id}": {
       "get": {
-        "operationId": "Get User",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_GetUser",
         "parameters": [
           {
             "name": "id",
@@ -288,7 +315,10 @@
         ]
       },
       "put": {
-        "operationId": "Put User",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_PutUser",
         "parameters": [
           {
             "name": "id",
@@ -329,7 +359,10 @@
     },
     "/api/Admin/Users": {
       "get": {
-        "operationId": "GetApiAdminUsers",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_GetUsers",
         "responses": {
           "200": {
             "description": "",
@@ -351,7 +384,10 @@
     },
     "/api/Admin/Roles/{id}": {
       "delete": {
-        "operationId": "Delete Role",
+        "tags": [
+          "Roles"
+        ],
+        "operationId": "Roles_DeleteRole",
         "parameters": [
           {
             "name": "id",
@@ -378,7 +414,10 @@
         ]
       },
       "put": {
-        "operationId": "Put Roles",
+        "tags": [
+          "Roles"
+        ],
+        "operationId": "Roles_PutRoles",
         "parameters": [
           {
             "name": "id",
@@ -419,7 +458,10 @@
     },
     "/api/Admin/Roles": {
       "get": {
-        "operationId": "Get Roles",
+        "tags": [
+          "Roles"
+        ],
+        "operationId": "Roles_GetRoles",
         "responses": {
           "200": {
             "description": "",
@@ -439,7 +481,10 @@
         ]
       },
       "post": {
-        "operationId": "Post Roles",
+        "tags": [
+          "Roles"
+        ],
+        "operationId": "Roles_PostRoles",
         "requestBody": {
           "x-name": "newRole",
           "content": {
@@ -466,7 +511,10 @@
     },
     "/api/Admin/AccessControl": {
       "get": {
-        "operationId": "GetConfiguration",
+        "tags": [
+          "AccessControl"
+        ],
+        "operationId": "AccessControl_GetConfiguration",
         "responses": {
           "200": {
             "description": "",
@@ -486,7 +534,10 @@
         ]
       },
       "put": {
-        "operationId": "UpdateConfiguration",
+        "tags": [
+          "AccessControl"
+        ],
+        "operationId": "AccessControl_UpdateConfiguration",
         "requestBody": {
           "x-name": "updatedRole",
           "content": {

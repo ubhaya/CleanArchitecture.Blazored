@@ -15,7 +15,9 @@ public static class ApplicationConfigurations
                 return isAssignable && concreteType;
             })
             .Select(Activator.CreateInstance)
-            .Cast<IServiceInstaller>();
+            .Cast<IServiceInstaller>()
+            .OrderBy(installer => installer.ServiceOrder);
+        
         foreach (var installer in installers)
         {
             installer.InstallerService(builder.Services,builder.Configuration);
@@ -25,7 +27,7 @@ public static class ApplicationConfigurations
     public static void UseCleanArchitectureMiddleware(this WebApplication app)
     {
         var installerType = typeof(IMiddlewareInstaller);
-        
+
         var installers = installerType
             .Assembly.ExportedTypes
             .Where(t =>
@@ -35,7 +37,9 @@ public static class ApplicationConfigurations
                 return isAssignable && concreteType;
             })
             .Select(Activator.CreateInstance)
-            .Cast<IMiddlewareInstaller>();
+            .Cast<IMiddlewareInstaller>()
+            .OrderBy(installer => installer.MiddleWareOrder);
+        
         foreach (var installer in installers)
         {
             installer.InstallMiddleWare(app);

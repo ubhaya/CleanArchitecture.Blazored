@@ -7,14 +7,15 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.TodoLists;
 
 public sealed class PutTodoListsEndpoint : IEndpointsDefinition
 {
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapPut("api/TodoLists/{id}", PutTodoList)
             .RequireAuthorization(Permissions.Todo)
             .Produces(StatusCodes.Status400BadRequest)
             .Produces(StatusCodes.Status204NoContent)
-            .WithName("Put Todo List")
-            .WithOpenApi();
+            .WithName("TodoLists_PutTodoList")
+            .WithGroupName("TodoLists")
+            .WithTags(["TodoLists"]);
     }
 
     private async Task<IResult> PutTodoList(int id, UpdateTodoListRequest request, ISender sender,

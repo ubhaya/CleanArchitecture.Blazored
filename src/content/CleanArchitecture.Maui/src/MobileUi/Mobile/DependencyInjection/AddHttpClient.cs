@@ -32,7 +32,7 @@ public static partial class DependencyInjectionHelper
                 .CreateClient("CleanArchitecture.Maui.MobileUi"));
 
         services.Scan(scan => scan
-            .FromAssemblyOf<IClient>()
+            .FromAssemblyOf<IWeatherForecastClient>()
             .AddClasses()
             .AsImplementedInterfaces()
             .WithScopedLifetime());

@@ -7,12 +7,13 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.TodoItems;
 
 public sealed class PostTodoItemEndpoint : IEndpointsDefinition
 {
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapPost("api/TodoItems", PostTodoItem)
             .RequireAuthorization(Permissions.Todo)
-            .WithName("Post Todo Item")
-            .WithOpenApi();
+            .WithName("TodoItems_PostTodoItem")
+            .WithGroupName("TodoItems")
+            .WithTags(["TodoItems"]);
     }
 
     private async Task<int> PostTodoItem(CreateTodoItemRequest request, ISender sender, CancellationToken cancellationToken)

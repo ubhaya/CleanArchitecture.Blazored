@@ -4,10 +4,14 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.DependencyInjection;
 
 public class EndpointDefinitions : IServiceInstaller, IMiddlewareInstaller
 {
+    public int ServiceOrder => 2;
+
     public void InstallerService(IServiceCollection services, IConfiguration configuration)
     {
         services.AddEndpointDefinitions(typeof(WeatherForecastEndpoint));
     }
+
+    public int MiddleWareOrder => 2;
 
     public void InstallMiddleWare(WebApplication app)
     {

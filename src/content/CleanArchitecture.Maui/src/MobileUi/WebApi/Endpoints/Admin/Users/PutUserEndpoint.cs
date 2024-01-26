@@ -8,14 +8,15 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.Admin.Users;
 
 public sealed class PutUserEndpoint : IEndpointsDefinition
 {
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapPut("api/Admin/Users/{id}", PutUser)
             .RequireAuthorization(Permissions.ManageUsers)
             .Produces(StatusCodes.Status204NoContent)
             .Produces(StatusCodes.Status400BadRequest)
-            .WithName("Put User")
-            .WithOpenApi();
+            .WithName("Users_PutUser")
+            .WithGroupName("Users")
+            .WithTags(["Users"]);
     }
 
     private async Task<IResult> PutUser([FromRoute] string id, [FromBody] UserDto updatedUser, ISender sender,

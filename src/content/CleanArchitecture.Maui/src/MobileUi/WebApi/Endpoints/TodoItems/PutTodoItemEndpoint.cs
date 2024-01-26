@@ -8,14 +8,15 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.TodoItems;
 
 public sealed class PutTodoItemEndpoint : IEndpointsDefinition
 {
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapPut("api/TodoItems/{id:int}", PutTodoItem)
             .RequireAuthorization(Permissions.Todo)
             .Produces(StatusCodes.Status204NoContent)
             .Produces(StatusCodes.Status400BadRequest)
-            .WithName("Put Todo Item")
-            .WithOpenApi();
+            .WithName("TodoItems_PutTodoItem")
+            .WithGroupName("TodoItems")
+            .WithTags(["TodoItems"]);
     }
 
     private async Task<IResult> PutTodoItem([FromRoute] int id, [FromBody] UpdateTodoItemRequest request, ISender sender,

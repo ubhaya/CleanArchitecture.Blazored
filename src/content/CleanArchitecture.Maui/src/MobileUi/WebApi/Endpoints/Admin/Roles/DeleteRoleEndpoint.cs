@@ -6,14 +6,15 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.Admin.Roles;
 
 public sealed class DeleteRoleEndpoint : IEndpointsDefinition
 {
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapDelete("api/Admin/Roles/{id}", DeleteRole)
             .RequireAuthorization(Permissions.ManageRoles)
             .Produces(StatusCodes.Status204NoContent)
             .Produces(StatusCodes.Status404NotFound)
-            .WithName("Delete Role")
-            .WithOpenApi();
+            .WithName("Roles_DeleteRole")
+            .WithGroupName("Roles")
+            .WithTags(["Roles"]);
     }
 
     private static async Task<IResult> DeleteRole(string id, ISender sender, CancellationToken cancellationToken)

@@ -7,12 +7,13 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.Admin.Roles;
 
 public sealed class GetRolesEndpoint : IEndpointsDefinition
 {
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapGet("api/Admin/Roles", GetRoles)
             .RequireAuthorization(Permissions.ViewRoles)
-            .WithName("Get Roles")
-            .WithOpenApi();
+            .WithName("Roles_GetRoles")
+            .WithGroupName("Roles")
+            .WithTags(["Roles"]);
     }
 
     private static async Task<RolesVm> GetRoles(ISender sender, CancellationToken cancellationToken)

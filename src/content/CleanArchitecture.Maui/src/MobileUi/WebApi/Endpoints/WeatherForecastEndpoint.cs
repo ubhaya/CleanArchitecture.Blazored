@@ -10,11 +10,13 @@ public class WeatherForecastEndpoint : IEndpointsDefinition
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     ];
 
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapGet("/weatherforecast", GetWeatherForecast)
-            .WithName("GetWeatherForecast")
-            .RequireAuthorization(Permissions.Forecast);
+            .RequireAuthorization(Permissions.Forecast)
+            .WithName("WeatherForecast_GetWeatherForecast")
+            .WithGroupName("WeatherForecast")
+            .WithTags(["WeatherForecast"]);
     }
 
     private WeatherForecast[] GetWeatherForecast()

@@ -9,6 +9,8 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.DependencyInjection;
 
 public sealed class AspCoreServices : IServiceInstaller, IMiddlewareInstaller
 {
+    public int ServiceOrder => 0;
+
     public void InstallerService(IServiceCollection services, IConfiguration configuration)
     {
         services.AddEndpointsApiExplorer();
@@ -41,6 +43,8 @@ public sealed class AspCoreServices : IServiceInstaller, IMiddlewareInstaller
         services.AddHttpContextAccessor();
         services.AddScoped<ICurrentUser, CurrentUser>();
     }
+
+    public int MiddleWareOrder => 0;
 
     public void InstallMiddleWare(WebApplication app)
     {

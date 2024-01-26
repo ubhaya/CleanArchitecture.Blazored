@@ -8,14 +8,15 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.Admin.Roles;
 
 public sealed class PutRoleEndpoint : IEndpointsDefinition
 {
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapPut("api/Admin/Roles/{id}", PutRole)
             .RequireAuthorization(Permissions.ManageRoles)
             .Produces(StatusCodes.Status204NoContent)
             .Produces(StatusCodes.Status400BadRequest)
-            .WithName("Put Roles")
-            .WithOpenApi();
+            .WithName("Roles_PutRoles")
+            .WithGroupName("Roles")
+            .WithTags(["Roles"]);
     }
 
     private static async Task<IResult> PutRole([FromRoute] string id, [FromBody] RoleDto updatedRole, ISender sender,

@@ -7,11 +7,11 @@ namespace CleanArchitecture.Maui.MobileUi.Mobile.ViewModels;
 
 public sealed partial class WeatherForecastViewModel : BaseViewModel
 {
-    private readonly IClient _client;
+    private readonly IWeatherForecastClient _client;
 
     [ObservableProperty] private IEnumerable<WeatherForecast>? _weatherForecasts;
 
-    public WeatherForecastViewModel(IClient client)
+    public WeatherForecastViewModel(IWeatherForecastClient client)
     {
         _client = client;
     }

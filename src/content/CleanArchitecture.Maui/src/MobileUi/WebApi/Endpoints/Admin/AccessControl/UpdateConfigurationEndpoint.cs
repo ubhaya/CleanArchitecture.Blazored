@@ -8,13 +8,14 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.Admin.AccessControl;
 
 public sealed class UpdateConfigurationEndpoint : IEndpointsDefinition
 {
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapPut("api/Admin/AccessControl", PutUpdateConfiguration)
             .Produces(StatusCodes.Status204NoContent)
             .RequireAuthorization(Permissions.ConfigureAccessControl)
-            .WithName("UpdateConfiguration")
-            .WithOpenApi();
+            .WithName("AccessControl_UpdateConfiguration")
+            .WithGroupName("Admin")
+            .WithTags(["AccessControl"]);
     }
 
     private static async Task<IResult> PutUpdateConfiguration(ISender mediator, [FromBody] RoleDto updatedRole,

@@ -7,13 +7,14 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.Admin.AccessControl;
 
 public sealed class GetConfigurationEndpoint : IEndpointsDefinition
 {
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapGet("api/Admin/AccessControl",
                 GetConfiguration)
             .RequireAuthorization(Permissions.ViewAccessControl)
-            .WithName("GetConfiguration")
-            .WithOpenApi();
+            .WithName("AccessControl_GetConfiguration")
+            .WithGroupName("AccessControl")
+            .WithTags(["AccessControl"]);
     }
 
     private static async Task<AccessControlVm> GetConfiguration(IMediator mediator, CancellationToken cancellationToken)

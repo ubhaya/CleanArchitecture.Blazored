@@ -6,13 +6,14 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.TodoLists;
 
 public sealed class DeleteTodoListsEndpoint : IEndpointsDefinition
 {
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapDelete("api/TodoLists/{id:int}", DeleteTodoList)
             .RequireAuthorization(Permissions.Todo)
             .Produces(StatusCodes.Status204NoContent)
-            .WithName("Delete Todo Lists")
-            .WithOpenApi();
+            .WithName("TodoLists_DeleteTodoLists")
+            .WithGroupName("TodoLists")
+            .WithTags(["TodoLists"]);
     }
 
     private async Task<IResult> DeleteTodoList(int id, ISender sender, CancellationToken cancellationToken)

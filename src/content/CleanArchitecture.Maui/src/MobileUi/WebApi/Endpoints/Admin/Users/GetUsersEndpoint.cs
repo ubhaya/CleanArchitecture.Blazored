@@ -7,10 +7,13 @@ namespace CleanArchitecture.Maui.MobileUi.WebApi.Endpoints.Admin.Users;
 
 public sealed class GetUsersEndpoint : IEndpointsDefinition
 {
-    public void DefineEndpoints(WebApplication app)
+    public void DefineEndpoints(IEndpointRouteBuilder app)
     {
         app.MapGet("api/Admin/Users", GetUser)
-            .RequireAuthorization(Permissions.ViewUsers | Permissions.ManageUsers);
+            .RequireAuthorization(Permissions.ViewUsers | Permissions.ManageUsers)
+            .WithName("Users_GetUsers")
+            .WithGroupName("Users")
+            .WithTags(["Users"]);
     }
 
     private async Task<UsersVm> GetUser(ISender sender,CancellationToken cancellationToken)
