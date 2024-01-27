@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Maui.MobileUi.Mobile.Views;
+using CleanArchitecture.Maui.MobileUi.Mobile.Views.Todo;
 
 namespace CleanArchitecture.Maui.MobileUi.Mobile.Helpers;
 
@@ -39,8 +40,43 @@ public static class ApplicationHelper
                 }
             }
         };
-
+        
         Shell.Current.Items.Add(weatherForecastFlyout);
+
+        var todoListFlyout = new FlyoutItem
+        {
+            Title = "Todo Lists",
+            Route = Routes.TodoListPage,
+            FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
+            Items =
+            {
+                new ShellContent
+                {
+                    Title = "Todo Lists",
+                    ContentTemplate = new DataTemplate(typeof(TodoListPage))
+                }
+            }
+        };
+
+        Shell.Current.Items.Add(todoListFlyout);
+        
+        var todoItemFlyout = new FlyoutItem
+        {
+            Title = "Todo Items",
+            Route = Routes.TodoItemsPage,
+            FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
+            FlyoutItemIsVisible = false,
+            Items =
+            {
+                new ShellContent
+                {
+                    Title = "Todo Items",
+                    ContentTemplate = new DataTemplate(typeof(TodoItemsPage))
+                }
+            }
+        };
+
+        Shell.Current.Items.Add(todoItemFlyout);
 
         if (!Shell.Current.Items.Contains(mainPageFlyoutItem))
         {

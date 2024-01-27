@@ -1,6 +1,7 @@
 using System.Reflection;
 using Ardalis.GuardClauses;
 using CleanArchitecture.Maui.MobileUi.Mobile.DependencyInjection;
+using CleanArchitecture.Maui.MobileUi.Mobile.Helpers.FontAwesome;
 using CommunityToolkit.Maui;
 using epj.RouteGenerator;
 using Microsoft.Extensions.Configuration;
@@ -39,6 +40,9 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("Font Awesome 6 Brands-Regular-400.otf", nameof(FaBrands));
+                fonts.AddFont("Font Awesome 6 Free-Regular-400.otf", nameof(FaRegular));
+                fonts.AddFont("Font Awesome 6 Free-Solid-900.otf", nameof(FaSolid));
             });
 
         builder.Configuration.AddConfiguration(config);

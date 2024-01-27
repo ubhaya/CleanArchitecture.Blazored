@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.ViewModels.Todo"
+             xmlns:todoList="clr-namespace:CleanArchitecture.Maui.MobileUi.Shared.TodoLists;assembly=CleanArchitecture.Maui.MobileUi.Shared"
+             xmlns:todoModels="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.Models.Todo"
+             x:Class="CleanArchitecture.Maui.MobileUi.Mobile.Views.Todo.TodoItemsPage"
+             x:DataType="viewModel:TodoItemsViewModel"
+             Title="{Binding TodoList.Title}">
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding TodoItems}"
+                  SelectionMode="None"
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="todoModels:TodoItemsModel">
+                    <ViewCell>
+                        <HorizontalStackLayout VerticalOptions="Start"
+                                               Padding="10"
+                                               Spacing="10">
+                            <CheckBox IsChecked="{Binding Done}"/>
+                            <Label Text="{Binding Title}"
+                                   FontSize="16"/>
+                        </HorizontalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
