@@ -23,6 +23,11 @@
         <ListView ItemsSource="{Binding TodoLists}" 
                   SelectionMode="Single" 
                   SelectedItem="{Binding SelectedList}">
+            <ListView.Behaviors>
+                <toolkit:EventToCommandBehavior
+                    EventName="ItemSelected"
+                    Command="{Binding SelectedTodoListCommand}"/>
+            </ListView.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="todoList:TodoListDto">
                     <ViewCell>

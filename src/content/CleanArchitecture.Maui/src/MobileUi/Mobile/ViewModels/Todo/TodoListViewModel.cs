@@ -22,15 +22,6 @@ public sealed partial class TodoListViewModel : BaseViewModel
 
     public ObservableCollection<TodoListDto> TodoLists => Model.Lists.ToObservableCollection();
 
-    partial void OnSelectedListChanged(TodoListDto? value)
-    {
-        Task.Run(async () =>
-        {
-            await Task.Delay(3);
-            await SelectedTodoListCommand.ExecuteAsync(null);
-        });
-    }
-
     [RelayCommand]
     private async Task GetTodoListsAsync()
     {
