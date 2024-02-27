@@ -2,6 +2,7 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewModel="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.ViewModels.Todo"
              xmlns:todoModels="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.Models.Todo"
              x:Class="CleanArchitecture.Maui.MobileUi.Mobile.Views.Todo.TodoItemsPage"
@@ -17,7 +18,13 @@
                         <HorizontalStackLayout VerticalOptions="Start"
                                                Padding="10"
                                                Spacing="10">
-                            <CheckBox IsChecked="{Binding Done}"/>
+                            <CheckBox IsChecked="{Binding Done}">
+                                <CheckBox.Behaviors>
+                                    <toolKit:EventToCommandBehavior
+                                        EventName="CheckedChanged"
+                                        Command="{Binding CheckChangedCommand}"/>
+                                </CheckBox.Behaviors>
+                            </CheckBox>
                             <Label Text="{Binding Title}"
                                    FontSize="16"
                                    VerticalTextAlignment="Center"/>
