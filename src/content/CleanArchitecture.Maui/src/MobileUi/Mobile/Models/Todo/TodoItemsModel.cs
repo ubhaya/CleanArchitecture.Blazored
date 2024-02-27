@@ -11,6 +11,7 @@ public sealed partial class TodoItemsModel : ObservableObject
     private readonly ITodoItemsClient _client;
     [ObservableProperty] private bool _done;
     [ObservableProperty] private string _title = string.Empty;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(IsNotEditable))] private bool _isEditable;
 
     private TodoItemsModel(ITodoItemsClient client)
     {
@@ -24,6 +25,7 @@ public sealed partial class TodoItemsModel : ObservableObject
     public int Priority { get; set; }
 
     public string Note { get; set; } = string.Empty;
+    public bool IsNotEditable => !IsEditable;
 
     public static TodoItemsModel From(TodoItemDto source, ITodoItemsClient client)
     {
@@ -35,6 +37,14 @@ public sealed partial class TodoItemsModel : ObservableObject
             Done = source.Done,
             Priority = source.Priority,
             Note = source.Note,
+        };
+    }
+
+    public static TodoItemsModel From(int listId, ITodoItemsClient client)
+    {
+        return new TodoItemsModel(client)
+        {
+            ListId = listId
         };
     }
 
@@ -51,5 +61,33 @@ public sealed partial class TodoItemsModel : ObservableObject
                 Note = Note,
                 Priority = Priority
             });
+    }
+
+    [RelayCommand]
+    private async Task SaveItem()
+    {
+        if (Id == 0)
+        {
+            var itemId = await _client.PostTodoItemAsync(new CreateTodoItemRequest
+            {
+                ListId = ListId,
+                Title = Title
+            });
+
+            Id = itemId;
+        }
+        else
+        {
+            await _client.PutTodoItemAsync(Id,
+                new UpdateTodoItemRequest
+                {
+                    Id = Id,
+                    ListId = ListId,
+                    Title = Title,
+                    Done = Done,
+                });
+        }
+
+        IsEditable = false;
     }
 }

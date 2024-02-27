@@ -41,7 +41,7 @@ public sealed partial class TodoListViewModel : BaseViewModel
     {
         var navigationParameter = new Dictionary<string, object?>
         {
-            { nameof(TodoItemsViewModel.TodoList), SelectedList}
+            { nameof(TodoItemsViewModel.TodoListTitle), SelectedList}
         };
         await Shell.Current.GoToAsync($"//{Routes.TodoItemsPage}", navigationParameter);
     }

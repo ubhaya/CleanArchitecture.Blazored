@@ -7,31 +7,45 @@
              xmlns:todoModels="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.Models.Todo"
              x:Class="CleanArchitecture.Maui.MobileUi.Mobile.Views.Todo.TodoItemsPage"
              x:DataType="viewModel:TodoItemsViewModel"
-             Title="{Binding TodoList}">
+             Title="{Binding TodoListTitle}">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding TodoItems}"
-                  SelectionMode="None"
-                  HasUnevenRows="True">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="todoModels:TodoItemsModel">
-                    <ViewCell>
-                        <HorizontalStackLayout VerticalOptions="Start"
-                                               Padding="10"
-                                               Spacing="10">
-                            <CheckBox IsChecked="{Binding Done}">
-                                <CheckBox.Behaviors>
-                                    <toolKit:EventToCommandBehavior
-                                        EventName="CheckedChanged"
-                                        Command="{Binding CheckChangedCommand}"/>
-                                </CheckBox.Behaviors>
-                            </CheckBox>
-                            <Label Text="{Binding Title}"
-                                   FontSize="16"
-                                   VerticalTextAlignment="Center"/>
-                        </HorizontalStackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <VerticalStackLayout Padding="5">
+            <ListView ItemsSource="{Binding TodoItems}"
+                      SelectionMode="Single"
+                      HasUnevenRows="True"
+                      SelectedItem="{Binding SelectedItem}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="todoModels:TodoItemsModel">
+                        <ViewCell>
+                            <HorizontalStackLayout VerticalOptions="Start"
+                                                   Padding="10"
+                                                   Spacing="10">
+                                <CheckBox IsChecked="{Binding Done}">
+                                    <CheckBox.Behaviors>
+                                        <toolKit:EventToCommandBehavior
+                                            EventName="CheckedChanged"
+                                            Command="{Binding CheckChangedCommand}"/>
+                                    </CheckBox.Behaviors>
+                                </CheckBox>
+                                <Label Text="{Binding Title}"
+                                       FontSize="16"
+                                       VerticalTextAlignment="Center"
+                                       IsVisible="{Binding IsNotEditable}"/>
+                                <Entry Text="{Binding Title}"
+                                       IsVisible="{Binding IsEditable}">
+                                    <Entry.Behaviors>
+                                        <toolKit:EventToCommandBehavior
+                                            EventName="Completed"
+                                            Command="{Binding SaveItemCommand}"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </HorizontalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Add Item..."
+                    Command="{Binding AddItemCommand}"/>
+        </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>
