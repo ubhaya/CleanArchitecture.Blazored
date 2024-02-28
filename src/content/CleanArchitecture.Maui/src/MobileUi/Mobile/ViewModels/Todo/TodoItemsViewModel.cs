@@ -40,6 +40,13 @@ public sealed partial class TodoItemsViewModel : BaseViewModel, IQueryAttributab
         EditItem(newItem);
     }
 
+    [RelayCommand]
+    private async Task RemoveItem(TodoItemsModel item)
+    {
+        await _itemsClient.DeleteTodoItemAsync(item.Id);
+        TodoItems.Remove(item);
+    }
+
     private void EditItem(TodoItemsModel? item)
     {
         if (IsSelectedItem(item))
