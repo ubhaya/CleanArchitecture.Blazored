@@ -19,4 +19,9 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Infrastructure.IdentityServer\Infrastructure.IdentityServer.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="CleanArchitecture.Maui.Application.IntegrationTests" />
+	</ItemGroup>
+	
 </Project>

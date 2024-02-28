@@ -34,4 +34,32 @@
                 MatchExpression="WebUi"
                 ReplacementText="MobileUi"/>
     </Target>
+    <Target Name="InsertLine" BeforeTargets="Build">
+        <InsertIntoFile FilePath="$(MauiDestinationFolderPath)/tests/Application.IntegrationTests/CustomWebApplicationFactory.cs" LineNumber="1" Text="using CleanArchitecture.Maui.MobileUi.WebApi;" />
+    </Target>
+    <UsingTask
+            TaskName="InsertIntoFile"
+            TaskFactory="RoslynCodeTaskFactory"
+            AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll" >
+        <ParameterGroup>
+            <FilePath ParameterType="System.String" Required="true" />
+            <LineNumber ParameterType="System.Int32"  Required="true" />
+            <Text ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="System.IO" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                // By tradition, text file line numbering is 1-based
+                var lines = File.Exists(FilePath) 
+                                      ? File.ReadAllLines(FilePath).ToList() 
+                                      : new List<String>(1);
+                lines.Insert(Math.Min(LineNumber - 1, lines.Count), Text);
+                File.WriteAllLines(FilePath, lines);
+                return true;
+              ]]>
+            </Code>
+        </Task>
+    </UsingTask>
 </Project>

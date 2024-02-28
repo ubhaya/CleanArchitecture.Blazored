@@ -33,6 +33,9 @@ tests/*
 !tests/Application.IntegrationTests
 tests/Application.IntegrationTests/*
 !tests/Application.IntegrationTests/Application.IntegrationTests.csproj
+!tests/Application.IntegrationTests/CustomIdentityServerWebApplicationFactory.cs
+!tests/Application.IntegrationTests/appsettings.IdentityServer.json
+!tests/Application.IntegrationTests/Testing.cs
 !tests/MobileUi.AcceptanceTests
 tests/MobileUi.AcceptanceTests/*
 !tests/MobileUi.AcceptanceTests/Pages/
