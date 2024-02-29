@@ -9,6 +9,7 @@
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/*.sln"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/WebUi/WebUi/**/*"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/WebUi/WebUi.Client/**/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/WebUi.AcceptanceTests/**/*"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/.template.config/**/*"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/bin/*"/>
         <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
