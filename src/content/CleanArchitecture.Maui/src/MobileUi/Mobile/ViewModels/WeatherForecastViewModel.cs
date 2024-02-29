@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Maui.MobileUi.Client;
+using CleanArchitecture.Maui.MobileUi.Client;
 using CleanArchitecture.Maui.MobileUi.Shared.WeatherForecasts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;

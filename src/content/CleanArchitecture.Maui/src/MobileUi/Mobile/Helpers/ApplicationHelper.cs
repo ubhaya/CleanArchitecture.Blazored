@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Maui.MobileUi.Mobile.Views;
+using CleanArchitecture.Maui.MobileUi.Mobile.Views;
 using CleanArchitecture.Maui.MobileUi.Mobile.Views.Todo;
 
 namespace CleanArchitecture.Maui.MobileUi.Mobile.Helpers;
