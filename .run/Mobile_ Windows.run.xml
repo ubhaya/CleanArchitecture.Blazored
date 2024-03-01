@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Mobile: Windows" type="UwpProject" factoryName="UWP">
+    <option name="PROJECT_PATH" value="$PROJECT_DIR$/src/content/CleanArchitecture.Maui/src/MobileUi/Mobile/Mobile.csproj" />
+    <option name="PROGRAM_PARAMETERS" value="" />
+    <method v="2">
+      <option name="Build" />
+    </method>
+  </configuration>
+</component>
