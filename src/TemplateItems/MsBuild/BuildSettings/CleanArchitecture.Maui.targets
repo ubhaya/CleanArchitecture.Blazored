@@ -34,7 +34,7 @@
                 MatchExpression="WebUi"
                 ReplacementText="MobileUi"/>
     </Target>
-    <Target Name="InsertLine" BeforeTargets="Build">
+    <Target Name="InsertLine" AfterTargets="MauiMoveFilesAround">
         <InsertIntoFile FilePath="$(MauiDestinationFolderPath)/tests/Application.IntegrationTests/CustomWebApplicationFactory.cs" LineNumber="1" Text="using CleanArchitecture.Maui.MobileUi.WebApi;" />
     </Target>
 </Project>
