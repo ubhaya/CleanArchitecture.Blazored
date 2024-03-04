@@ -140,6 +140,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Shared", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile", "src\content\CleanArchitecture.Maui\src\MobileUi\Mobile\Mobile.csproj", "{A1292624-8AB6-4630-8524-22081C979785}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Template", "Project Template", "{E4E728AD-FE30-4357-88EE-200B57AF59BB}"
+	ProjectSection(SolutionItems) = preProject
+		src\content\CleanArchitecture.Maui\.template.config\template.json = src\content\CleanArchitecture.Maui\.template.config\template.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -344,6 +349,7 @@ Global
 		{B2FABE92-C778-4790-A807-5448E4071F56} = {AF131479-BEC3-4107-A51D-25CAB7B27B05}
 		{D0BE2832-ACDB-4A06-AA24-DB8DD9FB113B} = {AF131479-BEC3-4107-A51D-25CAB7B27B05}
 		{A1292624-8AB6-4630-8524-22081C979785} = {D0FF79B0-D8E1-4D2D-B501-0C17992E8963}
+		{E4E728AD-FE30-4357-88EE-200B57AF59BB} = {D8431494-BBCC-4FDC-AA53-3B8C06F4DF4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E21648D4-C532-447C-9233-32E2BE40946A}
