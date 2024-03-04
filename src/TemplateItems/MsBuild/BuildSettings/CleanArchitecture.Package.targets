@@ -14,4 +14,7 @@
         </ItemGroup>
         <Exec Command="markedpp TemplateItems/Docs/%(ReadMeFilesWithKey.Key) -o %(ReadMeFilesWithKey.Value)"/>
     </Target>
+    <Target Name="Delete Empty Folder" AfterTargets="Build" Condition=" '$(Configuration)' == 'Debug'">
+        <DeleteEmptyFolders RootFolder="."/>
+    </Target>
 </Project>
