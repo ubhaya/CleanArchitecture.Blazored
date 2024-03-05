@@ -22,12 +22,13 @@ public partial class Testing
     private static IConfiguration _identityServerConfiguration = null!;
     private static IServiceScopeFactory _scopeFactory = null!;
     private static IServiceScopeFactory _identityServerScopeFactory = null!;
-    private static Checkpoint _checkpoint = null!;
-    private static Checkpoint _identityServerCheckpoint = null!;
+    private static Respawner _respawner = null!;
+    private static Respawner _identityServerRespawner = null!;
+    private string _connectionString = null!;
     private static string? _currentUserId;
 
     [OneTimeSetUp]
-    public void RunBeforeAnyTests()
+    public async Task RunBeforeAnyTests()
     {
         _factory = new CustomWebApplicationFactory();
         _scopeFactory = _factory.Services.GetRequiredService<IServiceScopeFactory>();
@@ -35,16 +36,20 @@ public partial class Testing
         _identityServerScopeFactory = _identityServerFactory.Services.GetRequiredService<IServiceScopeFactory>();
         _configuration = _factory.Services.GetRequiredService<IConfiguration>();
         _identityServerConfiguration = _identityServerFactory.Services.GetRequiredService<IConfiguration>();
+        _connectionString = _configuration.GetConnectionString("DefaultConnection")!;
 
-        _checkpoint = new Checkpoint
+        _respawner = await Respawner.CreateAsync(_connectionString, new RespawnerOptions()
         {
-            TablesToIgnore = new[] { new Table("__EFMigrationsHistory") }
-        };
-
-        _identityServerCheckpoint = new Checkpoint
+            TablesToIgnore =
+            [
+                new Table("__EFMigrationsHistory")
+            ],
+        });
+        
+        _identityServerRespawner = await Respawner.CreateAsync(_identityServerConfiguration.GetConnectionString("DefaultConnection")!, new RespawnerOptions()
         {
             TablesToIgnore = [new Table("__EFMigrationsHistory")]
-        };
+        });
     }
 
     public static async Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request)
@@ -117,8 +122,8 @@ public partial class Testing
 
     public static async Task ResetState()
     {
-        await _checkpoint.Reset(_configuration.GetConnectionString("DefaultConnection")!);
-        await _identityServerCheckpoint.Reset(_configuration.GetConnectionString("DefaultConnection")!);
+        await _respawner.ResetAsync(_configuration.GetConnectionString("DefaultConnection")!);
+        await _identityServerRespawner.ResetAsync(_identityServerConfiguration.GetConnectionString("DefaultConnection")!);
 
         _currentUserId = null;
     }
