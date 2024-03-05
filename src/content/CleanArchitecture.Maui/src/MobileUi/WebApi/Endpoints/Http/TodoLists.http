@@ -1,0 +1,26 @@
+### Get Todo Lists
+GET {{baseAddress}}/api/TodoLists
+Authorization: Bearer {{access_token}}
+
+### Post Todo List
+POST {{baseAddress}}/api/TodoLists
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+{
+  "Title": "string"
+}
+
+### Put Todo List
+PUT {{baseAddress}}/api/TodoLists/0
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+{
+  "Id": 0,
+  "Title": "string"
+}
+
+### Delete Todo List
+DELETE {{baseAddress}}/api/TodoLists/0
+Authorization: Bearer {{access_token}}

@@ -9,7 +9,7 @@ public sealed class AuthorizeAttribute : Microsoft.AspNetCore.Authorization.Auth
     
     public AuthorizeAttribute(Permissions permission)
     {
-        
+        Permissions = permission;
     }
 
     public Permissions Permissions

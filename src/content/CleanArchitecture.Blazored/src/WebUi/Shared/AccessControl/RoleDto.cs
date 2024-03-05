@@ -18,7 +18,7 @@ public sealed class RoleDto
         Permissions = permissions;
     }
 
-    public string Id { get; }
+    public string Id { get; set; }
     
     public string Name { get; set; }
     

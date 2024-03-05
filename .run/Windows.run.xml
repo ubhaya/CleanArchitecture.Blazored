@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Windows" type="CompoundRunConfigurationType">
+    <toRun name="Mobile: IdentityServer" type="LaunchSettings" />
+    <toRun name="Mobile: WebApi" type="LaunchSettings" />
+    <toRun name="Mobile: Windows" type="UwpProject" />
+    <method v="2" />
+  </configuration>
+</component>

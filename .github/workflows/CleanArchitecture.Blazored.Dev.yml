@@ -17,8 +17,10 @@ env:
 jobs:
   build-test-bootstrapblazor:
     runs-on: ubuntu-latest
+    env: 
+      SolutionPath: CleanArchitecture.Blazored.Bootstrap.sln
     
-    services: 
+    services:
       sql-server:
         image: mcr.microsoft.com/mssql/server:2019-latest
         env:
@@ -40,15 +42,19 @@ jobs:
         shell: pwsh
         run: .\CleanArchitecture.Blazored.restore.ps1
 
+      - name: Create Temporary Solution
+        shell: pwsh
+        run: .\AddProjectsToSolution.ps1 -solutionPath  ${{ env.SolutionPath }} -projectsPath .\src\content\CleanArchitecture.Blazored\
+
       - name: Restore dependencies
-        run: dotnet restore CleanArchitecture.Blazored.Dev.sln --configfile ./nuget.config
+        run: dotnet restore ${{ env.SolutionPath }} --configfile ./nuget.config
 
       - name: Build solution
-        run: dotnet build --no-restore CleanArchitecture.Blazored.Dev.sln -c Release
+        run: dotnet build --no-restore ${{ env.SolutionPath }} -c Release
 
       - name: Execute Application.IntegrationTests
         run: |
-         dotnet test -c Release --no-build src/content/CleanArchitecture.Blazored/tests/Application.IntegrationTests/Application.IntegrationTests.csproj
+          dotnet test -c Release --no-build src/content/CleanArchitecture.Blazored/tests/Application.IntegrationTests/Application.IntegrationTests.csproj
         env:
           ConnectionStrings__DefaultConnection: Server=localhost,1433;Database=CleanArchitecture_Application_IntegrationTests;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;
 
@@ -69,51 +75,120 @@ jobs:
           ConnectionStrings__DefaultConnection: "Server=localhost,1433;Database=CleanArchitecture_Application_AcceptanceTests.Blazored;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;"
 
   build-test-mudblazor:
-          runs-on: ubuntu-latest
-          
-          services: 
-            sql-server:
-              image: mcr.microsoft.com/mssql/server:2019-latest
-              env:
-                ACCEPT_EULA: 'Y'
-                MSSQL_SA_PASSWORD: ${{ env.SqlServerPassword }}
-              ports:
-                - 1433:1433
-          
-          steps:
-            - name: Checkout Repo
-              uses: actions/checkout@v3
-      
-            - name: Setup .NET
-              uses: actions/setup-dotnet@v4.0.0
-              with:
-                dotnet-version: 8.x
+    runs-on: ubuntu-latest
+    env:
+      SolutionPath: CleanArchitecture.Blazored.MudBlazor.sln
+    
+    services:
+      sql-server:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          ACCEPT_EULA: 'Y'
+          MSSQL_SA_PASSWORD: ${{ env.SqlServerPassword }}
+        ports:
+          - 1433:1433
+    
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
 
-            - name: Build Generated Project
-              shell: pwsh
-              run: .\CleanArchitecture.Blazored.restore.ps1
-      
-            - name: Restore dependencies
-              run: dotnet restore CleanArchitecture.Blazored.Dev.sln --configfile ./nuget.config
-      
-            - name: Build solution
-              run: dotnet build --no-restore CleanArchitecture.Blazored.Dev.sln -c Release
-      
-            - name: Execute Application.IntegrationTests
-              run: |
-               dotnet test -c Release --no-build src/content/CleanArchitecture.MudBlazored/tests/Application.IntegrationTests/Application.IntegrationTests.csproj
-              env:
-                ConnectionStrings__DefaultConnection: Server=localhost,1433;Database=CleanArchitecture_Application_IntegrationTests;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;
-      
-            - name: Execute Application.UnitTest
-              run: dotnet test -c Release --no-build src/content/CleanArchitecture.MudBlazored/tests/Application.UnitTests/Application.UnitTests.csproj
-      
-            - name: Execute Domain.UnitTest
-              run: dotnet test -c Release --no-build src/content/CleanArchitecture.MudBlazored/tests/Domain.UnitTests/Domain.UnitTests.csproj
-      
-            - name: Install Playwright
-              run: pwsh src/content/CleanArchitecture.MudBlazored/tests/WebUi.AcceptanceTests/bin/Release/net8.0/playwright.ps1 install
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: 8.x
 
-            - name: Execute WebUi.AcceptanceTests
-              run: dotnet test -c Release --no-build src/content/CleanArchitecture.MudBlazored/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj
-              
+      - name: Build Generated Project
+        shell: pwsh
+        run: .\CleanArchitecture.Blazored.restore.ps1
+
+      - name: Create Temporary Solution
+        shell: pwsh
+        run: .\AddProjectsToSolution.ps1 -solutionPath  ${{ env.SolutionPath }} -projectsPath .\src\content\CleanArchitecture.MudBlazored\
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.SolutionPath }} --configfile ./nuget.config
+
+      - name: Build solution
+        run: dotnet build --no-restore ${{ env.SolutionPath }} -c Release
+
+      - name: Execute Application.IntegrationTests
+        run: |
+          dotnet test -c Release --no-build src/content/CleanArchitecture.MudBlazored/tests/Application.IntegrationTests/Application.IntegrationTests.csproj
+        env:
+          ConnectionStrings__DefaultConnection: Server=localhost,1433;Database=CleanArchitecture_Application_IntegrationTests;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;
+
+      - name: Execute Application.UnitTest
+        run: dotnet test -c Release --no-build src/content/CleanArchitecture.MudBlazored/tests/Application.UnitTests/Application.UnitTests.csproj
+
+      - name: Execute Domain.UnitTest
+        run: dotnet test -c Release --no-build src/content/CleanArchitecture.MudBlazored/tests/Domain.UnitTests/Domain.UnitTests.csproj
+
+      - name: Install Playwright
+        run: pwsh src/content/CleanArchitecture.MudBlazored/tests/WebUi.AcceptanceTests/bin/Release/net8.0/playwright.ps1 install
+
+      - name: Execute WebUi.AcceptanceTests
+        run: dotnet test -c Release --no-build src/content/CleanArchitecture.MudBlazored/tests/WebUi.AcceptanceTests/WebUi.AcceptanceTests.csproj
+                            
+  build-test-maui:
+    runs-on: ubuntu-latest
+    env:
+      SolutionPath: CleanArchitecture.Blazored.Maui.sln
+    
+    services:
+      sql-server:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          ACCEPT_EULA: 'Y'
+          MSSQL_SA_PASSWORD: ${{ env.SqlServerPassword }}
+        ports:
+          - 1433:1433
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: 8.x
+
+      - name: Install Maui
+        shell: pwsh
+        run: dotnet workload install maui-android
+
+      - name: Install OpenJDK 11
+        shell: bash
+        run: |
+          ubuntu_release=`lsb_release -rs`
+          wget https://packages.microsoft.com/config/ubuntu/${ubuntu_release}/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+          sudo dpkg -i packages-microsoft-prod.deb
+          sudo apt-get install apt-transport-https
+          sudo apt-get update
+          sudo apt-get install msopenjdk-11
+          
+      - name: Build Generated Project
+        shell: pwsh
+        run: .\CleanArchitecture.Blazored.restore.ps1
+
+      - name: Create Temporary Solution
+        shell: pwsh
+        run: .\AddProjectsToSolution.ps1 -solutionPath  ${{ env.SolutionPath }} -projectsPath .\src\content\CleanArchitecture.Maui\ -projectsToExclude src\MobileUi\Mobile
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.SolutionPath }} --configfile ./nuget.config
+
+      - name: Build solution
+        run: dotnet build --no-restore ${{ env.SolutionPath }} -c Release
+
+      - name: Execute Application.IntegrationTests
+        run: |
+          dotnet test -c Release --no-build src/content/CleanArchitecture.Maui/tests/Application.IntegrationTests/Application.IntegrationTests.csproj
+        env:
+          ConnectionStrings__DefaultConnection: Server=localhost,1433;Database=CleanArchitecture_Application_IntegrationTests;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;
+          ConnectionStrings__IdentityServer: Server=localhost,1433;Database=CleanArchitecture_IdentityServer_IntegrationTests;User=sa;Password=${{ env.SqlServerPassword }};MultipleActiveResultSets=true;TrustServerCertificate=True;
+      
+      - name: Execute Application.UnitTest
+        run: dotnet test -c Release --no-build src/content/CleanArchitecture.Maui/tests/Application.UnitTests/Application.UnitTests.csproj
+
+      - name: Execute Domain.UnitTest
+        run: dotnet test -c Release --no-build src/content/CleanArchitecture.Maui/tests/Domain.UnitTests/Domain.UnitTests.csproj

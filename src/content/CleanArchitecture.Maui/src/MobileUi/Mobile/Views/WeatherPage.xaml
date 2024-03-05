@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.ViewModels"
+             xmlns:weatherForecastsModel="clr-namespace:CleanArchitecture.Maui.MobileUi.Shared.WeatherForecasts;assembly=CleanArchitecture.Maui.MobileUi.Shared"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="CleanArchitecture.Maui.MobileUi.Mobile.Views.WeatherPage"
+             x:DataType="viewModel:WeatherForecastViewModel">
+    
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing"
+                                        Command="{Binding GetWeatherForecastCommand}"></toolkit:EventToCommandBehavior>
+    </ContentPage.Behaviors>
+    
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding WeatherForecasts}" SelectionMode="None" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="weatherForecastsModel:WeatherForecast">
+                    <ViewCell> 
+                        <VerticalStackLayout HorizontalOptions="Start" Spacing="5">
+                            <HorizontalStackLayout VerticalOptions="Fill" Spacing="5">
+                                <Label Text="{Binding Date, StringFormat='{0:dd MMMM yyyy}'}" FontAttributes="Bold"/>
+                                <VerticalStackLayout Spacing="5">
+                                    <Label Text="{Binding TemperatureC, StringFormat='Temperature (c) {0}'}" />
+                                    <Label Text="{Binding TemperatureF, StringFormat='Temperature (f) {0}'}" />
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                            <Label Text="{Binding Summary, StringFormat='Summary: {0}'}"/>
+                        </VerticalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

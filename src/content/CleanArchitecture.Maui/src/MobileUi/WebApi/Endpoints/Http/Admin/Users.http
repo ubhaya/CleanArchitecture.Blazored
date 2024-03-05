@@ -1,0 +1,7 @@
+### Get Users
+GET  {{baseAddress}}/api/Admin/Users/
+Authorization: Bearer {{access_token}}
+
+### Get User
+GET {{baseAddress}}/api/Admin/Users/{{id}}
+Authorization: Bearer {{access_token}})}}

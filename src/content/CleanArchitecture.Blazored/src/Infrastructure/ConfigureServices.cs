@@ -20,7 +20,8 @@ public static class ConfigureServices
                 return isAssignable && concreteType;
             })
             .Select(Activator.CreateInstance)
-            .Cast<IServiceInstaller>();
+            .Cast<IServiceInstaller>()
+            .OrderBy(x=>x.Order);
         foreach (var installer in installers)
         {
             installer.InstallerService(services, configuration);

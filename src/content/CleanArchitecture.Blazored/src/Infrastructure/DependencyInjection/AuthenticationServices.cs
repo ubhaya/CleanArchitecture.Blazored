@@ -8,6 +8,8 @@ namespace CleanArchitecture.Blazored.Infrastructure.DependencyInjection;
 
 public sealed class AuthenticationServices : IServiceInstaller
 {
+    public int Order => 2;
+
     public void InstallerService(IServiceCollection services, IConfiguration configuration)
     {
         services.AddIdentityCore<ApplicationUser>(options =>

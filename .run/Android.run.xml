@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Android" type="CompoundRunConfigurationType">
+    <toRun name="Mobile: IdentityServer" type="LaunchSettings" />
+    <toRun name="Mobile: WebApi" type="LaunchSettings" />
+    <toRun name="Mobile: Android" type="XamarinAndroidProject" />
+    <method v="2" />
+  </configuration>
+</component>
