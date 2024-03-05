@@ -36,7 +36,7 @@ internal class CustomIdentityServerWebApplicationFactory : WebApplicationFactory
                 .Remove<DbContextOptions<IdentityServerDbContext>>()
                 .AddDbContext<IdentityServerDbContext>(options =>
                 {
-                    options.UseSqlServer(webBuilder.Configuration.GetConnectionString("DefaultConnection"),
+                    options.UseSqlServer(webBuilder.Configuration.GetConnectionString("IdentityServer"),
                         sqlBuilder => sqlBuilder.MigrationsAssembly(typeof(IdentityServerDbContext).Assembly.FullName));
                 });
         });
