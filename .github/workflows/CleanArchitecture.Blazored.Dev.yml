@@ -172,7 +172,7 @@ jobs:
 
       - name: Create Temporary Solution
         shell: pwsh
-        run: .\AddProjectsToSolution.ps1 -solutionPath  ${{ env.SolutionPath }} -projectsPath .\src\content\CleanArchitecture.Maui\
+        run: .\AddProjectsToSolution.ps1 -solutionPath  ${{ env.SolutionPath }} -projectsPath .\src\content\CleanArchitecture.Maui\ -projectsToExclude src\MobileUi\Mobile
 
       - name: Restore dependencies
         run: dotnet restore ${{ env.SolutionPath }} --configfile ./nuget.config

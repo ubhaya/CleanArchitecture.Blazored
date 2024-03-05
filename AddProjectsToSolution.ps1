@@ -1,6 +1,7 @@
 param (
     [string]$solutionPath,
-    [string]$projectsPath
+    [string]$projectsPath,
+    [string]$projectsToExclude
 )
 
 # Check if solutionPath and projectsPath are provided
@@ -33,4 +34,13 @@ foreach ($projectFile in $projectFiles) {
     Write-Host "Added project '$projectName' to solution."
 }
 
+if (-not $null -eq $projectsToExclude) {
+    $projectToExclude = Join-Path -Path $projectsPath -ChildPath $projectsToExclude
+    $isProjectToExcludeExists = Test-Path $projectToExclude
+
+    if ($isProjectToExcludeExists)
+    {
+        dotnet sln $solutionPath remove $projectToExclude
+    }
+}
 Write-Host "Build process completed."
