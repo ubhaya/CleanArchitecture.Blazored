@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Mobile: iOS" type="XamarinIOSProject" factoryName="Xamarin.iOS">
+    <option name="PROJECT_PATH" value="$PROJECT_DIR$/src/content/CleanArchitecture.Maui/src/MobileUi/Mobile/Mobile.csproj" />
+    <option name="PROGRAM_PARAMETERS" value="" />
+    <option name="IS_PASS_PARENT_ENVS" value="false" />
+    <option name="EXTRA_MLAUNCH_PARAMETERS" value="" />
+    <method v="2" />
+  </configuration>
+</component>

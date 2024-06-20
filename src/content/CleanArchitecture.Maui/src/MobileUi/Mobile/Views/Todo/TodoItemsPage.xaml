@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModel="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.ViewModels.Todo"
+             xmlns:todoModels="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.Models.Todo"
+             xmlns:fa="clr-namespace:CleanArchitecture.Maui.MobileUi.Mobile.Helpers.FontAwesome"
+             x:Class="CleanArchitecture.Maui.MobileUi.Mobile.Views.Todo.TodoItemsPage"
+             x:DataType="viewModel:TodoItemsViewModel"
+             Title="{Binding TodoListTitle}">
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="5">
+            <CollectionView ItemsSource="{Binding TodoItems}"
+                      SelectionMode="Single"
+                      SelectedItem="{Binding SelectedItem}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="todoModels:TodoItemsModel">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="{x:Static fa:FaSolid.DeleteLeft}"
+                                               BackgroundColor="LightPink"
+                                               Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:TodoItemsViewModel}}, 
+                                               Path=RemoveItemCommand}"
+                                               CommandParameter="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <VerticalStackLayout>
+                                <HorizontalStackLayout VerticalOptions="Start"
+                                                       Padding="10"
+                                                       Spacing="10">
+                                    <CheckBox IsChecked="{Binding Done}">
+                                        <CheckBox.Behaviors>
+                                            <toolKit:EventToCommandBehavior
+                                                EventName="CheckedChanged"
+                                                Command="{Binding CheckChangedCommand}" />
+                                        </CheckBox.Behaviors>
+                                    </CheckBox>
+                                    <Label Text="{Binding Title}"
+                                           FontSize="16"
+                                           VerticalTextAlignment="Center"
+                                           IsVisible="{Binding IsNotEditable}" />
+                                    <Entry x:Name="TodoEntry" Text="{Binding Title}"
+                                           IsVisible="{Binding IsEditable}">
+                                        <Entry.Behaviors>
+                                            <toolKit:EventToCommandBehavior
+                                                EventName="Completed"
+                                                Command="{Binding SaveItemCommand}" />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Add Item..."
+                    Command="{Binding AddItemCommand}"/>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

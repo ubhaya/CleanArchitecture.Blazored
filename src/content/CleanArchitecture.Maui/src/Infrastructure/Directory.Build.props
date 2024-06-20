@@ -1,0 +1,5 @@
+<Project>
+    <ItemGroup>
+        <ProjectReference Include="..\Infrastructure.Shared\Infrastructure.Shared.csproj" />
+    </ItemGroup>
+</Project>

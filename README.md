@@ -32,6 +32,7 @@ Refer documentation from each template
 ## Templates
 <!-- include (TemplatesSection.g.md) -->
 * [Clean Architecture Blazored](src/content/CleanArchitecture.Blazored/README.md)
+* [Clean Architecture Maui](src/content/CleanArchitecture.Maui/README.md)
 * [Clean Architecture Mud Blazored](src/content/CleanArchitecture.MudBlazored/README.md)
 <!-- /include -->
 

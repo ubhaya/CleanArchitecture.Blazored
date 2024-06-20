@@ -9,6 +9,8 @@ namespace CleanArchitecture.Blazored.Infrastructure.DependencyInjection;
 
 public sealed class CustomServices : IServiceInstaller
 {
+    public int Order => 3;
+
     public void InstallerService(IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IIdentityService, IdentityService>();

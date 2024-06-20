@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Ubhaya Hettiarachchi",
+  "classifications": [
+    "Web",
+    "Blazor",
+    "MudBlazor",
+    "WebAssembly",
+    "Clean Architecture"
+  ],
+  "name": "Clean Architecture Maui Application with oidc authentication",
+  "description":  "This is a solution template for creating a Maui application with ASP.NET Core 8 Web Api and following the principles of Clean Architecture.",
+  "identity": "Ubhaya.Hettiarachchi.CleanArchitecture.Maui.CSharp",
+  "groupIdentity": "CleanArchitecture.Maui",
+  "shortName": "clean-architecture-maui",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "CleanArchitecture.Maui",
+  "preferNameDirectory": true,
+//  "symbols": {
+//    "httpPort": {
+//      "type": "generated",
+//      "generator": "port",
+//      "datatype": "int",
+//      "replaces": "5123"
+//    },
+//    "httpsPort": {
+//      "type": "generated",
+//      "generator": "port",
+//      "datatype": "int",
+//      "replaces": "7252"
+//    },
+//    "iisExpress": {
+//      "type": "generated",
+//      "generator": "port",
+//      "datatype":"int"
+//    }
+//  },
+  "sources": [
+    {
+      "source": "./",
+      "target": "./",
+      "exclude": [
+        ".github/workflows/package.yml",
+        ".template.config/**/*",
+        ".vs/**/*",
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "**/*.filelist",
+        "**/*.user",
+        "**/*.lock.json",
+        "**/.git/**",
+        "*.nuspec"
+      ]
+    }
+  ]
+}

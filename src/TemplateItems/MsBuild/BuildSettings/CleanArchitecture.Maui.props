@@ -1,0 +1,50 @@
+<Project>
+    <PropertyGroup>
+        <ProjectName>CleanArchitecture.Blazored</ProjectName>
+        <SourceFilePath>../../../../$(ProjectName)</SourceFilePath>
+        <MauiProjectName>CleanArchitecture.Maui</MauiProjectName>
+        <MauiDestinationFolderPath>../../../</MauiDestinationFolderPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/*.sln"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/WebUi/WebUi/**/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/WebUi/WebUi.Client/**/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/WebUi.AcceptanceTests/**/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/.template.config/**/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/bin/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/obj/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/Debug/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/Release/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/*.feature.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/**/*.md"/>
+        
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Data/ApplicationDbContext.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Data/ApplicationDbContextInitializer.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Data/Migrations/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/DependencyInjection/AuthenticationServices.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Identity/*"/>
+        
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/WebUi.AcceptanceTests/Pages/Selectors.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/Application.IntegrationTests/Application.IntegrationTests.csproj"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/tests/Application.IntegrationTests/Testing.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Infrastructure.csproj"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Data/ApiAuthorizationDbContext.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Data/ApplicationDbContext.cs"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/Data/Migrations/**/*"/>
+        <MauiExcludedFilesInSource Include="$(SourceFilePath)/src/Infrastructure/DependencyInjection/AuthenticationServices.cs"/>
+
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/src/WebUi/WebUi/**/*"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/src/WebUi/WebUi.Client/**/*"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/.template.config/**/*"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/**/*.md"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/.template.config/template.json"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/**/bin/*"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/**/obj/*"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/**/Debug/*"/>
+        <MauiExcludedFilesInDestination Include="$(MauiDestinationFolderPath)/**/Release/*"/>
+    </ItemGroup>
+    <ItemGroup>
+        <MauiAllFilesInSource Include="$(SourceFilePath)/**/*" Exclude="@(MauiExcludedFilesInSource)"/>
+    </ItemGroup>
+</Project>

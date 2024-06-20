@@ -6,13 +6,18 @@
         <SourceFilePath>content/$(ProjectName)</SourceFilePath>
         <MudBlazorProjectName>CleanArchitecture.MudBlazored</MudBlazorProjectName>
         <MudBlazorDestinationFolderPath>content/$(MudBlazorProjectName)</MudBlazorDestinationFolderPath>
+        <MauiProjectName>CleanArchitecture.Maui</MauiProjectName>
+        <MauiDestinationFolderPath>content/$(MauiProjectName)</MauiDestinationFolderPath>
     </PropertyGroup>
         
     <ItemGroup>
+        <None Remove="**/*" Condition=" '$(Configuration)' == 'Debug' "/>
+        <None Include="TemplateItems/**/*"/>
         <None Include="../.github/**/*" />
         <None Include="../.dockerignore"/>
         <None Include="../.gitignore"/>
         <None Include="../nuget.config"/>
         <None Include="../CleanArchitecture.Blazored.restore.ps1"/>
+        <None Include="../AddProjectsToSolution.ps1" />
     </ItemGroup>
 </Project>

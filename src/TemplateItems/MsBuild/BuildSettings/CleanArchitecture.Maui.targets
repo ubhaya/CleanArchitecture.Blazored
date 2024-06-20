@@ -1,0 +1,40 @@
+<Project>
+    <Target Name="MauiCopyFiles" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' ">
+        <Copy SourceFiles="@(MauiAllFilesInSource)" DestinationFolder="$(ProjectDir)/$(MauiDestinationFolderPath)/%(RecursiveDir)" SkipUnchangedFiles="true"/>
+    </Target>
+    <Target Name="MauiReplaceNamespacesAndAssemblyName" AfterTargets="MauiCopyFiles" Condition=" '$(Configuration)' == 'Debug' ">
+        <ItemGroup>
+            <MauiAllFilesInDestination Include="$(MauiDestinationFolderPath)/**/*" Exclude="@(MauiExcludedFilesInDestination)"/>
+        </ItemGroup>
+        <Message Text="Changing Namespaces and AssemblyName" Importance="high"/>
+        <ReplaceFileText
+                Filename="$(ProjectDir)/%(MauiAllFilesInDestination.Identity)"
+                MatchExpression="\bCleanArchitecture\.Blazored\b"
+                ReplacementText="$(MauiProjectName)"/>
+        <ReplaceFileText
+                Filename="$(ProjectDir)/%(MauiAllFilesInDestination.Identity)"
+                MatchExpression="\bWebUi\b"
+                ReplacementText="MobileUi"/>
+    </Target>
+    <Target Name="MauiReplaceRequiredFileName" AfterTargets="MauiReplaceNamespacesAndAssemblyName" Condition=" '$(Configuration)' == 'Debug' ">
+        <ItemGroup>
+            <MauiAllFilesInDestination Include="$(MauiDestinationFolderPath)/**/*" Exclude="@(MauiExcludedFilesInDestination)"/>
+        </ItemGroup>
+        <ReplaceFilename
+            Filename="$(ProjectDir)/%(MauiAllFilesInDestination.Identity)"
+            MatchExpression="$(ProjectName)"
+            ReplacementText="$(MauiProjectName)"/>
+    </Target>
+    <Target Name="MauiMoveFilesAround" AfterTargets="MauiReplaceRequiredFileName" Condition=" '$(Configuration)' == 'Debug' ">
+        <ItemGroup>
+            <MauiAllFilesInDestination Include="$(MauiDestinationFolderPath)/**/*" Exclude="@(MauiExcludedFilesInDestination)"/>
+        </ItemGroup>
+        <ReplaceAndMoveFiles
+                Filename="$(ProjectDir)/%(MauiAllFilesInDestination.Identity)"
+                MatchExpression="WebUi"
+                ReplacementText="MobileUi"/>
+    </Target>
+    <Target Name="InsertLine" AfterTargets="MauiMoveFilesAround">
+        <InsertIntoFile FilePath="$(MauiDestinationFolderPath)/tests/Application.IntegrationTests/CustomWebApplicationFactory.cs" LineNumber="1" Text="using CleanArchitecture.Maui.MobileUi.WebApi;" />
+    </Target>
+</Project>
